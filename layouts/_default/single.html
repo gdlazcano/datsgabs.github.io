@@ -1,0 +1,15 @@
+{{ define "meta" }}
+    <title>{{.Title}}</title>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@datsgabs" />
+    <meta name="twitter:creator" content="@datsgabs" />
+    <meta property="og:url" content="{{.Permalink}}" />
+    <meta property="og:title" content="{{.Title}}" />
+    <meta property="og:description" content="{{.Description}}" />
+    <meta property="og:image" content="/images/habbo.png" />
+{{ end }}
+
+{{ define "main" }}
+    <h1>{{.Title}}</h1>
+{{ end }}
+
