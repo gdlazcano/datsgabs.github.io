@@ -1,8 +1,6 @@
 @import "media-queries.scss";
 
 .navigation {
-    position: fixed;
-
     .navigation_home-button {
         img {
             width: 100%;
@@ -17,10 +15,8 @@
         height: 100vh;
         width: 100%;
         position: relative;
-        padding: 0 20px;
         display: flex;
         flex-direction: column;
-        padding: 40px 0;
 
         h1 {
             margin-bottom: 20px;
@@ -31,6 +27,7 @@
             width: 80px;
             margin-bottom: 20px;
         }
+
         .navigation_menu {
             display: flex;
             flex-direction: column;
@@ -44,6 +41,7 @@
                 width: 100%;
             }
         }
+        
         .hamburger {
             display: none;
         }
@@ -58,7 +56,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 30px;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
 
         .navigation_home-button {
             width: 70px;

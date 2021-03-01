@@ -12,12 +12,14 @@
         <link rel="stylesheet" href="{{ $styleCommons.Permalink }}">
     </head>
     <body>
-        {{ partial "navigation" . }}
-        <main class="main">
-        {{ block "main" . }} {{ end }}
-        </main>
-        <aside>
-        {{ block "aside" . }}{{ end }}
-        </aside>
+        <div class="container">
+            {{ partial "navigation" . }}
+            <main class="main">
+            {{ block "main" . }} {{ end }}
+            </main>
+            <aside>
+            {{ block "aside" . }}{{ end }}
+            </aside>
+        </div>
     </body>
 </html>
