@@ -15,7 +15,7 @@
     {{ $hamburgerJS := resources.Get "js/hamburger-menu.js" | minify | fingerprint }}
     <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
 
-    <div class="navigation_overlay-menu" id="links">
+    <div class="navigation_menu" id="links">
         {{ range .Site.Menus.blog }}
         <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
         {{ end }}
