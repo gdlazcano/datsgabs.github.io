@@ -16,10 +16,14 @@
         display: block;
         width: 100%;
     }
+    
     @media (min-width: $tablet-width - 1) {
         & > * {
             padding: 40px 0;
         }
+    }
+    .main {
+        padding: 40px 30px;
     }
 }
 
@@ -29,6 +33,7 @@
     }
     .main {
         margin-top: 140px;
+        padding: 0 !important;
     }
     .container {
         padding: 0 20px;

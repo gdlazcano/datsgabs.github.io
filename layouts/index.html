@@ -1,0 +1,10 @@
+{{ define "main" }} 
+<ul class="listing">
+    <!-- Ranges through content/posts/*.md -->
+    {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true) 5 }}
+    {{ range $paginator.Pages }}
+        {{ partial "list-card" . }}
+    {{ end }}
+</ul>
+{{ partial "pager.html" . }}
+{{ end }}

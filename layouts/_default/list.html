@@ -1,11 +1,15 @@
 {{ define "main" }}
-    <ul>
-    {{range .Site.RegularPages }}
-        <li>
-            <a href="{{.RelPermalink}}">{{.Title}}</a>
-        </li>
-    {{end}}
+    <header class="list-title">
+        <h1>{{.Title}}</h1>
+    </header>
+    {{.Content}}
+    <ul class="listing">
+        {{ range (.Paginator 5).Pages  }}
+            {{ partial "list-card" . }}
+        {{ end }}
+        {{ partial "pager.html" . }}
     </ul>
+    {{ partial "pager.html" . }}
 {{ end }}
 
 {{ define "aside" }}
