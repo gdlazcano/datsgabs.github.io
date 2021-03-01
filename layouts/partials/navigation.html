@@ -1,0 +1,41 @@
+<nav class="navigation">
+    <a class="navigation_home-button" href="/" title="Press to go Home"
+        ><img
+            width="80"
+            height="80"
+            src="/images/habbo.png"
+            alt="Gabriel Lazcano"
+    /></a>
+    <h1 class="navigation_header">Gabriel Lazcano</h1>
+    <div class="navigation_hamburger" id="hamburger">
+        <div class="hamburger_line half start"></div>
+        <div class="hamburger_line"></div>
+        <div class="hamburger_line half end"></div>
+    </div>
+    {{ $hamburgerJS := resources.Get "js/hamburger-menu.js" | minify | fingerprint }}
+    <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
+
+    <div class="navigation_overlay-menu" id="links">
+        {{ range .Site.Menus.blog }}
+        <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
+        {{ end }}
+        <br />
+        <hr />
+        <br />
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
+        {{ end }}
+        <br />
+        <hr />
+        <br />
+        {{ range .Site.Menus.social }}
+        <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
+        {{ end }}
+        <br />
+        <hr />
+        <br />
+        {{ range .Site.Menus.other }}
+        <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
+        {{ end }}
+    </div>
+</nav>

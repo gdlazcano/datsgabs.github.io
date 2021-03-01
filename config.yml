@@ -1,3 +1,42 @@
 baseURL: "https://datsgabs.github.io/"
 languageCode: "en-us"
 title: "Gabriel Lazcano"
+
+menu:
+    blog:
+        - identifier: archive
+          name: Archive
+          url: /archive
+          weight: 30
+        - identifier: categories
+          name: Categories
+          url: /categories
+          weight: 20
+        - identifier: tags
+          name: Tags
+          url: /tags
+          weight: 10
+
+    main:
+        - identifier: about
+          name: About
+          url: /about
+          weight: 10
+        - identifier: portfolio
+          name: Portfolio
+          url: /portfolio
+          weight: 20
+    social:
+        - identifier: twitter
+          name: Twitter
+          url: "https://twitter.com/datsgabs"
+          weight: 10
+        - identifier: github
+          name: Github
+          url: "https://github.com/datsgabs"
+          weight: 20
+    other:
+        - identifier: rssfeed
+          name: RSS Feed
+          url: /index.xml
+          weight: 10

@@ -1,0 +1,16 @@
+@import "navigation.scss";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+:root {
+    --bg-color: #121212;
+}
+
+body {
+    background-color: var(--bg-color);
+}
