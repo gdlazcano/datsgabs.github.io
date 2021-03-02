@@ -8,6 +8,13 @@
         {{ block "meta" . }}
             <title>{{.Site.Title}}</title>  
         {{ end }}
+
+        <meta property="og:locale" content="en_US">
+        <meta property="og:url" content="{{.Site.BaseURL}}">
+        <meta property="og:sitename" content="{{.Site.Title}}">
+
+        <meta name="twitter:dnt" content="on">
+
         <link rel="shortcut icon" href="/images/habbo-card.png" type="image/png">
         {{ $styleCommons := resources.Get "scss/commons/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
         <link rel="stylesheet" href="{{ $styleCommons.Permalink }}">
