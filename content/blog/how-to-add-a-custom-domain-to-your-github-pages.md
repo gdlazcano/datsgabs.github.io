@@ -3,6 +3,7 @@ title: "How to Add a Custom Domain to Your Github Pages"
 date: 2021-03-02T10:49:32-06:00
 draft: false
 tags: ['networking']
+description: "Github Pages is a top-notch way of hosting you static site. To improve SEO you should add a custom domain. I'll show you how."
 ---
 
 I have to admit, I was struggling with getting my Github Pages to use my custom domain. In fact is **extremely** easy, I have to say I have no idea why I was struggling really.
