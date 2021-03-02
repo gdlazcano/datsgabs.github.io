@@ -1,5 +1,5 @@
 ---
-title: "How to Add a Custom Domain to Your Github Pages"
+title: "How to Add a Custom Domain to Your Github Pages?"
 date: 2021-03-02T10:49:32-06:00
 draft: false
 tags: ['networking']
@@ -37,7 +37,3 @@ Now you are ready to go. Go to your project and in the settings tab there is the
 ![image](/images/blog/2.png)
 
 Now just wait up to 24 hours for the DNS to propagate. If you don't see any changes you can troubleshoot with the [Github Pages documentation](https://docs.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages). 
-
-Do you have any doubts? Would you like to add something? Consider tweeting me :))
-
-{{< tweet-mention >}}

@@ -73,7 +73,3 @@ You add them similarly as the the Open Graph tags but you have to use the `name`
 You can check the full documentation on Twitter cards on https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started
 
 You can test and visualize your Twitter cards in https://cards-dev.twitter.com/validator 
-
-Do you have any doubts? Would you like to comment something? Consider tweeting me :))
-
-{{< tweet-mention >}}

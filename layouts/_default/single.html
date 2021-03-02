@@ -16,7 +16,10 @@
         <p class="title-footnote">Author: {{.Site.Params.author}}</p>
         <p class="title-footnote">Published on {{.Date.Format "Jan 2, 2006"}}</p>
     </div>
-    <article id="article" class="article">{{.Content}}</article>
+    <article id="article" class="article">
+        {{.Content}}
+        {{ partial "tweet-mention.html" . }}
+    </article>
     {{ partial "read-more.html" . }}
 {{ end }}
 
