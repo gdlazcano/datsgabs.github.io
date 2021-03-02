@@ -28,4 +28,5 @@
         {{ $hamburgerJS := resources.Get "js/clickable-box.js" | minify | fingerprint}}
         <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
     </body>
+    {{ template "_internal/google_analytics_async.html" . }}
 </html>
