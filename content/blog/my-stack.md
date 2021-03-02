@@ -1,5 +1,5 @@
 ---
-title: "How did I do my blog with Hugo and Github Pages?"
+title: "How did I make my blog with Hugo and Github Pages?"
 date: 2021-02-27
 draft: false
 tags: ['hugo']
