@@ -52,14 +52,9 @@
     .navigation {
         width: 100%;
         height: 120px;
-        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
         background-color: var(--bg-color);
 
         .navigation_home-button {
@@ -119,8 +114,7 @@
         }
 
         .navigation_menu {
-            position: fixed;
-            top: 0;
+            position: absolute;
             left: 0;
             width: 100vw;
             height: 100vh;
@@ -132,7 +126,6 @@
             visibility: none;
             pointer-events: none;
             top: -100vh;
-
             transition: 330ms;
 
             @media screen and (orientation: portrait) {

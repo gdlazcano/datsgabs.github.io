@@ -1,0 +1,14 @@
+.article {
+    p {
+        font-family: 'nunito';
+        line-height: 1.3em;
+        margin: 15px 0;
+    }
+}
+
+.single-header {
+    margin-bottom: 30px;
+    & .single-header_title {
+        padding-bottom: 10px;
+    }
+}

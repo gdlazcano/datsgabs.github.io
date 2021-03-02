@@ -2,6 +2,9 @@ baseURL: "https://datsgabs.github.io/"
 languageCode: "en-us"
 title: "Gabriel Lazcano"
 
+params:
+  author: "Gabriel Lazcano"
+
 menu:
     blog:
         - identifier: archive
@@ -40,3 +43,5 @@ menu:
           name: RSS Feed
           url: /index.xml
           weight: 10
+
+pygmentsUseClasses: true

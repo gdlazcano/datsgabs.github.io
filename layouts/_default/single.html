@@ -11,7 +11,12 @@
 {{ end }}
 
 {{ define "main" }}
-    <h1>{{.Title}}</h1>
+    <div class="single-header">
+        <h1 class="single-header_title">{{.Title}}</h1>
+        <p class="title-footnote">Author: {{.Site.Params.author}}</p>
+        <p class="title-footnote">Published on {{.Date.Format "Jan 2, 2006"}}</p>
+    </div>
+    <article id="article" class="article">{{.Content}}</article>
     {{ partial "read-more.html" . }}
 {{ end }}
 
