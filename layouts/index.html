@@ -14,3 +14,16 @@
     {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $list.Permalink }}"> 
 {{ end }}
+
+{{ define "aside" }}
+<div>
+    {{range $name, $taxonomy := .Site.Taxonomies.tags}} {{ $cnt := .Count }}
+    {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+        <div class="tagbutton">
+    <a href={{ .RelPermalink }} title="All pages with category <i>{{$name}}</i>">{{$name}}</a>
+    <sup>{{$cnt}}</sup>
+        </div>
+    {{end}}
+    {{end}}
+    </div>
+{{ end }}
