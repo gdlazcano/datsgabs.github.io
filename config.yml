@@ -1,6 +1,7 @@
 baseURL: "https://gabriellazcano.com"
 languageCode: "en-us"
 title: "Gabriel Lazcano"
+copyright: "© 2021 Gabriel Lazcano"
 
 params:
   author: "Gabriel Lazcano"
