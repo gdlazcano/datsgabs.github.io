@@ -1,13 +1,6 @@
 .single_pagination {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    flex-wrap: wrap;
     margin: 50px 0;
-
-    .pagination_buttons {
-        margin-top: 10px;
-    }
 
     .pagination_title {
         font-size: 1.4em;
@@ -16,8 +9,10 @@
     
     .button {
         font-size: 0.8em;
-        padding: 3px 5px;
+        padding: 5px;
         border-radius: 5px;
         border: 1px solid white;
+        display: inline-block;
+        margin: 10px 0;
     } 
 }
