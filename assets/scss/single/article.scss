@@ -33,6 +33,19 @@
         text-decoration: 2px underline white;
         font-style: italic;
     }
+
+    ul, ol {
+        margin: 15px 0;
+        list-style-position: inside;
+
+        li {
+            line-height: 1.5em;
+        }
+    }
+
+    img {
+        width: 100%;
+    }
 }
 
 .single-header {
