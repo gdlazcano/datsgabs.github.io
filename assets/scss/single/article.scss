@@ -1,3 +1,5 @@
+@import '../commons/media-queries.scss';
+
 .article {
     word-wrap: break-word;
     p {
@@ -45,6 +47,11 @@
 
     img {
         width: 100%;
+
+        @include desktop {
+            margin: auto;
+            width: 80% !important;
+        }
     }
 }
 
