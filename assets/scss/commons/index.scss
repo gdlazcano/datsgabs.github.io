@@ -9,6 +9,10 @@
     line-height: 1em;
 }
 
+body.open {
+    overflow: hidden;
+}
+
 :root {
     --bg-color: #121212;
 }

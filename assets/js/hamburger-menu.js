@@ -1,5 +1,6 @@
 const links = document.querySelector("#links")
 const hamburger = document.querySelector("#hamburger")
+const body = document.querySelector('body')
 
 let timeout = false
     delay = 250
@@ -13,9 +14,11 @@ function handleClickHamburgerMenu() {
     if (hamburgerActive) {
         links.classList.add("active")
         hamburger.classList.add("open")
+        body.classList.add('open')
     } else {
         links.classList.remove("active")
         hamburger.classList.remove("open")
+        body.classList.remove('open')
     }
 }
 
@@ -35,3 +38,4 @@ mql.addEventListener('change', () => {
     // start timing for event "completion"
     timeout = setTimeout(checkMediaQuery, delay);
 })
+
