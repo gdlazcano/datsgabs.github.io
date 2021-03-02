@@ -1,7 +1,7 @@
 ---
 title: "Centering in CSS is now easier than ever"
 date: 2021-03-01T07:40:38-06:00
-draft: false
+draft: true
 tags: []
 categories: []
 keywords: []
