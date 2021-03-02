@@ -3,6 +3,8 @@ title: "What is Open Graph Protocol and how to create Twitter Cards?"
 date: 2021-03-01T22:25:28-06:00
 draft: false
 description: "Have you ever seen Twitter links that have a preview to the content? I'll show you how to do them"
+tags: ['HTML']
+categories: ['web-development']
 ---
 
 Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. This is something that I literally found out today, as I was asking a fellow blogger *Flavio Copes*, recommended btw. Apparently is a very common practice but it doesn't get used so often by new web developers and can make your content stand out.

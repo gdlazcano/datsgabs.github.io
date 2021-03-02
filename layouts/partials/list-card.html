@@ -7,7 +7,7 @@
         <a href="{{.Permalink}}" class="card-top_title">{{.Title}}{{if .Draft}}<span class="draft">[draft]</span>{{end}}</a>
         {{ with .Params.tags }}
             {{ range . }}
-                <a class="{{.}} card-top_tag" title="{{.}} tag" href="tags/{{.}}">{{.}}</a>
+                <a class="{{lower .}} card-top_tag" title="{{.}} tag" href="tags/{{.}}">{{.}}</a>
             {{ end }}
         {{ end }}
     </div>
