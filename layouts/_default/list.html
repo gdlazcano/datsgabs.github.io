@@ -1,14 +1,17 @@
 {{ define "main" }}
-    <header class="list-title">
-        <h1>{{.Title}}</h1>
-    </header>
-    {{.Content}}
-    <ul class="listing">
-        {{ range (.Paginator 5).Pages  }}
-            {{ partial "list-card" . }}
-        {{ end }}
-        {{ partial "pager.html" . }}
-    </ul>
+    <div class="list">
+        <header class="list_title">
+            <h1>{{.Title}}</h1>
+        </header>
+        {{.Content}}
+        <ul>
+            {{ range (.Paginator 5).Pages  }}
+                {{ partial "list-card" . }}
+            {{ end }}
+            {{ partial "pager.html" . }}
+        </ul>
+    </div>
+</div>
     {{ partial "pager.html" . }}
 {{ end }}
 
@@ -23,4 +26,9 @@
     {{end}}
     {{end}}
 </div>
+{{ end }}
+
+{{ define "stylesheets" }}
+    {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $list.Permalink }}"> 
 {{ end }}

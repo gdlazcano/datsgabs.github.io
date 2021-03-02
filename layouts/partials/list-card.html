@@ -1,6 +1,3 @@
-{{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $listCard.Permalink }}">
-
 <li class="list-card" data-url={{.RelPermalink}}>   
     <div class="list-card_top">
         <a href="{{.Permalink}}" class="card-top_title">{{.Title}}{{if .Draft}}<span class="draft">[draft]</span>{{end}}</a>
@@ -55,3 +52,6 @@
     <p class="list-card_description">{{.Description}}</p>
     <a href="{{.RelPermalink}}" class="list-card_read-more">Read more »</a>
 </li>
+
+
+

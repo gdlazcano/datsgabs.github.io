@@ -11,5 +11,10 @@
 
 {{ define "main" }}
     <h1>{{.Title}}</h1>
+    {{ partial "read-more.html" . }}
 {{ end }}
 
+{{ define "stylesheets" }}
+    {{ $single := resources.Get "scss/single/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $single.Permalink }}"> 
+{{ end }}

@@ -1,0 +1,22 @@
+.single_pagination {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
+
+    .pagination_buttons {
+        margin-top: 10px;
+    }
+
+    .pagination_title {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+    
+    .button {
+        font-size: 0.8em;
+        padding: 3px 5px;
+        border-radius: 5px;
+        border: 1px solid white;
+    } 
+}
