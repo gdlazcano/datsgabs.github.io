@@ -19,7 +19,7 @@ Within it, you can provide details as simple as the title of a page or as specif
 
 As I said before it makes your content stand out, which is obviously what we want on the internet. Not using a content rich link can make us lose potential traffic we could have had.
 
-{{< tweet 1366749138310815744 >}}
+{{< tweet 1366791262267965440 >}}
 
 ## Open Graph basics
 
