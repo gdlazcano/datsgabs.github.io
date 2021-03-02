@@ -24,3 +24,7 @@
     {{ $single := resources.Get "scss/single/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $single.Permalink }}"> 
 {{ end }}
+
+{{ define "aside" }}
+    {{ partial "toc" . }}
+{{ end }}

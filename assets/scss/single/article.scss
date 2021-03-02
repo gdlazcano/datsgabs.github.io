@@ -4,6 +4,34 @@
         line-height: 1.3em;
         margin: 15px 0;
     }
+
+    :not(.chroma) > code {
+        background-color: white;
+        color: black;
+        padding: 0 5px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    blockquote  {
+        font-size: 0.9em;
+        border-left: 2px dotted white;
+        margin: 40px 0;
+        padding: 0px 20px;
+
+        p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        a {
+            color: rgba(255,255,255,1);
+        }
+    }
+
+    a {
+        text-decoration: 2px underline white;
+        font-style: italic;
+    }
 }
 
 .single-header {

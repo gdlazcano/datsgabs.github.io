@@ -1,0 +1,23 @@
+.toc {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+    
+    
+    ul {
+        li {
+            a {
+                opacity: 50%;
+                transition: all 50ms ease-in-out;
+                &:hover {
+                    opacity: 100%;
+                }
+            }
+            &.active > {
+                a {
+                    opacity: 100%;
+                }
+            }
+        }
+    }
+}
