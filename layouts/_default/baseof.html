@@ -5,9 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="{{.Site.Params.author}}">
-        {{ block "meta" . }}  
+        {{ block "meta" . }}
+            <title>{{.Site.Title}}</title>  
         {{ end }}
-        <title>Document</title>
+        <link rel="shortcut icon" href="/images/habbo-card.png" type="image/png">
         {{ $styleCommons := resources.Get "scss/commons/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
         <link rel="stylesheet" href="{{ $styleCommons.Permalink }}">
         {{ block "stylesheets" . }}
