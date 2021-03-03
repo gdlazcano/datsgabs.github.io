@@ -44,10 +44,10 @@ menu:
         - identifier: rssfeed
           name: RSS Feed
           url: /index.xml
-          weight: 10
+          weight: 20
         - identifier: newsletter
           name: Newsletter
           url: /newsletter
-          weight: 20
+          weight: 10
 
 pygmentsUseClasses: true
