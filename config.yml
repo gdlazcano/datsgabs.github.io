@@ -30,7 +30,7 @@ menu:
         - identifier: portfolio
           name: Portfolio
           url: /portfolio
-          weight: 20
+          weight: 20   
     social:
         - identifier: twitter
           name: Twitter
@@ -45,5 +45,9 @@ menu:
           name: RSS Feed
           url: /index.xml
           weight: 10
+        - identifier: newsletter
+          name: Newsletter
+          url: /newsletter
+          weight: 20
 
 pygmentsUseClasses: true

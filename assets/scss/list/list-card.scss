@@ -1,6 +1,6 @@
 .list-card {
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
     cursor: pointer;
     border-radius: 5px;
     
@@ -34,14 +34,12 @@
     .list-card_description {
         padding: 10px 0;
         opacity: 85%;
-        margin-bottom: 10px;
     }
     .list-card_bottom {
         display: flex;
         flex-wrap: wrap;
         align-content: center;
         opacity: 60%;
-        margin: 10px 0;
 
         & > * {
             margin-right: 20px;

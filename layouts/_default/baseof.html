@@ -37,7 +37,9 @@
             {{ block "main" . }} {{ end }}
             </main>
             <aside>
-            {{ block "aside" . }}{{ end }}
+            {{ block "aside" . }}
+                <div></div>
+            {{ end }}
             </aside>
         </div>
         {{ $hamburgerJS := resources.Get "js/clickable-box.js" | minify | fingerprint}}
