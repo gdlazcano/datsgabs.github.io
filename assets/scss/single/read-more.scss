@@ -9,10 +9,19 @@
     
     .button {
         font-size: 0.8em;
-        padding: 5px;
+        padding: 5px 15px;
         border-radius: 5px;
         border: 1px solid white;
         display: inline-block;
         margin: 10px 0;
+        transition: 0.5s;
     } 
+
+    .button:hover {
+        .button_text {
+            color: black !important;
+            font-weight: bold;
+        }
+        background-color: white;
+    }
 }

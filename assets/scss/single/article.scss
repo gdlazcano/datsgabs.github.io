@@ -61,3 +61,28 @@
         padding-bottom: 10px;
     }
 }
+
+.share-twitter-btn {
+    display: inline-flex;
+    padding: 10px;
+    border: 1px solid #1DA1F2;
+    border-radius: 5px;
+    text-decoration: none !important;
+    color: #1DA1F2;
+    align-items: center;
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #1DA1F2;
+        svg {
+            stroke: white;
+        }
+    }
+
+    svg {
+        width: 20px;
+        fill: #1DA1F2;
+        margin-right: 10px;
+        transition: 0.5s;
+    }
+}
