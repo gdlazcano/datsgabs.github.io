@@ -1,7 +1,7 @@
 @import 'media-queries.scss';
 
 .container {
-    width: 80vw;
+    width: 70vw;
     display: grid;
     grid-template-columns: 150px calc(100% - 300px) 150px;
     margin: auto;
