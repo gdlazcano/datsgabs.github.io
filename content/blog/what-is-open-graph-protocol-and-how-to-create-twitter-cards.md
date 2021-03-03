@@ -7,7 +7,7 @@ tags: ['HTML']
 categories: ['web-development']
 ---
 
-Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. This is something that I literally found out today, as I was asking a fellow blogger *Flavio Copes*, recommended btw. Apparently is a very common practice but it doesn't get used so often by new web developers and can make your content stand out.
+Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. This is something that I literally found out today, as I was asking a fellow blogger *Flavio Copes*, recommended btw. Apparently it is a very common practice but it doesn't get used so often by new web developers and can definitely make your content stand out.
 
 ## What is Open Graph Protocol?
 

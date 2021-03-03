@@ -1,6 +1,6 @@
 ---
 title: "How did I make my blog with Hugo and Github Pages?"
-date: 2021-02-27
+date: 2021-02-28
 draft: false
 tags: ['hugo']
 categories: ['web-development']
