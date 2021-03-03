@@ -62,27 +62,43 @@
     }
 }
 
-.share-twitter-btn {
-    display: inline-flex;
-    padding: 10px;
-    border: 1px solid #1DA1F2;
-    border-radius: 5px;
-    text-decoration: none !important;
-    color: #1DA1F2;
-    align-items: center;
-    transition: 0.5s;
+.article-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 
-    &:hover {
-        background-color: #1DA1F2;
+    .article-bottom_btn {
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none !important;
+        transition: 0.5s;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .share-twitter-btn {
+        
+        border: 1px solid #1DA1F2;
+    
+        &:hover {
+            background-color: #1DA1F2;
+            svg {
+                stroke: white;
+            }
+        }
+    
         svg {
-            stroke: white;
+            width: 20px;
+            fill: #1DA1F2;
+            margin-right: 10px;
+            transition: 0.5s;
         }
     }
 
-    svg {
-        width: 20px;
-        fill: #1DA1F2;
-        margin-right: 10px;
-        transition: 0.5s;
-    }
+    .newsletter-btn {
+        border: 1px solid white;
+    }    
 }
+
+
