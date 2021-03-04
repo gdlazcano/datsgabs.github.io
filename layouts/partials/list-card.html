@@ -4,16 +4,18 @@
     </div>
     
     <p class="list-card_description">{{.Description}}</p>
-    <div class="list-card_bottom">
-        {{ with .Params.tags }}
-                {{ range . }}
-                    <a class="{{lower .}} card-top_tag" title="{{.}} tag" href="/tags/{{ lower . }}">{{.}}</a>
-                {{ end }}
-        {{ end }}
-
-        <span>Posted on {{.Date.Format "2 Jan, 2006"}}</span>
-        <span>|</span>
-        <span>{{.ReadingTime}} min read</span>
-    </div>
+    {{ if ne .Kind "term" }}
+        <div class="list-card_bottom">
+            {{ with .Params.tags }}
+                    {{ range . }}
+                        <a class="{{lower .}} card-top_tag" title="{{.}} tag" href="/tags/{{ lower . }}">{{.}}</a>
+                    {{ end }}
+            {{ end }}
+            
+                <span>Posted on {{.Date.Format "2 Jan, 2006"}}</span>
+                <span>|</span>
+                <span>{{.ReadingTime}} min read</span>
+        </div>
+    {{ end }}
 </li>
 
