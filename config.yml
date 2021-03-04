@@ -12,10 +12,6 @@ menu:
         - identifier: archive
           name: Archive
           url: /archive
-          weight: 30
-        - identifier: categories
-          name: Categories
-          url: /categories
           weight: 20
         - identifier: tags
           name: Tags
@@ -24,7 +20,7 @@ menu:
         - identifier: newsletter
           name: Newsletter
           url: /newsletter
-          weight: 40
+          weight: 30
 
     main:
         - identifier: about
@@ -37,3 +33,5 @@ menu:
           weight: 20
 
 pygmentsUseClasses: true
+taxonomies: 
+  tag: tags
