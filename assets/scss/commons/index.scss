@@ -58,6 +58,8 @@ ul {
 }
 
 .four-o-four {
+    width: 100%;
+    height: 100%;
     display: grid;
     place-items: center;
 }
@@ -77,24 +79,26 @@ ul {
     margin-bottom: -2px;
     padding: 3px 8px;
     font-size: 0.8em;
+
+    &:hover {
+        cursor: pointer;
+        background-color: white;
+    }
+    
+    &:focus {
+        /* Avoid an ugly focus outline on click in Chrome,
+           but darken the button for accessibility.
+           See https://stackoverflow.com/a/25298082/1481479 */
+        background-color: white;
+        outline: 0;
+    }
+    
+    &:active {
+        background-color:white;
+    }
 }
 
-.copy-code-button:hover {
-    cursor: pointer;
-    background-color: white;
-}
 
-.copy-code-button:focus {
-    /* Avoid an ugly focus outline on click in Chrome,
-       but darken the button for accessibility.
-       See https://stackoverflow.com/a/25298082/1481479 */
-    background-color: white;
-    outline: 0;
-}
-
-.copy-code-button:active {
-    background-color:white;
-}
 
 .highlight pre {
     /* Avoid pushing up the copy buttons. */
