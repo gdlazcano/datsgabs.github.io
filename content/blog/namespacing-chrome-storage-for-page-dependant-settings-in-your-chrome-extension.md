@@ -4,7 +4,6 @@ date: 2021-03-03T07:40:03-06:00
 draft: false
 description: "A tutorial of how to namespace chrome.storage for making it dependant on the current page"
 tags: ['JS']
-categories: ['']
 ---
 
 As far as I know `chrome.storage` saves it's keys globally, so it's not like `localstorage` on normal pages that gets only works in the current page. For that purpose I had to figure out a way of achieving this. So I decided using namespaces using template literals. This is a really made up process so there might be inaccuracies, feel free to let me know :)

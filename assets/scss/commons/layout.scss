@@ -43,7 +43,7 @@
 
 aside {
     text-align: right;
-    @include mobile {
+    @media (max-width: 1100px) {
         display: none;
     }
 }
