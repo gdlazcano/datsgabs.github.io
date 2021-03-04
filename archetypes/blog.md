@@ -4,5 +4,7 @@ date: {{ .Date }}
 draft: true
 description: ""
 tags: ['']
-categories: ['']
 ---
+
+## Related Posts
+
