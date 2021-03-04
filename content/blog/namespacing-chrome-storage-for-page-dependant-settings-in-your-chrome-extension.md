@@ -104,7 +104,7 @@ function handleToggleButton(active) {
 })()
 {{< /highlight >}}
 
-## Add Chrome Extension
+### Add Chrome Extension
 
 You have to go to `chrome://extensions` and turn on Developer Mode. Press `Load unpacked` and select the directory where the extension is. In the screenshot I'm using Brave Browser but it makes no difference. 
 

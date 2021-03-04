@@ -14,7 +14,7 @@ Open Graph is an internet protocol that was originally created by Facebook to st
 
 Within it, you can provide details as simple as the title of a page or as specific as the duration of a video. These pieces all fit together to form a representation of each individual page of the internet.
 
-## Why to use it? 
+### Why to use it? 
 
 As I said before it makes your content stand out, which is obviously what we want on the internet. Not using a content rich link can make us lose potential traffic we could have had.
 
