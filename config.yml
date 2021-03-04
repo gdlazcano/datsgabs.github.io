@@ -21,6 +21,10 @@ menu:
           name: Tags
           url: /tags
           weight: 10
+        - identifier: newsletter
+          name: Newsletter
+          url: /newsletter
+          weight: 40
 
     main:
         - identifier: about
@@ -30,24 +34,6 @@ menu:
         - identifier: portfolio
           name: Portfolio
           url: /portfolio
-          weight: 20   
-    social:
-        - identifier: twitter
-          name: Twitter
-          url: "https://twitter.com/datsgabs"
-          weight: 10
-        - identifier: github
-          name: Github
-          url: "https://github.com/datsgabs"
           weight: 20
-    other:
-        - identifier: rssfeed
-          name: RSS Feed
-          url: /index.xml
-          weight: 20
-        - identifier: newsletter
-          name: Newsletter
-          url: /newsletter
-          weight: 10
 
 pygmentsUseClasses: true

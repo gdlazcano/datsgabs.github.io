@@ -1,12 +1,16 @@
 @import 'media-queries.scss';
 
 .container {
-    width: 70vw;
+    width: 75vw;
     display: grid;
-    grid-template-columns: 150px calc(100% - 300px) 150px;
+    grid-template-columns: 200px calc(100% - 350px) 150px;
     margin: auto;
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1500px) {
+        width: 90vw;
+    }
+
+    @media (max-width: 1300px) {
         width: 90vw;
         grid-template-columns: 150px calc(100% - 150px);
     }
@@ -43,7 +47,7 @@
 
 aside {
     text-align: right;
-    @media (max-width: 1100px) {
+    @media (max-width: 1300px) {
         display: none;
     }
 }

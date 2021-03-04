@@ -1,8 +1,10 @@
 .list-card {
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     cursor: pointer;
     border-radius: 5px;
+    background-color: var(--elevation-color);
+    padding: 20px;
     
     .list-card_top {
         display: flex;
@@ -24,12 +26,6 @@
                 font-size: 0.5em;
             }
         }
-        .card-top_tag {
-            margin: 10px 0;
-            padding: 7px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
     }
 
     .list-card_description {
@@ -37,14 +33,20 @@
         opacity: 85%;
     }
     .list-card_bottom {
+        .card-top_tag {
+            padding: 7px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
         margin-top: 10px;
         display: flex;
         flex-wrap: wrap;
-        align-content: center;
-        opacity: 60%;
+        align-items: center;
 
         & > * {
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         .icon-span {
@@ -60,8 +62,6 @@
             margin-right: 5px;
         }
     }
-    .list-card_read-more {
-        font-size: 1.2em;
-        font-weight: bold;
-    }   
+
+    
 }

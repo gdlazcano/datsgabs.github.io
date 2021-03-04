@@ -30,5 +30,7 @@
 
 {{ define "stylesheets" }}
     {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $list.Permalink }}"> 
+    <link rel="stylesheet" href="{{ $list.Permalink }}">
+    {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $listCard.Permalink }}"> 
 {{ end }}
