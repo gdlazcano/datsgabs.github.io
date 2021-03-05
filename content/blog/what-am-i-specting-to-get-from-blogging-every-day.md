@@ -1,5 +1,5 @@
 ---
-title: "What Am I Expecting to Get From Blogging Every Day?"
+title: "What am I expecting to get from blogging every day?"
 date: 2021-03-04T20:01:50-06:00
 draft: false
 description: "In this posts I'm going to talk about my thoughts on blogging every day."
