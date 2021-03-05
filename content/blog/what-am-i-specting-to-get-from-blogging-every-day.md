@@ -2,7 +2,7 @@
 title: "What Am I Specting to Get From Blogging Every Day?"
 date: 2021-03-04T20:01:50-06:00
 draft: false
-description: ""
+description: "In this posts I'm going to talk about my thoughts on blogging every day."
 ---
 
 As you might have already figured out if you've seen my posts in the last 4 consecutive days, I started blogging. My goal is to post every single day. With this in mind you might think, why? And I would tell you I don't really know for sure. I have the idea that this is going to bring me good things in the future but I'm unsure on what they will be, if they do. The aspects I've considered for this decision are the following:
