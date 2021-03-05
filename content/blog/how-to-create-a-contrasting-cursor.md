@@ -1,7 +1,7 @@
 ---
 title: "How to Create a Contrasting Cursor. BONUS: MouseMove Optimization."
 date: 2021-03-05
-draft: true
+draft: false
 description: "In this post I'm going to explain how to make a custom cursor that inverts the color of the content it's covering."
 tags: ['css', 'js']
 ---
