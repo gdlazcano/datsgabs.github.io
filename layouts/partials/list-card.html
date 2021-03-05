@@ -7,8 +7,10 @@
     {{ if ne .Kind "term" }}
         <div class="list-card_bottom">
             {{ with .Params.tags }}
-                    {{ range . }}
-                        <a class="{{lower .}} card-top_tag" title="{{.}} tag" href="/tags/{{ lower . }}">{{.}}</a>
+                    {{if ge (len .) 1}}
+                        {{ range . }}
+                            <a class="{{lower .}} card-top_tag" title="{{.}} tag" href="/tags/{{ lower . }}">{{.}}</a>
+                        {{ end }}
                     {{ end }}
             {{ end }}
             
