@@ -26,4 +26,4 @@ As I said before I don't work in tech nor any other industry. I've tried making 
 
 I really love the programming community, it's always so charming even when I started. I've never had a formal way of really engaging with the community other than just answering questions at StackOverflow or on Discord servers. And now I have a platform to give back to the community :)
 
-Thanks for reading! You might also want to check out my other posts if you are intested :))
+Thanks for reading! You might also want to check out my other posts if you are interested :))
