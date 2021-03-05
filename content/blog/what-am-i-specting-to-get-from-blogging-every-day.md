@@ -1,5 +1,5 @@
 ---
-title: "What Am I Specting to Get From Blogging Every Day?"
+title: "What Am I Expecting to Get From Blogging Every Day?"
 date: 2021-03-04T20:01:50-06:00
 draft: false
 description: "In this posts I'm going to talk about my thoughts on blogging every day."
@@ -20,7 +20,6 @@ I'm not into the labour force, I have no need of having a job at the moment, so 
 ## Money?
 
 As I said before I don't work in tech nor any other industry. I've tried making money with programming before but the conditions weren't the best and I really have no idea of how to get clients. Maybe if I keep blogging someone will eventually contact me and offer me something? I don't know. I hope so.
-
 
 ## Giving back to the community
 
