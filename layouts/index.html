@@ -2,7 +2,7 @@
 
 <ul class="listing">
     <!-- Ranges through content/posts/*.md -->
-    {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 5 }}
+    {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 7 }}
     {{ range $paginator.Pages }}
         {{ partial "list-card" . }}
     {{ end }}

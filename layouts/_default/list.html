@@ -5,7 +5,7 @@
         </header>
         {{.Content}}
         <ul>
-            {{ range (.Paginator 5).Pages  }}
+            {{ range (.Paginator 7).Pages  }}
                 {{ partial "list-card" . }}
             {{ end }}
             {{ partial "pager.html" . }}
