@@ -27,6 +27,8 @@ function checkOverflow(el) {
 }
 {{< /highlight >}}
 
+## Adjust Font Size
+
 And it's time for the main function! My thought process here was, if I start the `font-size` with `0.1em` I can increase the font size by a fixed rate until I get an overflow point in the div. For not overflowing I save the last size in a variable and substract the incrementation to get the last point when it wasn't overflowing. 
 
 {{< highlight js >}}
@@ -63,6 +65,8 @@ window.addEventListener("resize", () => {
     adjustFontSize(div)
 })
 {{< /highlight >}}
+
+### Resize Optimization
 
 If you've read my [other post](https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/) you might have already noticed that doing handling the event this way is not very performant. So we are going to use the same technique. We are going to throttle the function calls to have a delay of 500ms.
 
