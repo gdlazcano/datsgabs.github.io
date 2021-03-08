@@ -8,7 +8,80 @@ tags: ['css', 'js']
 
 You might think, what do you think by contrasting cursor. I believe it's better if you see it by yourself. 
 
-{{< pen vYyabdz "result">}}
+{{< sandbox >}}
+<html>
+  <head>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .container {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        position: relative;
+      }
+
+      .circle {
+          width: 60px;
+          height: 60px;
+          background: white;
+          mix-blend-mode: difference;
+          position: absolute;
+          left: 0;
+          top: 0;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+    <div class="circle"></div>
+    </div>
+    <script>
+      const cursor = document.querySelector(".circle");
+      const delay = 250;
+
+      function throttle(callback, limit) {
+        let wait = false;
+        return function () {
+          if (!wait) {
+            callback.apply(null, arguments);
+            wait = true;
+            setTimeout(function () {
+              wait = false;
+            }, limit);
+          }
+        };
+      }
+
+      // window.resize callback function
+      function getDimensions(e) {
+        cursor.style.top = `${e.clientY - 25}px`;
+        cursor.style.left = `${e.clientX - 25}px`;
+      }
+
+      // window.resize event listener
+      window.addEventListener("mousemove", (e) => {
+        throttle(getDimensions(e), delay);
+      });
+    </script>
+  </body>
+</html>
+{{</ sandbox >}}
 
 To achieve this we are using the `mix-blend-mode` CSS property with the value `difference` which basically inverts the color of the content it has below it. 
 
@@ -40,7 +113,52 @@ Here we are positioning the circle absolute to the container, giving it a size a
 
 And we start to see that it blends already. We just have to make the circle to move.
 
-{{< pen JjbBqNJ "result" >}}
+{{< sandbox >}}
+<html>
+  <head>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .container {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        position: relative;
+      }
+
+      .circle {
+          width: 60px;
+          height: 60px;
+          background: white;
+          mix-blend-mode: difference;
+          position: absolute;
+          left: 0;
+          top: 0;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+      <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. </p>
+    <div class="circle"></div>
+    </div>
+  </body>
+</html>
+{{</ sandbox >}}
 
 {{< highlight js >}}
 const cursor = document.querySelector(".circle")
