@@ -2,7 +2,7 @@
 title: "Import 3D models to three.js"
 date: 2021-03-08T22:42:52-06:00
 draft: false
-description: ""
+description: "In this post I'm going to explain how to easily import 3D objects to threejs and how to structure a simple scene"
 tags: ['js']
 ---
 
