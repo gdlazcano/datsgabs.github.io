@@ -97,6 +97,8 @@ I've found threejs pretty tricky at the current state of the library. They are a
 </html>
 {{</ sandbox >}}
 
+## Basic Setup
+
 The current version of threejs doesn't require any special tags in the HTML, only the `<script type="module">` tag where we are going to develop the logic of the program.
 
 When using `type="module"` we can use the features of es5 such as `import` so we are going to use them. We have to import `threejs` and `GLTFLoader`. And any other component you use, such as `OrbitControls`. I'm going to define some variables gloablly as I'm assigning them afterwards in the `init()` function. You can extend on the configuration in this function [in the documentation](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
@@ -146,6 +148,8 @@ function onWindowResize() {
 }
 {{</ highlight >}}
 
+## Loading object
+
 Now we have to load the object and define the lighting for the scene.
 
 {{< highlight js >}}
@@ -171,6 +175,8 @@ function init () {
 }
 {{</ highlight >}}
 
+## Animation
+
 To add a simple animation rotation to the model we have to add or substract to the rotation of the object in every animation frame, for example. However, there are much more ways of animating and with different purposes.  
 
 {{< highlight js >}}
@@ -183,5 +189,6 @@ function animate() {
 }
 {{</ highlight >}}
 
+### Complete implementation
 
 You can check to the complete implementation in [this Github gist](https://gist.github.com/DatsGabs/0a5dd2d1a2d8c63b6d8390a84b3434f9). 
