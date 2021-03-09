@@ -8,7 +8,7 @@ tags: ['css', 'js']
 
 You might think, what do you think by contrasting cursor. I believe it's better if you see it by yourself. 
 
-{{< sandbox >}}
+{{< sandbox sandbox="allow-scripts">}}
 <html>
   <head>
     <style>
