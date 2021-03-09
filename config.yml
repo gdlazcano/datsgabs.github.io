@@ -32,7 +32,6 @@ menu:
           url: /portfolio
           weight: 20
 
-pygmentsUseClasses: true
 taxonomies: 
   tag: tags
 
@@ -40,3 +39,8 @@ sitemap:
   changefreq: "weekly"
   priority: 0.5
   filename: "sitemap.xml"
+
+markup:
+  highlight:
+    noClasses: false
+    tabWidth: 4
