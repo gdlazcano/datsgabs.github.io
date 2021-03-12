@@ -2,7 +2,7 @@
 title: "Why I Use Quokka.js for prototyping?"
 date: 2021-03-11T18:01:21-06:00
 draft: false
-description: ""
+description: "In this post I'm going to explain why do I use Quokka.js for prototyping"
 tags: ['js', 'ts']
 ---
 
