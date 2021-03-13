@@ -2,7 +2,7 @@
 title: "Reactive Variables are the BEST feature in Svelte"
 date: 2021-03-13T14:13:41-06:00
 draft: false
-description: ""
+description: "In this post I'm going to explain how to use reactive variables in Svelte and how can they be useful."
 tags: ['svelte']
 ---
 
