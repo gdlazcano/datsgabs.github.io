@@ -157,7 +157,7 @@ SELECT * FROM users WHERE username='' or 1=1 -- AND password=" "
 
 As you can see in the linter the 2 dashes are commenting the `AND` part. So we reduce the query to "is username empty or 1 equal 1" and MySQL would say "there is no user with an empty space but 1 equals 1" so it will return every single user in the database. Then we would be authenticating as the first user which is normally... yes you guessed, it the admin.  
 
-{{< video src="/videos/1.mp4" width="864" height="630" >}}
+{{< video src="/videos/1.mp4" >}}
 
 ## Fixing the query
 
