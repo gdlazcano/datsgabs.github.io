@@ -2,7 +2,7 @@
 title: "Don't make your SQL requests like this! Dont get hacked: SQL Injection"
 date: 2021-03-31T10:27:36-06:00
 draft: false
-description: ""
+description: "In this post I'm going to explain how to prevent an SQL Injection and show an example of a vulnerable app in expressjs"
 tags: ["cybersecurity", "js"]
 ---
 
