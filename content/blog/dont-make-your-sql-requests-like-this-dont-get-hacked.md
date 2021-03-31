@@ -1,7 +1,7 @@
 ---
 title: "Don't make your SQL requests like this! Dont get hacked: SQL Injection"
 date: 2021-03-31T10:27:36-06:00
-draft: true
+draft: false
 description: ""
 tags: ["cybersecurity", "js"]
 ---
