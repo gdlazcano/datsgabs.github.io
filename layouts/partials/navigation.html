@@ -53,15 +53,9 @@
         {{ range .Site.Menus.blog }}
         <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
         {{ end }}
-        <br />
-        <hr />
-        <br />
-        {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
-        {{ end }}
-        <br />
-        <hr />
-        <br />
+        <br>
+        <hr>
+        <br>
         <small>{{.Site.Copyright}}</small>
     </div>
     

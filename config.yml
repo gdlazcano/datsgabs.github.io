@@ -22,16 +22,6 @@ menu:
           url: /newsletter
           weight: 30
 
-    main:
-        - identifier: about
-          name: About
-          url: /about
-          weight: 10
-        - identifier: portfolio
-          name: Portfolio
-          url: /portfolio
-          weight: 20
-
 taxonomies: 
   tag: tags
 
