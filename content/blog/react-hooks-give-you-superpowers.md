@@ -2,7 +2,7 @@
 title: "Combining useState and useContext gives you superpowers in React"
 date: 2021-06-30T13:06:09-05:00
 draft: false
-description: ""
+description: "In this post I'm going to explain how I combined useState and useContext in Reactjs in order to be able to mutate it from any part of the application"
 tags: ["react"]
 ---
 
