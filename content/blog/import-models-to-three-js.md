@@ -1,5 +1,5 @@
 ---
-title: "Import 3D models to three.js"
+title: "Import 3D models to three.js [outdated]"
 date: 2021-03-08T22:42:52-06:00
 draft: false
 description: "In this post I'm going to explain how to easily import 3D objects to threejs and how to structure a simple scene"
@@ -18,9 +18,9 @@ I've found threejs pretty tricky at the current state of the library. They are a
 	</head>
 	<body>
 		<script type="module">
-			import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js';
-            import { OrbitControls } from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js';
-            import { GLTFLoader } from 'https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js'
+			import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/optimized/three.js';
+            import { OrbitControls } from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/unoptimized/examples/jsm/controls/OrbitControls.js';
+            import { GLTFLoader } from 'https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=raw,min/examples/jsm/controls/GLTFLoader.js'
 
             let camera, scene, renderer, loader, model;
 
