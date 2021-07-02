@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>css on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/css/</link><description>Recent content in css on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Fri, 05 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.</title><link>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</link><pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</guid><description>&lt;p>You might think, what do you think by contrasting cursor. I believe it&amp;rsquo;s better if you see it by yourself.&lt;/p>
+&lt;iframe
+srcdoc="
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+overflow: hidden;
+}
+.container {
+width: 100vw;
+height: 100vh;
+background-color: white;
+position: relative;
+}
+.circle {
+width: 60px;
+height: 60px;
+background: white;
+mix-blend-mode: difference;
+position: absolute;
+left: 0;
+top: 0;
+border-radius: 50%;
+pointer-events: none;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;circle&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+const cursor = document.querySelector(&amp;#34;.circle&amp;#34;);
+const delay = 250;
+function throttle(callback, limit) {
+let wait = false;
+return function () {
+if (!wait) {
+callback.apply(null, arguments);
+wait = true;
+setTimeout(function () {
+wait = false;
+}, limit);
+}
+};
+}
+// window.resize callback function
+function getDimensions(e) {
+cursor.style.top = `${e.clientY - 25}px`;
+cursor.style.left = `${e.clientX - 25}px`;
+}
+// window.resize event listener
+window.addEventListener(&amp;#34;mousemove&amp;#34;, (e) =&amp;gt; {
+throttle(getDimensions(e), delay);
+});
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="400px"
+width="100%"
+sandbox="allow-scripts">
+&lt;/iframe>
+&lt;p>To achieve this we are using the &lt;code>mix-blend-mode&lt;/code> CSS property with the value &lt;code>difference&lt;/code> which basically inverts the color of the content it has below it.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vw&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vh&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">//&lt;/span> &lt;span class="err">Setting&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">width&lt;/span> &lt;span class="err">and&lt;/span> &lt;span class="err">height&lt;/span> &lt;span class="err">to&lt;/span> &lt;span class="err">be&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">full&lt;/span> &lt;span class="err">page&lt;/span>
+&lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">relative&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">circle&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">absolute&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">left&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">60&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">60&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">50&lt;/span>&lt;span class="kt">%&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">pointer-events&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">mix-blend-mode&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">difference&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Here we are positioning the circle absolute to the container, giving it a size and with border-radius we are making the div a circle. I disable the &lt;code>pointer-events&lt;/code> or we are not going to be able to click anywhere in the site.&lt;/p>
+&lt;blockquote>
+&lt;p>Setting the &lt;code>background-color&lt;/code> to white in both the &lt;code>.container&lt;/code> and the &lt;code>.circle&lt;/code> is needed for this to work, you can change the color but it might not look as good.&lt;/p>
+&lt;/blockquote>
+&lt;p>And we start to see that it blends already. We just have to make the circle to move.&lt;/p>
+&lt;iframe
+srcdoc="
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+overflow: hidden;
+}
+.container {
+width: 100vw;
+height: 100vh;
+background-color: white;
+position: relative;
+}
+.circle {
+width: 60px;
+height: 60px;
+background: white;
+mix-blend-mode: difference;
+position: absolute;
+left: 0;
+top: 0;
+border-radius: 50%;
+pointer-events: none;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;circle&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="400px"
+width="100%"
+sandbox="">
+&lt;/iframe>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">top&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientY&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span> &lt;span class="c1">// -25px for the size of the circle
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">left&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientX&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>&lt;strong>And it&amp;rsquo;s working&lt;/strong>&lt;/p>
+&lt;h2 id="bonus-mousemove-optimization">Bonus: MouseMove Optimization&lt;/h2>
+&lt;p>While it&amp;rsquo;s working, if you add a &lt;code>console.log()&lt;/code> to the &lt;code>getDimensions&lt;/code> function you might see lots of calls to the function. Which is not really good for performance.&lt;/p>
+&lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for 250ms&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">wait&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">callback&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arguments&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="p">},&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Easy Dark Mode With CSS variables</title><link>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</guid><description>&lt;p>I&amp;rsquo;ve found out a lot of ways of implementing a dark mode in your site. Both with Javascript and CSS. Today I&amp;rsquo;m going to share a method which doesn&amp;rsquo;t allow it to be toggled with a button but it&amp;rsquo;s the easiest way I&amp;rsquo;ve found.&lt;/p>
+&lt;p>For achieving this we are going to use the &lt;code>prefers-color-scheme&lt;/code> media feature, which is used to detect if the user has requested to use a light or dark theme, and &lt;code>:root&lt;/code> for setting global variables in CSS.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">dark&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="p">:&lt;/span>&lt;span class="nd">root&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nv">--bg-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#121212&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="err">//&lt;/span> &lt;span class="err">This&lt;/span> &lt;span class="err">is&lt;/span> &lt;span class="err">how&lt;/span> &lt;span class="err">we&lt;/span> &lt;span class="err">define&lt;/span> &lt;span class="err">a&lt;/span> &lt;span class="err">variable&lt;/span> &lt;span class="err">in&lt;/span> &lt;span class="err">CSS&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">light&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="p">:&lt;/span>&lt;span class="nd">root&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nv">--bg-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#FFFFFF&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Then in any part of the site we have to use the &lt;code>--bg-color&lt;/code> variable with &lt;code>var()&lt;/code> like this:&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="nt">body&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">bg&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">color&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can check support for &lt;code>prefers-color-scheme&lt;/code> in &lt;a href="https://caniuse.com/mdn-css_at-rules_media_prefers-color-scheme">Can I Use?&lt;/a>&lt;/p>
+&lt;h2 id="wrap-up">Wrap up&lt;/h2>
+&lt;p>I hope you will find this blog post useful and keep it handy for a quick reference. Feel free to send me a DM or to mention me on Twitter if you’ve got any suggestion or fix :)&lt;/p></description></item></channel></rss>

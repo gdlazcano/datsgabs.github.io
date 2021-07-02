@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>js on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/js/</link><description>Recent content in js on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Wed, 31 Mar 2021 10:27:36 -0600</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/js/index.xml" rel="self" type="application/rss+xml"/><item><title>Don't make your SQL requests like this! Dont get hacked: SQL Injection</title><link>https://gabriellazcano.com/blog/dont-make-your-sql-requests-like-this-dont-get-hacked/</link><pubDate>Wed, 31 Mar 2021 10:27:36 -0600</pubDate><guid>https://gabriellazcano.com/blog/dont-make-your-sql-requests-like-this-dont-get-hacked/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>So I&amp;rsquo;ve been learning SQL and something came to my mind. How safe is this, I won&amp;rsquo;t lie I&amp;rsquo;ve heard of SQL injections before but never really got into it. But now I know it&amp;rsquo;s really a dangerous tool if you are not doing things correctly, and the best way of preventing this is knowing how to do it. Also for what I&amp;rsquo;ve investigated it seems that a lot of sites are vulnerable to this kind of attacks so we have to make awareness of the topic.&lt;/p>
+&lt;h2 id="example-server">Example server&lt;/h2>
+&lt;p>In this occasion I&amp;rsquo;m going to be using express and mysql to demonstrate the attack and how to fix it. It&amp;rsquo;s important however that you investigate your specific stack so you can be more secure. Firstly I&amp;rsquo;m going to create a new &lt;code>express&lt;/code> server with the &lt;code>express-session&lt;/code> middleware to manage authentication and &lt;code>body-parser&lt;/code> to get the body from the &lt;code>post&lt;/code> request from the form.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">express&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express-session&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">bodyParser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;body-parser&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;path&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;span class="nx">secret&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;secret&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">resave&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">saveUninitialized&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="p">}));&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">bodyParser&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">urlencoded&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">extended&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">}));&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">bodyParser&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">json&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sendFile&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">path&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="mi">_&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="mi">_&lt;/span>&lt;span class="nx">dirname&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;/login.html&amp;#39;&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="p">});&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/home&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">loggedin&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Welcome back, &amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">&amp;#39;!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Please login to view this page!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">});&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">listen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">8000&lt;/span>&lt;span class="p">);&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Now I have to craete a simple &lt;code>login.html&lt;/code> file to be served&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="c">&amp;lt;!-- login.html --&amp;gt;&lt;/span>
+&lt;span class="cp">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Login Form Tutorial&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">login-form&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">300&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">margin&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="kc">auto&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">login-form&lt;/span> &lt;span class="nt">h1&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">text-align&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">center&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#4d4d4d&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-size&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">24&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">20&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">login-form&lt;/span> &lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;password&amp;#34;&lt;/span>&lt;span class="o">],&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">login-form&lt;/span> &lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;text&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">%&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">15&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">border&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="kt">px&lt;/span> &lt;span class="kc">solid&lt;/span> &lt;span class="mh">#dddddd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">margin-bottom&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">15&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">box-sizing&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="kc">border-box&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">login-form&lt;/span> &lt;span class="nt">input&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="nt">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;submit&amp;#34;&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">%&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">padding&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">15&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#535b63&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">border&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">box-sizing&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">border-box&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">cursor&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">pointer&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">font-weight&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">bold&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#ffffff&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">style&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;login-form&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Login Form&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">form&lt;/span> &lt;span class="na">action&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;auth&amp;#34;&lt;/span> &lt;span class="na">method&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">input&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;text&amp;#34;&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;username&amp;#34;&lt;/span> &lt;span class="na">placeholder&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Username&amp;#34;&lt;/span> &lt;span class="na">required&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">input&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;password&amp;#34;&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;password&amp;#34;&lt;/span> &lt;span class="na">placeholder&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;Password&amp;#34;&lt;/span> &lt;span class="na">required&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">input&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;submit&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">form&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>And finally I have to add the &lt;code>auth&lt;/code> url logic. This would be a post action just as specified in the HTML. I will also be importing &lt;code>dotenv&lt;/code> to not expose my user and password in the codebase but just for testing you can leave it like this, so you have to create a &lt;code>.env&lt;/code> file.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="c1"># .env&lt;/span>
+&lt;span class="nv">USERNAME&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>your MySQL username&lt;span class="o">)&lt;/span>
+&lt;span class="nv">PASS&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>your MySQL password&lt;span class="o">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;dotenv&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">config&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">mysql&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;mysql&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">connection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">mysql&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">createConnection&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;span class="nx">host&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;localhost&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">user&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">USERNAME&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">password&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PASS&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nx">database&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;test&amp;#39;&lt;/span>
+&lt;span class="p">});&lt;/span>
+&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/auth&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">username&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">password&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">password&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">password&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// vulnerable
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">connection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">query&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`SELECT * FROM users WHERE username=&amp;#39;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">&amp;#39; AND password=&amp;#39;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">password&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">&amp;#39;`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">results&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">fields&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">results&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">loggedin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">results&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">redirect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/home&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Incorrect Username and/or Password!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">});&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Please enter Username and Password!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="vulnerabily-explanation">Vulnerabily explanation&lt;/h3>
+&lt;p>And here is the vulnerable part of the whole application. In the &lt;code>connection.query()&lt;/code>. Basically here we are getting the body of the request with the username and password and making a string that function as a MySQL query BUT what if the username or passsword are not normal strings.&lt;/p>
+&lt;p>What would happen if we requested something like this &lt;code>' OR 1=1 -- &lt;/code> as user and &amp;quot; &amp;quot; as password&lt;/p>
+&lt;p>I&amp;rsquo;ll tell you what would happen. We would be doing this SQL request.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">users&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">or&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">-- AND password=&amp;#34; &amp;#34;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>As you can see in the linter the 2 dashes are commenting the &lt;code>AND&lt;/code> part. So we reduce the query to &amp;ldquo;is username empty or 1 equal 1&amp;rdquo; and MySQL would say &amp;ldquo;there is no user with an empty space but 1 equals 1&amp;rdquo; so it will return every single user in the database. Then we would be authenticating as the first user which is normally&amp;hellip; yes you guessed, it the admin.&lt;/p>
+&lt;video controls>
+&lt;source src="https://gabriellazcano.com/videos/1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+&lt;/video>
+&lt;h2 id="fixing-the-query">Fixing the query&lt;/h2>
+&lt;p>So with express it&amp;rsquo;s pretty simple to solve this. We need tweak our code so any user input is automatically spaced before being executed and in the MySQL library for nodejs you can use placeholders.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/auth&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">username&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">password&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">password&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">password&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// not vulnerable
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">connection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">query&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;SELECT * FROM users WHERE username= ? AND password= ?&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">password&lt;/span>&lt;span class="p">],&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">results&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">fields&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">results&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">loggedin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">session&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">results&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">redirect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/home&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Incorrect Username and/or Password!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">});&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Please enter Username and Password!&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After this you might want to check if you are using concatenation to make your SQL requests in order to not be vulnerable to this kind of attacks :))&lt;/p></description></item><item><title>Braces Validator With Javascript: Stacks</title><link>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</link><pubDate>Fri, 19 Mar 2021 17:15:50 -0600</pubDate><guid>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</guid><description>&lt;p>Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the &lt;a href="https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript">complete kata here.&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="s2">&amp;#34;(){}[]&amp;#34;&lt;/span> &lt;span class="c1">// True
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;([{}])&amp;#34;&lt;/span> &lt;span class="c1">// True
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;(}&amp;#34;&lt;/span> &lt;span class="c1">// False
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;[(])&amp;#34;&lt;/span> &lt;span class="c1">// False
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;[({})](]&amp;#34;&lt;/span> &lt;span class="c1">//False
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks.&lt;/p>
+&lt;p>&lt;code>Stacks&lt;/code> are a data structure that work by pushing and poping elements.&lt;/p>
+&lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
+&lt;p>Here it is in practice.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">// logs &amp;#34;}&amp;#34;
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
+&lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">validBraces&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;iframe
+srcdoc="
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;
+&amp;lt;style&amp;gt;
+body {
+background: white;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;h1&amp;gt;Type your string&amp;lt;/h1&amp;gt;
+&amp;lt;p&amp;gt;You can try these&amp;lt;/p&amp;gt;
+&amp;lt;pre&amp;gt;
+&amp;#34;(){}[]&amp;#34; // True
+&amp;#34;([{}])&amp;#34; // True
+&amp;#34;(}&amp;#34; // False
+&amp;#34;[(])&amp;#34; // False
+&amp;#34;[({})](]&amp;#34; //False
+&amp;lt;/pre&amp;gt;
+&amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;input&amp;#34;&amp;gt;
+&amp;lt;p id=&amp;#34;result&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;script&amp;gt;
+const input = document.querySelector(&amp;#39;#input&amp;#39;)
+const result = document.querySelector(&amp;#39;#result&amp;#39;);
+const braces = {
+&amp;#34;{&amp;#34;: &amp;#34;}&amp;#34;,
+&amp;#34;(&amp;#34;: &amp;#34;)&amp;#34;,
+&amp;#34;[&amp;#34;: &amp;#34;]&amp;#34;,
+}
+function validBraces(str){
+let stack = []
+for (const char of str) {
+try {
+if (stack.length &amp;gt; 0 &amp;amp;&amp;amp; braces[stack[stack.length - 1]] == char) {
+stack.pop()
+} else {
+stack.push(char)
+}
+}
+catch (error) {
+return false
+}
+}
+return stack.length == 0
+}
+input.addEventListener(&amp;#34;input&amp;#34;, (event) =&amp;gt; {
+result.textContent = `The string is ${validBraces(input.value) ? &amp;#34;&amp;#34;: &amp;#34;not&amp;#34;} valid`
+})
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="400px"
+width="100%"
+sandbox="allow-scripts">
+&lt;/iframe></description></item><item><title>Why I Use Quokka.js for prototyping?</title><link>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Thu, 11 Mar 2021 18:01:21 -0600</pubDate><guid>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>I&amp;rsquo;ve been doing some learning with typescript, and I&amp;rsquo;m really liking it but setting it up is a little messy mainly because you have to compile the program into a JavaScript file. And for a simple test I don&amp;rsquo;t find this convenient.&lt;/p>
+&lt;p>For example, if I&amp;rsquo;m doing some challenge for &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, or any other competitive programming platform using typescript is completely out of the way. You can work around this using nodemon but still the results are not as good as you could get with &lt;a href="https://quokkajs.com/">Quokka.js&lt;/a>.&lt;/p>
+&lt;p>In my case I have it installed in VSCode and you get to see the results of the code you are writting as you are writting it and in a non intrusive way, without having a terminal opened.&lt;/p>
+&lt;p>And it&amp;rsquo;s pretty easy to install, you just have to search it in the extensions tab in VSCode.&lt;/p>
+&lt;blockquote>
+&lt;p>To start Quokka.js on a file just type &lt;code>ctrl+k q&lt;/code> or press &lt;code>f1&lt;/code> and type Quokka and you&amp;rsquo;ll see the options.&lt;/p>
+&lt;/blockquote>
+&lt;p>There&amp;rsquo;s to be noted that there&amp;rsquo;s a Pro version but I only use the community, because it has all the features I need really.&lt;/p>
+&lt;p>Once you start using it, you&amp;rsquo;ll see your code like this:&lt;/p>
+&lt;p>&lt;img src="https://gabriellazcano.com/images/blog/5.png" alt="code with quokka.js">&lt;/p>
+&lt;p>This is just something I learnt today and felt like sharing :))&lt;/p></description></item><item><title>Import 3D models to three.js [outdated]</title><link>https://gabriellazcano.com/blog/import-models-to-three-js/</link><pubDate>Mon, 08 Mar 2021 22:42:52 -0600</pubDate><guid>https://gabriellazcano.com/blog/import-models-to-three-js/</guid><description>&lt;p>I&amp;rsquo;ve found threejs pretty tricky at the current state of the library. They are always making improvements and breaking some applications with the new updates. So here, I&amp;quot;m going to talk about how I&amp;rsquo;ve found it&amp;rsquo;s good to structure your threejs application for importing 3D objects. Here is a working example.&lt;/p>
+&lt;iframe
+srcdoc="
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+body { margin: 0; }
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt;
+import * as THREE from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/optimized/three.js&amp;#39;;
+import { OrbitControls } from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/unoptimized/examples/jsm/controls/OrbitControls.js&amp;#39;;
+import { GLTFLoader } from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=raw,min/examples/jsm/controls/GLTFLoader.js&amp;#39;
+let camera, scene, renderer, loader, model;
+const delay = 250
+init();
+animate()
+function init () {
+scene = new THREE.Scene();
+camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+renderer = new THREE.WebGLRenderer({ antialias: true})
+loader = new GLTFLoader();
+renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setClearColor(&amp;#34;#121212&amp;#34;)
+document.body.appendChild( renderer.domElement );
+camera.position.z = 3;
+const controls = new OrbitControls(camera, renderer.domElement);
+// ambient light
+const ambientLight = new THREE.AmbientLight ( 0xffffff, 0.2)
+scene.add( ambientLight )
+// point light
+const pointLight = new THREE.PointLight( 0xffffff, 1 );
+pointLight.position.set( 30, 50, 25 );
+scene.add( pointLight );
+window.addEventListener( &amp;#39;resize&amp;#39;, () =&amp;gt; {
+throttle(onWindowResize(), delay)
+} );
+loader.load( &amp;#39;/models/skull_downloadable/scene.gltf&amp;#39;, function ( gltf ) {
+model = gltf.scene
+scene.add( model );
+}, undefined, function ( error ) {
+console.error( error );
+} );
+}
+function throttle(callback, limit) {
+console.log(&amp;#39;hola&amp;#39;)
+let wait = false
+return function () {
+if (!wait) {
+callback.apply(null, arguments)
+wait = true
+setTimeout(function () {
+wait = false
+}, limit)
+}
+}
+}
+function onWindowResize() {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize( window.innerWidth, window.innerHeight );
+}
+function animate() {
+requestAnimationFrame( animate );
+if (model) {
+model.rotation.y -= 0.01
+}
+renderer.render( scene, camera );
+}
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="250px"
+width="100%"
+sandbox="allow-same-origin allow-scripts">
+&lt;/iframe>
+&lt;h2 id="basic-setup">Basic Setup&lt;/h2>
+&lt;p>The current version of threejs doesn&amp;rsquo;t require any special tags in the HTML, only the &lt;code>&amp;lt;script type=&amp;quot;module&amp;quot;&amp;gt;&lt;/code> tag where we are going to develop the logic of the program.&lt;/p>
+&lt;p>When using &lt;code>type=&amp;quot;module&amp;quot;&lt;/code> we can use the features of es5 such as &lt;code>import&lt;/code> so we are going to use them. We have to import &lt;code>threejs&lt;/code> and &lt;code>GLTFLoader&lt;/code>. And any other component you use, such as &lt;code>OrbitControls&lt;/code>. I&amp;rsquo;m going to define some variables gloablly as I&amp;rsquo;m assigning them afterwards in the &lt;code>init()&lt;/code> function. You can extend on the configuration in this function &lt;a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">in the documentation&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">THREE&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;https://unpkg.com/three@0.126.1/build/three.module.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">GLTFLoader&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js&amp;#39;&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">camera&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">loader&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">model&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">init&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">scene&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Scene&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="nx">camera&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PerspectiveCamera&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mi">75&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1000&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">renderer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">WebGLRenderer&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">antialias&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">})&lt;/span>
+&lt;span class="nx">loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">GLTFLoader&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="c1">// renderer
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setSize&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setClearColor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#121212&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// set the background color
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">appendChild&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">domElement&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">position&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">z&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">requestAnimationFrame&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">animate&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">render&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">camera&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>For adjusting the size when changing resizing the window we have to add an event listener and to change both the aspect ratio and the size of the renderer.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;resize&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">onWindowResize&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">onWindowResize&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">aspect&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">updateProjectionMatrix&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setSize&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="loading-object">Loading object&lt;/h2>
+&lt;p>Now we have to load the object and define the lighting for the scene.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">// ambient light
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">ambientLight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">AmbientLight&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="mh">0xffffff&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">ambientLight&lt;/span> &lt;span class="p">)&lt;/span>
+&lt;span class="c1">// point light
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">pointLight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PointLight&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mh">0xffffff&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">pointLight&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">position&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">set&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mi">30&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">50&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">25&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">pointLight&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="nx">loader&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">load&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;/path/to/object.gltf&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">gltf&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">gltf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scene&lt;/span> &lt;span class="c1">// assign the model to the global variable
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">model&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">},&lt;/span> &lt;span class="kc">undefined&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">error&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">error&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="animation">Animation&lt;/h2>
+&lt;p>To add a simple animation rotation to the model we have to add or substract to the rotation of the object in every animation frame, for example. However, there are much more ways of animating and with different purposes.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">requestAnimationFrame&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">animate&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">model&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">model&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">rotation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">y&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mf">0.01&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">render&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">camera&lt;/span> &lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="complete-implementation">Complete implementation&lt;/h3>
+&lt;p>You can check to the complete implementation in &lt;a href="https://gist.github.com/DatsGabs/0a5dd2d1a2d8c63b6d8390a84b3434f9">this Github gist&lt;/a>.&lt;/p></description></item><item><title>How to Auto Adjust Font Size to fit div</title><link>https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div/</link><pubDate>Fri, 05 Mar 2021 23:08:34 -0600</pubDate><guid>https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div/</guid><description>&lt;p>&lt;img src="https://gabriellazcano.com/images/blog/1.gif" alt="alt text">&lt;/p>
+&lt;p>I&amp;rsquo;ve been trying to get a solution like this for a long time already. As I didn&amp;rsquo;t find anything apart from libraries from JQuery I decided to make my own implementation with vanilla JavaScript. I know there must be ways of optimizing my code completely with some algorithms and such. Feel free to let me know if you found something or you want to share something :)&lt;/p>
+&lt;h2 id="detect-overflow">Detect Overflow&lt;/h2>
+&lt;p>So I decided to take this path. Calculating if the div has overflow and then work the &lt;code>font-size&lt;/code> afterwards. This is how we detect if a div has overflow:&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">checkOverflow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">overflow&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;visible&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">overflow&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;hidden&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">isOverflowing&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientWidth&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollWidth&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientHeight&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scrollHeight&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">overflow&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">curOverflow&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">isOverflowing&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="adjust-font-size">Adjust Font Size&lt;/h2>
+&lt;p>And it&amp;rsquo;s time for the main function! My thought process here was, if I start the &lt;code>font-size&lt;/code> with &lt;code>0.1em&lt;/code> I can increase the font size by a fixed rate until I get an overflow point in the div. For not overflowing I save the last size in a variable and substract the incrementation to get the last point when it wasn&amp;rsquo;t overflowing.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">div&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;div&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">incrementionRate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">0.05&lt;/span> &lt;span class="c1">// To augment 0.05em in every iteration
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">fontSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;0.1em&amp;#34;&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">fitted&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">lastSize&lt;/span>
+&lt;span class="k">while&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">fitted&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">checkOverflow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">fontSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">lastSize&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="nx">incrementionRate&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">em`&lt;/span>
+&lt;span class="nx">fitted&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">lastSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">parseFloat&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">fontSize&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">slice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">incrementionRate&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">fontSize&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">lastSize&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">em`&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="p">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>And we have it. We are adjusting the font-size already. To make it to work when resizing we just have to call to the function when the &lt;code>window resize&lt;/code> event happens.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;resize&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">})&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="resize-optimization">Resize Optimization&lt;/h3>
+&lt;p>If you&amp;rsquo;ve read my &lt;a href="https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/">other post&lt;/a> you might have already noticed that doing handling the event this way is not very performant. So we are going to use the same technique. We are going to throttle the function calls to have a delay of 500ms.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">500&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">wait&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">callback&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arguments&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="p">},&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;resize&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">})&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>So now it&amp;rsquo;s working completely. You can check at the &lt;a href="https://codepen.io/DatsGabs/pen/MWbqyrK">CodePen in this link&lt;/a> for the full implementation.&lt;/p>
+&lt;h2 id="related-posts">Related Posts&lt;/h2>
+&lt;p>&lt;a href="https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/">How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.&lt;/a>&lt;/p></description></item><item><title>How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.</title><link>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</link><pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</guid><description>&lt;p>You might think, what do you think by contrasting cursor. I believe it&amp;rsquo;s better if you see it by yourself.&lt;/p>
+&lt;iframe
+srcdoc="
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+overflow: hidden;
+}
+.container {
+width: 100vw;
+height: 100vh;
+background-color: white;
+position: relative;
+}
+.circle {
+width: 60px;
+height: 60px;
+background: white;
+mix-blend-mode: difference;
+position: absolute;
+left: 0;
+top: 0;
+border-radius: 50%;
+pointer-events: none;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;circle&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+const cursor = document.querySelector(&amp;#34;.circle&amp;#34;);
+const delay = 250;
+function throttle(callback, limit) {
+let wait = false;
+return function () {
+if (!wait) {
+callback.apply(null, arguments);
+wait = true;
+setTimeout(function () {
+wait = false;
+}, limit);
+}
+};
+}
+// window.resize callback function
+function getDimensions(e) {
+cursor.style.top = `${e.clientY - 25}px`;
+cursor.style.left = `${e.clientX - 25}px`;
+}
+// window.resize event listener
+window.addEventListener(&amp;#34;mousemove&amp;#34;, (e) =&amp;gt; {
+throttle(getDimensions(e), delay);
+});
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="400px"
+width="100%"
+sandbox="allow-scripts">
+&lt;/iframe>
+&lt;p>To achieve this we are using the &lt;code>mix-blend-mode&lt;/code> CSS property with the value &lt;code>difference&lt;/code> which basically inverts the color of the content it has below it.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vw&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vh&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="err">//&lt;/span> &lt;span class="err">Setting&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">width&lt;/span> &lt;span class="err">and&lt;/span> &lt;span class="err">height&lt;/span> &lt;span class="err">to&lt;/span> &lt;span class="err">be&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">full&lt;/span> &lt;span class="err">page&lt;/span>
+&lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">relative&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">.&lt;/span>&lt;span class="nc">circle&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">absolute&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">left&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">top&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">60&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">60&lt;/span>&lt;span class="kt">px&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">background&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">border-radius&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">50&lt;/span>&lt;span class="kt">%&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">pointer-events&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">mix-blend-mode&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">difference&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Here we are positioning the circle absolute to the container, giving it a size and with border-radius we are making the div a circle. I disable the &lt;code>pointer-events&lt;/code> or we are not going to be able to click anywhere in the site.&lt;/p>
+&lt;blockquote>
+&lt;p>Setting the &lt;code>background-color&lt;/code> to white in both the &lt;code>.container&lt;/code> and the &lt;code>.circle&lt;/code> is needed for this to work, you can change the color but it might not look as good.&lt;/p>
+&lt;/blockquote>
+&lt;p>And we start to see that it blends already. We just have to make the circle to move.&lt;/p>
+&lt;iframe
+srcdoc="
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+overflow: hidden;
+}
+.container {
+width: 100vw;
+height: 100vh;
+background-color: white;
+position: relative;
+}
+.circle {
+width: 60px;
+height: 60px;
+background: white;
+mix-blend-mode: difference;
+position: absolute;
+left: 0;
+top: 0;
+border-radius: 50%;
+pointer-events: none;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt; Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio enim natus, modi aperiam, aspernatur rerum, molestias corporis fuga nihil dicta fugit in sapiente eveniet eius eos soluta suscipit sunt molestiae. &amp;lt;/p&amp;gt;
+&amp;lt;div class=&amp;#34;circle&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="400px"
+width="100%"
+sandbox="">
+&lt;/iframe>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">top&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientY&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span> &lt;span class="c1">// -25px for the size of the circle
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">left&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientX&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>&lt;strong>And it&amp;rsquo;s working&lt;/strong>&lt;/p>
+&lt;h2 id="bonus-mousemove-optimization">Bonus: MouseMove Optimization&lt;/h2>
+&lt;p>While it&amp;rsquo;s working, if you add a &lt;code>console.log()&lt;/code> to the &lt;code>getDimensions&lt;/code> function you might see lots of calls to the function. Which is not really good for performance.&lt;/p>
+&lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for 250ms&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">wait&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">callback&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">apply&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arguments&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">wait&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="p">},&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Namespacing Chrome Storage for page dependant settings for your Chrome Extension</title><link>https://gabriellazcano.com/blog/namespacing-chrome-storage-for-page-dependant-settings-in-your-chrome-extension/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/namespacing-chrome-storage-for-page-dependant-settings-in-your-chrome-extension/</guid><description>&lt;p>As far as I know &lt;code>chrome.storage&lt;/code> saves it&amp;rsquo;s keys globally, so it&amp;rsquo;s not like &lt;code>localstorage&lt;/code> on normal pages that gets only works in the current page. For that purpose I had to figure out a way of achieving this. So I decided using namespaces using template literals. This is a really made up process so there might be inaccuracies, feel free to let me know :)&lt;/p>
+&lt;h2 id="creating-the-extension">Creating the extension&lt;/h2>
+&lt;p>Creating the extension from scratch is pretty straightforward, we just have to add a &lt;code>manifest.json&lt;/code> file with the following values:&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>permissions&lt;/code> are needed for the sole purpose of this tutorial but could be not added&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;[name of the extension]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;manifest_version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;permissions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;storage&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;tabs&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;action&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;default_popup&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;popup.html&amp;#34;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We have to create a &lt;code>popup.html&lt;/code> file and just use it as if it was a normal HTML. We can import scripts add stylsheets, etc.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;box &amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;toggle&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Toggle&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;popup.js&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the &lt;code>popup.js&lt;/code> file is where we are going to have the logic for namespacing &lt;code>chrome.storage&lt;/code> keys.&lt;/p>
+&lt;p>Firstly, I have to point out that &lt;code>chrome.storage&lt;/code> is an &lt;code>async&lt;/code> api therefore we will have to use &lt;code>async/await&lt;/code> on our main function.&lt;/p>
+&lt;blockquote>
+&lt;p>If you are working with multiple variables I recommend using an object, as I did.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="p">;(&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">settings&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">active&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="c1">// Gets the current URL of the tab
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Promise&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">res&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">rej&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">chrome&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">tabs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">query&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">active&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">lastFocusedWindow&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span> &lt;span class="p">},&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">tabs&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">tabs&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="nx">url&lt;/span>
+&lt;span class="nx">res&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="c1">// Gets chrome storage with the namespace URL
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">synchedSettings&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kr">await&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Promise&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">res&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">rej&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">chrome&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">storage&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sync&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`settings:&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">results&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">res&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">Object&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">values&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">results&lt;/span>&lt;span class="p">)[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">synchedSettings&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">settings&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">synchedSettings&lt;/span>
+&lt;span class="nx">handleToggleButton&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">settings&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">active&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">})()&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Here we are using the &lt;code>tab&lt;/code> API, that we enabled before in the &lt;code>manifest&lt;/code>, to get the URL of the current page and we wait for the &lt;code>Promise&lt;/code> to resolve. Then we use the &lt;code>storage&lt;/code> api and use a template literal to get the settings only from the current URL. As we have no real way of getting the key from the results, we just resolve the first element in the &lt;code>Object.values()&lt;/code> that returns an array of all the keys in the &lt;code>results&lt;/code> which in this case is the &lt;code>settings&lt;/code> object we want. Then we substitute the default &lt;code>settings&lt;/code> object with the one we got from &lt;code>storage&lt;/code>. &lt;strong>To conclude, it works.&lt;/strong>&lt;/p>
+&lt;p>To set up a new element we have to set the &lt;code>addEventListener&lt;/code> inside the &lt;code>async function&lt;/code> as we&amp;rsquo;ll need the URL for setting up the namespace.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kr">const&lt;/span> &lt;span class="nx">toggleButton&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#toggle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">box&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.box&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="c1">// Add class to .box depending of if it&amp;#39;s active or not
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="nx">handleToggleButton&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">active&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">active&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">box&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">classList&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;active&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">box&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">classList&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">remove&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;active&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">;(&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="c1">// When toggle gets pressed changes settings.value value and saves it to storage with namespace
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">toggleButton&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;click&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">settings&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">active&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="nx">settings&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">active&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">chrome&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">storage&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sync&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">set&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="sb">`settings:&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">settings&lt;/span> &lt;span class="p">},&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">handleToggleButton&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">settings&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">active&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="p">})()&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="add-chrome-extension">Add Chrome Extension&lt;/h3>
+&lt;p>You have to go to &lt;code>chrome://extensions&lt;/code> and turn on Developer Mode. Press &lt;code>Load unpacked&lt;/code> and select the directory where the extension is. In the screenshot I&amp;rsquo;m using Brave Browser but it makes no difference.&lt;/p>
+&lt;p>&lt;img src="https://gabriellazcano.com/images/blog/3.png" alt="image">&lt;/p>
+&lt;h2 id="wrap-up">Wrap up&lt;/h2>
+&lt;p>I hope you will find this blog post useful and keep it handy for a quick reference. This solution is a little clumsy but I didn&amp;rsquo;t find any better way and wanted to share it with you. Feel free to send me a DM or to mention me on Twitter if you&amp;rsquo;ve got any suggestion or fix.&lt;/p>
+&lt;p>You can look at the whole code in &lt;a href="https://github.com/DatsGabs/namespace-chrome-storage-extension">this repository&lt;/a>&lt;/p></description></item></channel></rss>
