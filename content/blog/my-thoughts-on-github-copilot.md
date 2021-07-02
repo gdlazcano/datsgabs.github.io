@@ -1,9 +1,9 @@
 ---
 title: "My Thoughts on Github Copilot"
 date: 2021-07-02T13:28:37-05:00
-draft: true
-description: ""
-tags: [""]
+draft: false
+description: "In this post I'm going to give my opinion on Github Copilot and how it affects programmers in different stages of learning"
+tags: ["opinion"]
 ---
 
 There has been a lot of controversy and I should say fear since the announcement of [Github Copilot](https://copilot.github.com/). The common concerns are that it's going to take jobs from programmers or that it's going to make a generation of coders that don't know how to code and solve problems.
