@@ -1,4 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gabriel Lazcano</title><link>https://gabriellazcano.com/</link><description>Recent content on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Fri, 02 Jul 2021 13:28:37 -0500</lastBuildDate><atom:link href="https://gabriellazcano.com/index.xml" rel="self" type="application/rss+xml"/><item><title>My Thoughts on Github Copilot</title><link>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</link><pubDate>Fri, 02 Jul 2021 13:28:37 -0500</pubDate><guid>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</guid><description>&lt;p>There has been a lot of controversy and I should say fear since the announcement of &lt;a href="https://copilot.github.com/">Github Copilot&lt;/a>. The common concerns are that it&amp;rsquo;s going to take jobs from programmers or that it&amp;rsquo;s going to make a generation of coders that don&amp;rsquo;t know how to code and solve problems.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gabriel Lazcano</title><link>https://gabriellazcano.com/</link><description>Recent content on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sat, 03 Jul 2021 22:46:36 -0500</lastBuildDate><atom:link href="https://gabriellazcano.com/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Inject Javascript to a Site From Chrome Extension</title><link>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</link><pubDate>Sat, 03 Jul 2021 22:46:36 -0500</pubDate><guid>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>I was watching a Twitch streamer struggle trying to do this. So I thought it might help someone out there.&lt;/p>
+&lt;p>You can inject javascript code into any site with a chrome extension, with this you can do many things. Like creating new elements and adding them to the DOM or managing events of certain elements, what you can do in your application you can do it when injecting it.&lt;/p>
+&lt;h2 id="manifest-version-3">Manifest version 3&lt;/h2>
+&lt;p>If you want your script to run on a set of pages you have defined, the manifest for your chrome extension which is needed for it to work &lt;a href="https://developer.chrome.com/docs/extensions/mv3/getstarted/">(you can have a look a the documentation)&lt;/a>, needs to have some additional elements. &lt;code>content_scripts&lt;/code> and &lt;code>host_permissions&lt;/code>&lt;/p>
+&lt;p>Both the &lt;code>matches&lt;/code> and &lt;code>host_permissions&lt;/code> should specify &lt;a href="https://developer.chrome.com/docs/extensions/mv3/match_patterns/">match patterns&lt;/a>. In this example &lt;code>inject.js&lt;/code> only runs whenever the site is google.com, and you have permissions in all the urls.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;inject&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;manifest_version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="nt">&amp;#34;content_scripts&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;span class="p">{&lt;/span>
+&lt;span class="nt">&amp;#34;matches&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;*://*.google.com/*&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;js&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;inject.js&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">],&lt;/span>
+&lt;span class="nt">&amp;#34;host_permissions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;all_urls&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This is an example of the code that can be injected. You can add event listeners, get and add elements from the DOM as I mentioned before.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">el&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">createElement&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setAttribute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;checkbox&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">appendChild&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;click&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">target&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">checked&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">})&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">init&lt;/span>&lt;span class="p">()&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>My Thoughts on Github Copilot</title><link>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</link><pubDate>Fri, 02 Jul 2021 13:28:37 -0500</pubDate><guid>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</guid><description>&lt;p>There has been a lot of controversy and I should say fear since the announcement of &lt;a href="https://copilot.github.com/">Github Copilot&lt;/a>. The common concerns are that it&amp;rsquo;s going to take jobs from programmers or that it&amp;rsquo;s going to make a generation of coders that don&amp;rsquo;t know how to code and solve problems.&lt;/p>
 &lt;p>Regarding the first point, I don&amp;rsquo;t actually think it&amp;rsquo;s going to take jobs from established programmers but that it will make junior programmers' life harder. As the most basic things are being automatized they will have learn much more than before to make a living of programming. We are seeing this trend with tools like webflow for creating landing pages and other simple applications instead of requiring a junior programmer for that matter.&lt;/p>
 &lt;p>Returning to my first idea, automatization helps more senior developers with more mundane and repetitive tasks. This will make coding be faster, more effective and productive. And while Copilot seems to have really advanced capabilities, it seems to be lacking on using the context of your application as a whole, you will still be the one solving challenges. Solving challenges is why you are required and how you do it is secondary.&lt;/p>
 &lt;p>I believe Copilot is a more advanced alternative of what we have now, Stackoverflow. We are so accostumed to it that we don&amp;rsquo;t see that when we copy and paste code from Stackoverflow we are doing basically the same thing Copilot aspires to do but more effective, as I mentioned before. However, we don&amp;rsquo;t have to rely on either Stackoverflow or Copilot to do all the work for us. If you are a person that just copies code from other places and call it a day you must definetely be worried about Copilot taking your job but that is not certainly the case for most of us.&lt;/p>
@@ -335,149 +362,7 @@ sandbox="allow-same-origin allow-scripts"
 &lt;p>There&amp;rsquo;s to be noted that there&amp;rsquo;s a Pro version but I only use the community, because it has all the features I need really.&lt;/p>
 &lt;p>Once you start using it, you&amp;rsquo;ll see your code like this:&lt;/p>
 &lt;p>&lt;img src="https://gabriellazcano.com/images/blog/5.png" alt="code with quokka.js">&lt;/p>
-&lt;p>This is just something I learnt today and felt like sharing :))&lt;/p></description></item><item><title>Import 3D models to three.js [outdated]</title><link>https://gabriellazcano.com/blog/import-models-to-three-js/</link><pubDate>Mon, 08 Mar 2021 22:42:52 -0600</pubDate><guid>https://gabriellazcano.com/blog/import-models-to-three-js/</guid><description>&lt;p>I&amp;rsquo;ve found threejs pretty tricky at the current state of the library. They are always making improvements and breaking some applications with the new updates. So here, I&amp;quot;m going to talk about how I&amp;rsquo;ve found it&amp;rsquo;s good to structure your threejs application for importing 3D objects. Here is a working example.&lt;/p>
-&lt;iframe
-srcdoc="
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;style&amp;gt;
-body { margin: 0; }
-&amp;lt;/style&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt;
-import * as THREE from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/optimized/three.js&amp;#39;;
-import { OrbitControls } from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=imports,min/unoptimized/examples/jsm/controls/OrbitControls.js&amp;#39;;
-import { GLTFLoader } from &amp;#39;https://cdn.skypack.dev/pin/three@v0.130.0-WI96Ec9p8dZb5AMcOcgD/mode=raw,min/examples/jsm/controls/GLTFLoader.js&amp;#39;
-let camera, scene, renderer, loader, model;
-const delay = 250
-init();
-animate()
-function init () {
-scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-renderer = new THREE.WebGLRenderer({ antialias: true})
-loader = new GLTFLoader();
-renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setClearColor(&amp;#34;#121212&amp;#34;)
-document.body.appendChild( renderer.domElement );
-camera.position.z = 3;
-const controls = new OrbitControls(camera, renderer.domElement);
-// ambient light
-const ambientLight = new THREE.AmbientLight ( 0xffffff, 0.2)
-scene.add( ambientLight )
-// point light
-const pointLight = new THREE.PointLight( 0xffffff, 1 );
-pointLight.position.set( 30, 50, 25 );
-scene.add( pointLight );
-window.addEventListener( &amp;#39;resize&amp;#39;, () =&amp;gt; {
-throttle(onWindowResize(), delay)
-} );
-loader.load( &amp;#39;/models/skull_downloadable/scene.gltf&amp;#39;, function ( gltf ) {
-model = gltf.scene
-scene.add( model );
-}, undefined, function ( error ) {
-console.error( error );
-} );
-}
-function throttle(callback, limit) {
-console.log(&amp;#39;hola&amp;#39;)
-let wait = false
-return function () {
-if (!wait) {
-callback.apply(null, arguments)
-wait = true
-setTimeout(function () {
-wait = false
-}, limit)
-}
-}
-}
-function onWindowResize() {
-camera.aspect = window.innerWidth / window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize( window.innerWidth, window.innerHeight );
-}
-function animate() {
-requestAnimationFrame( animate );
-if (model) {
-model.rotation.y -= 0.01
-}
-renderer.render( scene, camera );
-}
-&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-"
-frameborder="0"
-height="250px"
-width="100%"
-sandbox="allow-same-origin allow-scripts">
-&lt;/iframe>
-&lt;h2 id="basic-setup">Basic Setup&lt;/h2>
-&lt;p>The current version of threejs doesn&amp;rsquo;t require any special tags in the HTML, only the &lt;code>&amp;lt;script type=&amp;quot;module&amp;quot;&amp;gt;&lt;/code> tag where we are going to develop the logic of the program.&lt;/p>
-&lt;p>When using &lt;code>type=&amp;quot;module&amp;quot;&lt;/code> we can use the features of es5 such as &lt;code>import&lt;/code> so we are going to use them. We have to import &lt;code>threejs&lt;/code> and &lt;code>GLTFLoader&lt;/code>. And any other component you use, such as &lt;code>OrbitControls&lt;/code>. I&amp;rsquo;m going to define some variables gloablly as I&amp;rsquo;m assigning them afterwards in the &lt;code>init()&lt;/code> function. You can extend on the configuration in this function &lt;a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">in the documentation&lt;/a>&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">THREE&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;https://unpkg.com/three@0.126.1/build/three.module.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">GLTFLoader&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js&amp;#39;&lt;/span>
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">camera&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">loader&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">model&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="nx">init&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">scene&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Scene&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="nx">camera&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PerspectiveCamera&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mi">75&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1000&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">renderer&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">WebGLRenderer&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">antialias&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;span class="nx">loader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">GLTFLoader&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="c1">// renderer
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setSize&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setClearColor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#121212&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// set the background color
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">appendChild&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">domElement&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">position&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">z&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">requestAnimationFrame&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">animate&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">render&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">camera&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>For adjusting the size when changing resizing the window we have to add an event listener and to change both the aspect ratio and the size of the renderer.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// ...
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;resize&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">onWindowResize&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">onWindowResize&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">aspect&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="nx">camera&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">updateProjectionMatrix&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setSize&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerWidth&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">innerHeight&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="loading-object">Loading object&lt;/h2>
-&lt;p>Now we have to load the object and define the lighting for the scene.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// ...
-&lt;/span>&lt;span class="c1">&lt;/span>
-&lt;span class="c1">// ambient light
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">ambientLight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">AmbientLight&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="mh">0xffffff&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">0.2&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">ambientLight&lt;/span> &lt;span class="p">)&lt;/span>
-&lt;span class="c1">// point light
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">pointLight&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">THREE&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PointLight&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mh">0xffffff&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">pointLight&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">position&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">set&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="mi">30&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">50&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">25&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">pointLight&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="nx">loader&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">load&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;/path/to/object.gltf&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">gltf&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">gltf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scene&lt;/span> &lt;span class="c1">// assign the model to the global variable
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">model&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">},&lt;/span> &lt;span class="kc">undefined&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">error&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">error&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="animation">Animation&lt;/h2>
-&lt;p>To add a simple animation rotation to the model we have to add or substract to the rotation of the object in every animation frame, for example. However, there are much more ways of animating and with different purposes.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">animate&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">requestAnimationFrame&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">animate&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">model&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">model&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">rotation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">y&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mf">0.01&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="nx">renderer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">render&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="nx">scene&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">camera&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="complete-implementation">Complete implementation&lt;/h3>
-&lt;p>You can check to the complete implementation in &lt;a href="https://gist.github.com/DatsGabs/0a5dd2d1a2d8c63b6d8390a84b3434f9">this Github gist&lt;/a>.&lt;/p></description></item><item><title>Create a secure Isolated Iframe</title><link>https://gabriellazcano.com/blog/create-an-isolated-iframe/</link><pubDate>Mon, 08 Mar 2021 21:17:07 -0600</pubDate><guid>https://gabriellazcano.com/blog/create-an-isolated-iframe/</guid><description>&lt;p>You might have heard that if you create an iframe, your site might becomes vulnerable to cross-site attacks. And this is true. So there is a way of creating an isolated iframe in order to make it more secure.&lt;/p>
+&lt;p>This is just something I learnt today and felt like sharing :))&lt;/p></description></item><item><title>Create a secure Isolated Iframe</title><link>https://gabriellazcano.com/blog/create-an-isolated-iframe/</link><pubDate>Mon, 08 Mar 2021 21:17:07 -0600</pubDate><guid>https://gabriellazcano.com/blog/create-an-isolated-iframe/</guid><description>&lt;p>You might have heard that if you create an iframe, your site might becomes vulnerable to cross-site attacks. And this is true. So there is a way of creating an isolated iframe in order to make it more secure.&lt;/p>
 &lt;p>This can be achieved just by using the attribute &lt;code>sandbox&lt;/code> which enables an extra set of restrictions for the content in the iframe. And being capable of enabling only the required tooling for your iframe with the following &lt;code>attribute values&lt;/code>:&lt;/p>
 &lt;p>&lt;code>allow-forms&lt;/code>: Allows form submission&lt;br>
 &lt;code>allow-modals&lt;/code>: Allows to open modal windows&lt;br>
