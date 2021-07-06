@@ -6,58 +6,6 @@ description: "In this post I'm explaining a use case of stacks and how did I mad
 tags: ['js']
 ---
 
-Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the [complete kata here.](https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript)
-
-{{< highlight js >}}
-"(){}[]" // True
-"([{}])" // True
-"(}"     // False
-"[(])"     // False
-"[({})](]"  //False
-{{</ highlight >}}
-
-So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks. 
-
-`Stacks` are a data structure that work by pushing and poping elements. 
-
-In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don't know, which basically works by indexing an object with a string. 
-
-Here it is in practice.
-
-{{< highlight js >}}
-const braces = {
-    "{": "}",
-    "(": ")",
-    "[": "]",
-}
-
-console.log(braces["{"]) // logs "}"
-{{</ highlight >}}
-
-So in an object I just have to define the counterpart of the brace and it's has an access time of 1.
-
-If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.
-
-{{< highlight js >}}
-const braces = {
-    "{": "}",
-    "(": ")",
-    "[": "]",
-}
-
-function validBraces(str){
-    let stack = []
-    for (const char of str) {
-        if (stack.length > 0 && braces[stack[stack.length - 1]] == char) {
-            stack.pop()
-        } else {
-            stack.push(char)
-        }
-    }
-    return stack.length == 0
-}
-{{</ highlight >}}
-
 {{< sandbox sandbox="allow-scripts">}}
 <!DOCTYPE html>
 <html lang="en">
@@ -115,3 +63,48 @@ function validBraces(str){
 </body>
 </html>
 {{</ sandbox >}}
+
+Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the [complete kata here.](https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript)
+
+So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks. 
+
+`Stacks` are a data structure that work by pushing and poping elements. 
+
+In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don't know, which basically works by indexing an object with a string. 
+
+Here it is in practice.
+
+{{< highlight js >}}
+const braces = {
+    "{": "}",
+    "(": ")",
+    "[": "]",
+}
+
+console.log(braces["{"]) // logs "}"
+{{</ highlight >}}
+
+So in an object I just have to define the counterpart of the brace and it's has an access time of 1.
+
+If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.
+
+{{< highlight js >}}
+const braces = {
+    "{": "}",
+    "(": ")",
+    "[": "]",
+}
+
+function validBraces(str){
+    let stack = []
+    for (const char of str) {
+        if (stack.length > 0 && braces[stack[stack.length - 1]] == char) {
+            stack.pop()
+        } else {
+            stack.push(char)
+        }
+    }
+    return stack.length == 0
+}
+{{</ highlight >}}
+
