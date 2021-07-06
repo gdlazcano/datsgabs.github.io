@@ -166,43 +166,7 @@ Your browser does not support the video tag.
 &lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">end&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>After this you might want to check if you are using concatenation to make your SQL requests in order to not be vulnerable to this kind of attacks :))&lt;/p></description></item><item><title>Braces Validator With Javascript: Stacks</title><link>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</link><pubDate>Fri, 19 Mar 2021 17:15:50 -0600</pubDate><guid>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</guid><description>&lt;p>Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the &lt;a href="https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript">complete kata here.&lt;/a>&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="s2">&amp;#34;(){}[]&amp;#34;&lt;/span> &lt;span class="c1">// True
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;([{}])&amp;#34;&lt;/span> &lt;span class="c1">// True
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;(}&amp;#34;&lt;/span> &lt;span class="c1">// False
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;[(])&amp;#34;&lt;/span> &lt;span class="c1">// False
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="s2">&amp;#34;[({})](]&amp;#34;&lt;/span> &lt;span class="c1">//False
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks.&lt;/p>
-&lt;p>&lt;code>Stacks&lt;/code> are a data structure that work by pushing and poping elements.&lt;/p>
-&lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
-&lt;p>Here it is in practice.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">// logs &amp;#34;}&amp;#34;
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
-&lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">validBraces&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
-&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;iframe
+&lt;p>After this you might want to check if you are using concatenation to make your SQL requests in order to not be vulnerable to this kind of attacks :))&lt;/p></description></item><item><title>Braces Validator With Javascript: Stacks</title><link>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</link><pubDate>Fri, 19 Mar 2021 17:15:50 -0600</pubDate><guid>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</guid><description>&lt;iframe
 srcdoc="
 &amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;
@@ -261,7 +225,37 @@ frameborder="0"
 height="400px"
 width="100%"
 sandbox="allow-scripts">
-&lt;/iframe></description></item><item><title>Why I Use Quokka.js for prototyping?</title><link>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Thu, 11 Mar 2021 18:01:21 -0600</pubDate><guid>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>I&amp;rsquo;ve been doing some learning with typescript, and I&amp;rsquo;m really liking it but setting it up is a little messy mainly because you have to compile the program into a JavaScript file. And for a simple test I don&amp;rsquo;t find this convenient.&lt;/p>
+&lt;/iframe>
+&lt;p>Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the &lt;a href="https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript">complete kata here.&lt;/a>&lt;/p>
+&lt;p>So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks.&lt;/p>
+&lt;p>&lt;code>Stacks&lt;/code> are a data structure that work by pushing and poping elements.&lt;/p>
+&lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
+&lt;p>Here it is in practice.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">// logs &amp;#34;}&amp;#34;
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
+&lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">validBraces&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Why I Use Quokka.js for prototyping?</title><link>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Thu, 11 Mar 2021 18:01:21 -0600</pubDate><guid>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>I&amp;rsquo;ve been doing some learning with typescript, and I&amp;rsquo;m really liking it but setting it up is a little messy mainly because you have to compile the program into a JavaScript file. And for a simple test I don&amp;rsquo;t find this convenient.&lt;/p>
 &lt;p>For example, if I&amp;rsquo;m doing some challenge for &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, or any other competitive programming platform using typescript is completely out of the way. You can work around this using nodemon but still the results are not as good as you could get with &lt;a href="https://quokkajs.com/">Quokka.js&lt;/a>.&lt;/p>
 &lt;p>In my case I have it installed in VSCode and you get to see the results of the code you are writting as you are writting it and in a non intrusive way, without having a terminal opened.&lt;/p>
 &lt;p>And it&amp;rsquo;s pretty easy to install, you just have to search it in the extensions tab in VSCode.&lt;/p>
