@@ -33,6 +33,40 @@
         </div>
         {{end }}
     </article>
+    <div class="comments">
+        <script src="https://utteranc.es/client.js"
+            repo="DatsGabs/datsgabs.github.io"
+            issue-term="og:title"
+            theme="github-dark"
+            crossorigin="anonymous"
+            async
+            loading="lazy"
+        >
+        </script>
+        <em id="commentsNotice">utteranc.es is using Github Issues, no data is stored. You can disable it from your <a href="https://github.com/settings/apps/authorizations">authorizated apps</a></em>
+    </div>
+
+    <script>
+        const commentsNotice = document.getElementById('commentsNotice')
+
+        const observer = new MutationObserver((mutations, obs) => {
+            const frame = document.querySelector('.utterances-frame');
+            if (frame) {
+                frame.addEventListener('load', () =>  {
+                    setInterval(() => {
+                        commentsNotice.style.display = "block"
+                    }, 1000);
+                })
+                obs.disconnect();
+                return;
+            }
+        });
+
+        observer.observe(document, {
+            childList: true,
+            subtree: true
+        });
+    </script>
     {{ if ne .Params.skipped true }}
         {{ partial "read-more.html" . }}
     {{end }}

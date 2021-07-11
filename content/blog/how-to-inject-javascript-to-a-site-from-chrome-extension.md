@@ -47,4 +47,3 @@ function init() {
 
 init()
 {{< /highlight >}}
-
