@@ -131,8 +131,9 @@
     text-align: center;
 
     #commentsNotice {
-        display: none;
+        opacity: 0;
         color: #5c5c5c;
+        transition: 0.3s ease-in-out;
         a {
             color: #5c5c5c;
             text-decoration: underline;
