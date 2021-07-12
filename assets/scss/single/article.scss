@@ -1,7 +1,19 @@
 @import "../commons/media-queries.scss";
 
+h2 {
+    font-size: 1.6em;
+}
+h3 {
+    font-size: 1.4em;
+}
+
 .article {
+    padding: 25px 25px;
+    border-radius: 5px;
+    background-color: var(--elevation-color);
     word-wrap: break-word;
+    margin-bottom: 50px;
+
     p {
         font-family: "nunito";
         line-height: 1.6em;
@@ -75,52 +87,118 @@
     margin-bottom: 30px;
     & .single-header_title {
         padding-bottom: 10px;
+        font-size: 2.2em !important;
     }
+
+    & p, h1 {
+        margin: 0;
+        padding: 0;
+        line-height: normal !important;
+    }
+
 }
 
 .article-bottom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
 
-    .article-bottom_btn {
-        padding: 10px;
-        border-radius: 5px;
-        text-decoration: none !important;
-        transition: 0.5s;
-        display: inline-flex;
-        align-items: center;
-        margin-top: 10px;
+    h2 {
+        margin: 40px 0 30px 0;
     }
+    .share-buttons {
+        display: flex;
+        flex-wrap: wrap;
+    
+        .article-bottom_btn {
+            display: flex;
+            align-items: center;
+            width: 100px;
+            border-radius: 20px;
+            padding: 8px;
 
-    .share-twitter-btn {
-        border: 1px solid #1da1f2;
-
-        &:hover {
-            background-color: #1da1f2;
             svg {
-                stroke: white;
+                width: 20px;
+                margin-right: 10px;
+                transition: 0.5s;
+            }
+            margin: 0 5px;
+
+            &:first-child {
+                margin: 0 5px 0 0;
+            }
+            &:last-child {
+                margin: 0 0 0 5px;
             }
         }
 
-        svg {
-            width: 20px;
-            fill: #1da1f2;
-            margin-right: 10px;
-            transition: 0.5s;
+        .share-twitter-btn {
+            border: 1px solid #1da1f2;
+    
+            &:hover {
+                background-color: #1da1f2;
+                svg {
+                    stroke: white;
+                    fill: white;
+                }
+            }
+    
+            svg {
+                fill: #1da1f2;
+            }
+        }
+
+        .share-reddit_btn {
+            border: 1px solid #FF4500;
+            
+            &:hover {
+                background-color: #FF4500;
+                svg {
+                    stroke: white;
+                    fill: white;
+                }
+            }
+    
+            svg {
+                fill: #FF4500;
+            }
         }
     }
+    margin-bottom: 50px;
+}
 
-    .newsletter-btn {
-        border: 1px solid white;
 
-        &:hover {
-            background-color: white;
-            color: black;
-            font-weight: bold;
-        }
+.copy-code-button {
+    color: #272822;
+    background-color: #FFF;
+    border-color: #272822;
+    border: 2px solid;
+    border-radius: 3px 3px 0px 0px;
+
+    /* right-align */
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+
+    margin-bottom: -2px;
+    padding: 3px 8px;
+    font-size: 0.8em;
+
+    &:hover {
+        cursor: pointer;
+        background-color: white;
+    }
+    
+    &:focus {
+        /* Avoid an ugly focus outline on click in Chrome,
+           but darken the button for accessibility.
+           See https://stackoverflow.com/a/25298082/1481479 */
+        background-color: white;
+        outline: 0;
+    }
+    
+    &:active {
+        background-color:white;
     }
 }
+
 
 .utterances {
     width: 100% !important;
@@ -128,9 +206,13 @@
 }
 
 .comments {
-    text-align: center;
+
+    h2 {
+        margin: 40px 0 20px 0;
+    }
 
     #commentsNotice {
+        text-align: center;
         opacity: 0;
         color: #5c5c5c;
         transition: 0.3s ease-in-out;

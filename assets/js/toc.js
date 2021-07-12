@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     const observerForTableOfContentActiveState = new IntersectionObserver(
         (entries) => {
+            console.log(entries)
             entries.forEach((entry) => {
                 const id = entry.target.getAttribute("id")
                 if (entry.isIntersecting) {
@@ -15,10 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
             })
         }
     )
-    document
-        .querySelectorAll("h1[id],h2[id],h3[id]")
-        .forEach((section) => {
-            observerForTableOfContentActiveState.observe(section)
-        })
+    document.querySelectorAll("h1[id],h2[id],h3[id]").forEach((section) => {
+        observerForTableOfContentActiveState.observe(section)
+    })
     // Track all sections that have an `id` applied
 })

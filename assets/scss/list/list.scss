@@ -1,3 +1,5 @@
+@import "../commons/media-queries.scss";
+
 .list {
     .list_title {
         margin-bottom: 40px;
@@ -8,3 +10,23 @@
     text-align: center;
     margin-bottom: 50px;
 }
+
+@include desktop {
+    .masonry-layout {
+        --columns: 1;
+        --gap: 1.2rem;
+        display: grid;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-gap: var(--gap);
+    }
+    .masonry-layout .masonry-item {
+        margin-bottom: var(--gap);
+    }
+    .masonry-layout.columns-1 {
+        --columns: 1;
+    }
+    .masonry-layout.columns-2 {
+        --columns: 2;
+    }
+}
+

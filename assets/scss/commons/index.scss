@@ -15,7 +15,7 @@ body.open {
 
 :root {
     --bg-color: #121212;
-    --elevation-color: #1b1b1b;
+    --elevation-color: #191919;
     --second-elevation-color: #202020;
 }
 
@@ -65,39 +65,7 @@ ul {
     font-size: 5em;
 }
 
-.copy-code-button {
-    color: #272822;
-    background-color: #FFF;
-    border-color: #272822;
-    border: 2px solid;
-    border-radius: 3px 3px 0px 0px;
 
-    /* right-align */
-    display: block;
-    margin-left: auto;
-    margin-right: 0;
-
-    margin-bottom: -2px;
-    padding: 3px 8px;
-    font-size: 0.8em;
-
-    &:hover {
-        cursor: pointer;
-        background-color: white;
-    }
-    
-    &:focus {
-        /* Avoid an ugly focus outline on click in Chrome,
-           but darken the button for accessibility.
-           See https://stackoverflow.com/a/25298082/1481479 */
-        background-color: white;
-        outline: 0;
-    }
-    
-    &:active {
-        background-color:white;
-    }
-}
 
 
 

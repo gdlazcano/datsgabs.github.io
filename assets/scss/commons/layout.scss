@@ -3,7 +3,7 @@
 .container {
     width: 75vw;
     display: grid;
-    grid-template-columns: 200px calc(100% - 350px) 150px;
+    grid-template-columns: 200px calc(100% - 400px) 200px;
     margin: auto;
 
     @media (max-width: 1500px) {
@@ -29,6 +29,13 @@
 
     .main {
         padding: 40px 30px;
+    }
+
+    @include desktop {
+        main {
+            width: 90%;
+            margin: 0 auto;
+        }
     }
 }
 
