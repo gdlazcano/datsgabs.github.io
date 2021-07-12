@@ -18,6 +18,10 @@ tags: ['js']
         body {
             background: #121212;
         }
+
+        input {
+            color: black;
+        }
     </style>
 </head>
 <body>
