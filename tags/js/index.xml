@@ -173,8 +173,11 @@ srcdoc="
 &amp;lt;head&amp;gt;
 &amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;
 &amp;lt;style&amp;gt;
+* {
+color: white;
+}
 body {
-background: white;
+background: #121212;
 }
 &amp;lt;/style&amp;gt;
 &amp;lt;/head&amp;gt;
@@ -222,7 +225,7 @@ result.textContent = `The string is ${validBraces(input.value) ? &amp;#34;&amp;#
 &amp;lt;/html&amp;gt;
 "
 frameborder="0"
-height="400px"
+height="260px"
 width="100%"
 sandbox="allow-scripts">
 &lt;/iframe>
