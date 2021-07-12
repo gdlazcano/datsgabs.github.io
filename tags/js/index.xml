@@ -225,7 +225,7 @@ result.textContent = `The string is ${validBraces(input.value) ? &amp;#34;&amp;#
 &amp;lt;/html&amp;gt;
 "
 frameborder="0"
-height="260px"
+height="300px"
 width="100%"
 sandbox="allow-scripts">
 &lt;/iframe>
