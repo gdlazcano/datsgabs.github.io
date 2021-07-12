@@ -179,6 +179,9 @@ color: white;
 body {
 background: #121212;
 }
+input {
+color: black;
+}
 &amp;lt;/style&amp;gt;
 &amp;lt;/head&amp;gt;
 &amp;lt;body&amp;gt;
