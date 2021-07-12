@@ -6,7 +6,7 @@ description: "In this post I'm explaining a use case of stacks and how did I mad
 tags: ['js']
 ---
 
-{{< sandbox sandbox="allow-scripts" height="260px">}}
+{{< sandbox sandbox="allow-scripts" height="300px">}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
