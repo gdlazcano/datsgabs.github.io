@@ -1,16 +1,17 @@
 {{ define "main" }}
-    <div class="list">
-        <header class="list_title">
-            <h1>{{.Title}}</h1>
-        </header>
-        {{.Content}}
-        <ul>
-            {{ range (.Paginator 7).Pages  }}
-                {{ partial "list-card" . }}
-            {{ end }}
-            {{ partial "pager.html" . }}
-        </ul>
-    </div>
+<div class="list">
+    <header class="list_title">
+        <h1>{{.Title}}</h1>
+    </header>
+    {{.Content}}
+    <ul>
+        {{ range (.Paginator 25).Pages  }}
+            {{ partial "list-card" . }}
+        {{ end }}
+        {{ partial "pager.html" . }}
+    </ul>
+    {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint}}
+    <script src="{{$clickableBox.RelPermalink}}" defer></script>
 </div>
 {{ end }}
 

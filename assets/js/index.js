@@ -45,4 +45,23 @@ if (navigator && navigator.clipboard) {
     document.body.appendChild(script);
 }
 
+const commentsNotice = document.getElementById('commentsNotice')
+
+const observer = new MutationObserver((mutations, obs) => {
+    const frame = document.querySelector('.utterances-frame');
+    if (frame) {
+        frame.addEventListener('load', () =>  {
+            setInterval(() => {
+                commentsNotice.style.opacity = "100"
+            }, 1000);
+        })
+        obs.disconnect();
+        return;
+    }
+});
+
+observer.observe(document, {
+    childList: true,
+    subtree: true
+});
 

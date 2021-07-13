@@ -42,12 +42,6 @@
             {{ end }}
             </aside>
         </div>
-        {{ $hamburgerJS := resources.Get "js/clickable-box.js" | minify | fingerprint}}
-        <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
-        {{ if (findRE "<pre" .Content 1) }}
-            {{ $indexJS := resources.Get "js/index.js" | minify | fingerprint }}
-            <script src="{{$indexJS.RelPermalink}}" defer></script>
-        {{ end }}
     </body>
 </html>
 

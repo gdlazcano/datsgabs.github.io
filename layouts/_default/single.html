@@ -55,30 +55,12 @@
         </script>
         <p id="commentsNotice">utteranc.es uses Github Issues, no data is stored.<br>You can disable it from your <a href="https://github.com/settings/apps/authorizations">authorized apps.</a></p>
     </div>
-
-    <script>
-        const commentsNotice = document.getElementById('commentsNotice')
-
-        const observer = new MutationObserver((mutations, obs) => {
-            const frame = document.querySelector('.utterances-frame');
-            if (frame) {
-                frame.addEventListener('load', () =>  {
-                    setInterval(() => {
-                        commentsNotice.style.opacity = "100"
-                    }, 1000);
-                })
-                obs.disconnect();
-                return;
-            }
-        });
-
-        observer.observe(document, {
-            childList: true,
-            subtree: true
-        });
-    </script>
     {{ partial "read-more.html" . }}
     {{end }}
+    {{ if (findRE "<pre" .Content 1) }}
+        {{ $indexJS := resources.Get "js/index.js" | minify | fingerprint }}
+        <script src="{{$indexJS.RelPermalink}}" defer></script>
+    {{ end }}
 {{ end }}
 
 {{ define "stylesheets" }}
