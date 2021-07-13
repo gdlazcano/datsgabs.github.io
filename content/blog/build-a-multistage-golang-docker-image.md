@@ -1,15 +1,14 @@
 ---
-title: "Build a Multistage Golang Docker Image"
+title: "Build a Multistage Golang Docker Image for your HTTP server"
 date: 2021-07-12T19:22:10-05:00
 draft: false
-description: ""
+description: "In this post I'm going to explain how to make a multistage golang docker for a http server in order to serve static files"
 tags: ['go']
 ---
 
 ## Introduction
 
 I was trying to deploy an application with Golang and React to Heroku and I wanted my application to be the smallest possible size. Heroku actually recommends doing multistage build and it's pretty much common practice. But I had to do a lot of research to come up with something that worked and the reason it was because of something really stupid actually. 
-
 
 ## Simple HTTP application Golang
 
