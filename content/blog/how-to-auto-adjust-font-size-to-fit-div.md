@@ -93,8 +93,6 @@ window.addEventListener("resize", () => {
 })
 {{< /highlight >}}
 
-So now it's working completely. You can check at the [CodePen in this link](https://codepen.io/DatsGabs/pen/MWbqyrK) for the full implementation.
-
 ## Related Posts
 
 [How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.](https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/)
