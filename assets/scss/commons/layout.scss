@@ -30,13 +30,6 @@
     .main {
         padding: 40px 30px;
     }
-
-    @include desktop {
-        main {
-            width: 90%;
-            margin: 0 auto;
-        }
-    }
 }
 
 @include mobile {
