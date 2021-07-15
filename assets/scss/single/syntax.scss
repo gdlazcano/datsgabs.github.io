@@ -86,3 +86,13 @@ pre.chroma {
 .highlight {
     margin-bottom: 15px;
 }
+
+.chroma * {
+    font-family: 'fira-code' !important;
+}
+
+@font-face {
+    font-family: 'fira-code';
+    src: url('/fonts/fira-code.woff') format('woff');
+    font-style: normal; 
+}

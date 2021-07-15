@@ -5,7 +5,7 @@
     margin: 0;
     box-sizing: border-box;
     color: white;
-    font-family: 'mononoki';
+    font-family: 'inter';
     line-height: 1em;
 }
 
@@ -41,18 +41,12 @@ a {
 }
 
 @font-face {
-    font-family: 'mononoki';
-    src: url('/fonts/mononoki-regular-webfont.woff') format('woff');
-    font-weight: normal;
+    font-family: 'inter';
+    src: url('/fonts/inter.woff') format('woff');
     font-style: normal; 
 }
 
-@font-face {
-    font-family: 'nunito';
-    src: url('/fonts/nunito-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal; 
-}
+
 
 ul {
     list-style: none;
@@ -64,10 +58,6 @@ ul {
     text-align: center;
     font-size: 5em;
 }
-
-
-
-
 
 .highlight pre {
     /* Avoid pushing up the copy buttons. */
