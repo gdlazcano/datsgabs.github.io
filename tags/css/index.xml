@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>css on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/css/</link><description>Recent content in css on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Fri, 05 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.</title><link>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</link><pubDate>Fri, 05 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/</guid><description>&lt;p>You might think, what do you think by contrasting cursor. I believe it&amp;rsquo;s better if you see it by yourself.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>css on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/css/</link><description>Recent content in css on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Thu, 15 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>Create a custom cursor that follows you and inverts colors</title><link>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</link><pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</guid><description>&lt;p>Yeah I know the title is not very clear for what I&amp;rsquo;m trying to explain in this post. So just see the results by yourself.&lt;/p>
 &lt;iframe
 srcdoc="
 &amp;lt;html&amp;gt;
@@ -76,7 +76,6 @@ sandbox="allow-scripts">
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vw&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vh&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="err">//&lt;/span> &lt;span class="err">Setting&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">width&lt;/span> &lt;span class="err">and&lt;/span> &lt;span class="err">height&lt;/span> &lt;span class="err">to&lt;/span> &lt;span class="err">be&lt;/span> &lt;span class="err">the&lt;/span> &lt;span class="err">full&lt;/span> &lt;span class="err">page&lt;/span>
 &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">position&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">relative&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="p">}&lt;/span>
@@ -91,9 +90,9 @@ sandbox="allow-scripts">
 &lt;span class="n">pointer-events&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">none&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">mix-blend-mode&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">difference&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Here we are positioning the circle absolute to the container, giving it a size and with border-radius we are making the div a circle. I disable the &lt;code>pointer-events&lt;/code> or we are not going to be able to click anywhere in the site.&lt;/p>
+&lt;p>Here we are positioning the circle absolute to the container, giving it a size and with border-radius we are making the div a circle. I disable the &lt;code>pointer-events&lt;/code> or we are not going to be able to select any text or really doing anything on the site, we would always be clicking on the cursor div.&lt;/p>
 &lt;blockquote>
-&lt;p>Setting the &lt;code>background-color&lt;/code> to white in both the &lt;code>.container&lt;/code> and the &lt;code>.circle&lt;/code> is needed for this to work, you can change the color but it might not look as good.&lt;/p>
+&lt;p>Setting the &lt;code>background-color&lt;/code> to white in both the &lt;code>.container&lt;/code> and the &lt;code>.circle&lt;/code> is needed for this to work. In this tutorial I&amp;rsquo;m just going to use white but it can be done with any color. It just gets the inverted colors and then css just gets the difference.&lt;/p>
 &lt;/blockquote>
 &lt;p>And we start to see that it blends already. We just have to make the circle to move.&lt;/p>
 &lt;iframe
@@ -154,8 +153,8 @@ sandbox="">
 &lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>&lt;strong>And it&amp;rsquo;s working&lt;/strong>&lt;/p>
 &lt;h2 id="bonus-mousemove-optimization">Bonus: MouseMove Optimization&lt;/h2>
-&lt;p>While it&amp;rsquo;s working, if you add a &lt;code>console.log()&lt;/code> to the &lt;code>getDimensions&lt;/code> function you might see lots of calls to the function. Which is not really good for performance.&lt;/p>
-&lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for 250ms&lt;/p>
+&lt;p>While it&amp;rsquo;s working, if you add a debug &lt;code>getDimensions&lt;/code> function you might see that there are lots of calls to the function. And this could impact performance.&lt;/p>
+&lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for time, in this example 250ms.&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
 &lt;span class="c1">// ...
 &lt;/span>&lt;span class="c1">&lt;/span>
@@ -173,7 +172,12 @@ sandbox="">
 &lt;span class="p">}&lt;/span>
 &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Easy Dark Mode With CSS variables</title><link>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</guid><description>&lt;p>I&amp;rsquo;ve found out a lot of ways of implementing a dark mode in your site. Both with Javascript and CSS. Today I&amp;rsquo;m going to share a method which doesn&amp;rsquo;t allow it to be toggled with a button but it&amp;rsquo;s the easiest way I&amp;rsquo;ve found.&lt;/p>
+&lt;span class="p">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
+&lt;h2 id="related-posts">Related Posts&lt;/h2>
+&lt;ol>
+&lt;li>&lt;a href="https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Easy Dark Mode With CSS variables</title><link>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</guid><description>&lt;p>I&amp;rsquo;ve found out a lot of ways of implementing a dark mode in your site. Both with Javascript and CSS. Today I&amp;rsquo;m going to share a method which doesn&amp;rsquo;t allow it to be toggled with a button but it&amp;rsquo;s the easiest way I&amp;rsquo;ve found.&lt;/p>
 &lt;p>For achieving this we are going to use the &lt;code>prefers-color-scheme&lt;/code> media feature, which is used to detect if the user has requested to use a light or dark theme, and &lt;code>:root&lt;/code> for setting global variables in CSS.&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">dark&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="p">:&lt;/span>&lt;span class="nd">root&lt;/span> &lt;span class="p">{&lt;/span>
