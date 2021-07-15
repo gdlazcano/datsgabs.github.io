@@ -1,5 +1,5 @@
 ---
-title: "How to Auto Adjust Font Size to fit div"
+title: "How to auto adjust font-size to fit div"
 date: 2021-03-05T23:08:34-06:00
 draft: false
 description: "In this post I'm explaining how to adjust the font-size to fit a div with JavaScript"
@@ -68,7 +68,7 @@ window.addEventListener("resize", () => {
 
 ### Resize Optimization
 
-If you've read my [other post](https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/) you might have already noticed that doing handling the event this way is not very performant. So we are going to use the same technique. We are going to throttle the function calls to have a delay of 500ms.
+If you've read my [post on how to make a custom cursor that follows you](https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors) you might have already noticed that doing handling the event this way is not very performant. As we are calling the adjustSize too many times. So we are going to use the same technique that we did on that post, we are going to throttle the function calls to have a delay of 500ms.
 
 {{< highlight js >}}
 const delay = 500
@@ -95,4 +95,4 @@ window.addEventListener("resize", () => {
 
 ## Related Posts
 
-[How to Create a Contrasting Cursor. BONUS: MouseMove Optimization.](https://gabriellazcano.com/blog/how-to-create-a-contrasting-cursor/)
+1. [Create a custom cursor that follows you and inverts colors](https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors)
