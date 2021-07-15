@@ -206,4 +206,4 @@ window.addEventListener("mousemove", (e) => {
 You can get the complete implementation [in this link](https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb)
 
 ## Related Posts
-1. [How to auto adjust font-size to fit div](https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors)
+1. [How to auto adjust font-size to fit div](https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div)
