@@ -176,7 +176,7 @@ sandbox="">
 &lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
 &lt;h2 id="related-posts">Related Posts&lt;/h2>
 &lt;ol>
-&lt;li>&lt;a href="https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>How to Inject Javascript to a Site From Chrome Extension</title><link>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</link><pubDate>Sat, 03 Jul 2021 22:46:36 -0500</pubDate><guid>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>I was watching a Twitch streamer struggle trying to do this. So I thought it might help someone out there.&lt;/p>
 &lt;p>You can inject javascript code into any site with a chrome extension, with this you can do many things. Like creating new elements and adding them to the DOM or managing events of certain elements, what you can do in your application you can do it when injecting it.&lt;/p>

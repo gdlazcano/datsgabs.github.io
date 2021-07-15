@@ -176,7 +176,7 @@ sandbox="">
 &lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
 &lt;h2 id="related-posts">Related Posts&lt;/h2>
 &lt;ol>
-&lt;li>&lt;a href="https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>Easy Dark Mode With CSS variables</title><link>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</guid><description>&lt;p>I&amp;rsquo;ve found out a lot of ways of implementing a dark mode in your site. Both with Javascript and CSS. Today I&amp;rsquo;m going to share a method which doesn&amp;rsquo;t allow it to be toggled with a button but it&amp;rsquo;s the easiest way I&amp;rsquo;ve found.&lt;/p>
 &lt;p>For achieving this we are going to use the &lt;code>prefers-color-scheme&lt;/code> media feature, which is used to detect if the user has requested to use a light or dark theme, and &lt;code>:root&lt;/code> for setting global variables in CSS.&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">dark&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
