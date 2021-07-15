@@ -5,6 +5,11 @@
     
     <p class="list-card_description">{{.Description}}</p>
     {{ if ne .Kind "term" }}
+        <div class="posting-info">
+            <span>Posted on {{.Date.Format "2 Jan, 2006"}}</span>
+            <span>|</span>
+            <span>{{.ReadingTime}} min read</span>
+        </div>
         <div class="list-card_bottom">
             {{ with .Params.tags }}
                     {{if ge (len .) 1}}
@@ -13,10 +18,6 @@
                         {{ end }}
                     {{ end }}
             {{ end }}
-            
-                <span>Posted on {{.Date.Format "2 Jan, 2006"}}</span>
-                <span>|</span>
-                <span>{{.ReadingTime}} min read</span>
         </div>
     {{ end }}
 </li>

@@ -39,6 +39,10 @@
         margin-bottom: 25px;
     }
 
+    .posting-info {
+        margin-bottom: 15px;
+    }
+
     .list-card_bottom {
         .card-top_tag {
             padding: 7px;
@@ -53,19 +57,6 @@
 
         & > * {
             margin-right: 15px;
-        }
-
-        .icon-span {
-            display: flex;
-            align-items: center;
-            justify-content: center;   
-        }
-
-        .card-bottom_icon {
-            width: 15px;
-            height: 15px;
-            fill: white;
-            margin-right: 5px;
         }
     }
 }
