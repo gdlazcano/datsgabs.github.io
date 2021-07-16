@@ -3,7 +3,7 @@ const masonryLayout = (containerElem, itemsElems, columns) => {
     let columnsElements = []
     
     for( let i = 1; i <= columns; i++){
-        let column = document.createElement('div')
+        let column = document.createElement('ul')
         column.classList.add('masonry-column', `column-${i}`)
         containerElem.appendChild(column)
         columnsElements.push(column)

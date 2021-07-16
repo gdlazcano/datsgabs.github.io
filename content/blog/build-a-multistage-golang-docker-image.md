@@ -3,7 +3,7 @@ title: "Build a Multistage Golang Docker Image for your HTTP server"
 date: 2021-07-12T19:22:10-05:00
 draft: false
 description: "In this post I'm going to explain how to make a multistage golang docker for a http server in order to serve static files"
-tags: ['go']
+tags: ['golang']
 ---
 
 ## Introduction

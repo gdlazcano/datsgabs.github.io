@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<ul class="listing">
+<div class="listing">
     <!-- Ranges through content/posts/*.md -->
     {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 50 }}
     {{ range $paginator.Pages }}
@@ -10,7 +10,7 @@
     <script src="{{$masonry.RelPermalink}}" defer></script>
     {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint}}
     <script src="{{$clickableBox.RelPermalink}}" defer></script>
-</ul>
+</div>
 {{ partial "pager.html" . }}
 {{ end }}
 
