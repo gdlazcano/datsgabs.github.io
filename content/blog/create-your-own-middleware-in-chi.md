@@ -8,6 +8,8 @@ tags: ['golang']
 
 ## Introduction
 
+[chi](https://github.com/go-chi/chi) is a lightweight, idiomatic and composable router for building Go HTTP services.
+
 I've had some trouble recently in finding out how the chi library works. It is definitely powerful and in my opinion one of the best alternatives out there. You can check out the features and the performance if you want to make an informed opinion for choosing it. 
 
 In the GitHub they briefly show an example of how they are using it but they don't dive much into it. It's pretty straightforward actually.
