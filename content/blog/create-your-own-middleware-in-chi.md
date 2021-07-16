@@ -76,7 +76,7 @@ key := ctx.Value("key").(string)
 {{< /highlight >}}
 
 {{< highlight golang >}}
-r.Use(user.UserContextBody)
+r.Use(UserContextBody)
 r.Route("/{username}", func(r chi.Router) {
     r.Get("/", func(rw http.ResponseWriter, r *http.Request) {
         // your code
