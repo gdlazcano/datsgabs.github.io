@@ -73,7 +73,7 @@ width="100%"
 sandbox="allow-scripts">
 &lt;/iframe>
 &lt;p>To achieve this we are using the &lt;code>mix-blend-mode&lt;/code> CSS property with the value &lt;code>difference&lt;/code> which basically inverts the color of the content it has below it.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vw&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vh&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
@@ -143,7 +143,7 @@ height="400px"
 width="100%"
 sandbox="">
 &lt;/iframe>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">top&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientY&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span> &lt;span class="c1">// -25px for the size of the circle
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">left&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientX&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span>
@@ -155,7 +155,7 @@ sandbox="">
 &lt;h2 id="bonus-mousemove-optimization">Bonus: MouseMove Optimization&lt;/h2>
 &lt;p>While it&amp;rsquo;s working, if you add a debug &lt;code>getDimensions&lt;/code> function you might see that there are lots of calls to the function. And this could impact performance.&lt;/p>
 &lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for time, in this example 250ms.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
 &lt;span class="c1">// ...
 &lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
@@ -179,7 +179,7 @@ sandbox="">
 &lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
 &lt;/ol></description></item><item><title>Easy Dark Mode With CSS variables</title><link>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</link><pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/easy-dark-mode-with-css-variables/</guid><description>&lt;p>I&amp;rsquo;ve found out a lot of ways of implementing a dark mode in your site. Both with Javascript and CSS. Today I&amp;rsquo;m going to share a method which doesn&amp;rsquo;t allow it to be toggled with a button but it&amp;rsquo;s the easiest way I&amp;rsquo;ve found.&lt;/p>
 &lt;p>For achieving this we are going to use the &lt;code>prefers-color-scheme&lt;/code> media feature, which is used to detect if the user has requested to use a light or dark theme, and &lt;code>:root&lt;/code> for setting global variables in CSS.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">dark&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">@&lt;/span>&lt;span class="k">media&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="nt">prefers-color-scheme&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nt">dark&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="p">:&lt;/span>&lt;span class="nd">root&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nv">--bg-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mh">#121212&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="err">//&lt;/span> &lt;span class="err">This&lt;/span> &lt;span class="err">is&lt;/span> &lt;span class="err">how&lt;/span> &lt;span class="err">we&lt;/span> &lt;span class="err">define&lt;/span> &lt;span class="err">a&lt;/span> &lt;span class="err">variable&lt;/span> &lt;span class="err">in&lt;/span> &lt;span class="err">CSS&lt;/span>
 &lt;span class="p">}&lt;/span>
@@ -190,7 +190,7 @@ sandbox="">
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Then in any part of the site we have to use the &lt;code>--bg-color&lt;/code> variable with &lt;code>var()&lt;/code> like this:&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="nt">body&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="nt">body&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nf">var&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">bg&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="kc">color&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can check support for &lt;code>prefers-color-scheme&lt;/code> in &lt;a href="https://caniuse.com/mdn-css_at-rules_media_prefers-color-scheme">Can I Use?&lt;/a>&lt;/p>

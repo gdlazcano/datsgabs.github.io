@@ -73,7 +73,7 @@ width="100%"
 sandbox="allow-scripts">
 &lt;/iframe>
 &lt;p>To achieve this we are using the &lt;code>mix-blend-mode&lt;/code> CSS property with the value &lt;code>difference&lt;/code> which basically inverts the color of the content it has below it.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="k">width&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vw&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">height&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="kt">vh&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">background-color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">white&lt;/span>&lt;span class="p">;&lt;/span>
@@ -143,7 +143,7 @@ height="400px"
 width="100%"
 sandbox="">
 &lt;/iframe>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">top&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientY&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span> &lt;span class="c1">// -25px for the size of the circle
 &lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">cursor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">left&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clientX&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">px`&lt;/span>
@@ -155,7 +155,7 @@ sandbox="">
 &lt;h2 id="bonus-mousemove-optimization">Bonus: MouseMove Optimization&lt;/h2>
 &lt;p>While it&amp;rsquo;s working, if you add a debug &lt;code>getDimensions&lt;/code> function you might see that there are lots of calls to the function. And this could impact performance.&lt;/p>
 &lt;p>There is a really known way of solving this problem. By throttling the function calls only firing it once the &lt;code>mousemove&lt;/code> event idle for time, in this example 250ms.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">250&lt;/span>
 &lt;span class="c1">// ...
 &lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
@@ -183,7 +183,7 @@ sandbox="">
 &lt;h2 id="manifest-version-3">Manifest version 3&lt;/h2>
 &lt;p>If you want your script to run on a set of pages you have defined, the manifest for your chrome extension which is needed for it to work &lt;a href="https://developer.chrome.com/docs/extensions/mv3/getstarted/">(you can have a look a the documentation)&lt;/a>, needs to have some additional elements. &lt;code>content_scripts&lt;/code> and &lt;code>host_permissions&lt;/code>&lt;/p>
 &lt;p>Both the &lt;code>matches&lt;/code> and &lt;code>host_permissions&lt;/code> should specify &lt;a href="https://developer.chrome.com/docs/extensions/mv3/match_patterns/">match patterns&lt;/a>. In this example &lt;code>inject.js&lt;/code> only runs whenever the site is google.com, and you have permissions in all the urls.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
 &lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;inject&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="nt">&amp;#34;version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="nt">&amp;#34;manifest_version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>
@@ -196,7 +196,7 @@ sandbox="">
 &lt;span class="nt">&amp;#34;host_permissions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;all_urls&amp;gt;&amp;#34;&lt;/span>&lt;span class="p">],&lt;/span>
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This is an example of the code that can be injected. You can add event listeners, get and add elements from the DOM as I mentioned before.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">init&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">el&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">createElement&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;input&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">setAttribute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;checkbox&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">appendChild&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span>
@@ -208,7 +208,7 @@ sandbox="">
 &lt;p>So I&amp;rsquo;ve been learning SQL and something came to my mind. How safe is this, I won&amp;rsquo;t lie I&amp;rsquo;ve heard of SQL injections before but never really got into it. But now I know it&amp;rsquo;s really a dangerous tool if you are not doing things correctly, and the best way of preventing this is knowing how to do it. Also for what I&amp;rsquo;ve investigated it seems that a lot of sites are vulnerable to this kind of attacks so we have to make awareness of the topic.&lt;/p>
 &lt;h2 id="example-server">Example server&lt;/h2>
 &lt;p>In this occasion I&amp;rsquo;m going to be using express and mysql to demonstrate the attack and how to fix it. It&amp;rsquo;s important however that you investigate your specific stack so you can be more secure. Firstly I&amp;rsquo;m going to create a new &lt;code>express&lt;/code> server with the &lt;code>express-session&lt;/code> middleware to manage authentication and &lt;code>body-parser&lt;/code> to get the body from the &lt;code>post&lt;/code> request from the form.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">express&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">express&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">session&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express-session&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">bodyParser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;body-parser&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;path&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
@@ -233,7 +233,7 @@ sandbox="">
 &lt;span class="p">});&lt;/span>
 &lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">listen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">8000&lt;/span>&lt;span class="p">);&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Now I have to craete a simple &lt;code>login.html&lt;/code> file to be served&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="c">&amp;lt;!-- login.html --&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="c">&amp;lt;!-- login.html --&amp;gt;&lt;/span>
 &lt;span class="cp">&amp;lt;!DOCTYPE html&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -282,10 +282,10 @@ sandbox="">
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>And finally I have to add the &lt;code>auth&lt;/code> url logic. This would be a post action just as specified in the HTML. I will also be importing &lt;code>dotenv&lt;/code> to not expose my user and password in the codebase but just for testing you can leave it like this, so you have to create a &lt;code>.env&lt;/code> file.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="c1"># .env&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="c1"># .env&lt;/span>
 &lt;span class="nv">USERNAME&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>your MySQL username&lt;span class="o">)&lt;/span>
 &lt;span class="nv">PASS&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>your MySQL password&lt;span class="o">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;dotenv&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">config&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;dotenv&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">config&lt;/span>&lt;span class="p">()&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">mysql&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;mysql&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">connection&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">mysql&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">createConnection&lt;/span>&lt;span class="p">({&lt;/span>
 &lt;span class="nx">host&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;localhost&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
@@ -317,7 +317,7 @@ sandbox="">
 &lt;p>And here is the vulnerable part of the whole application. In the &lt;code>connection.query()&lt;/code>. Basically here we are getting the body of the request with the username and password and making a string that function as a MySQL query BUT what if the username or passsword are not normal strings.&lt;/p>
 &lt;p>What would happen if we requested something like this &lt;code>' OR 1=1 -- &lt;/code> as user and &amp;quot; &amp;quot; as password&lt;/p>
 &lt;p>I&amp;rsquo;ll tell you what would happen. We would be doing this SQL request.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">users&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">or&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">-- AND password=&amp;#34; &amp;#34;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="k">SELECT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">FROM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">users&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">WHERE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">or&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">-- AND password=&amp;#34; &amp;#34;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>As you can see in the linter the 2 dashes are commenting the &lt;code>AND&lt;/code> part. So we reduce the query to &amp;ldquo;is username empty or 1 equal 1&amp;rdquo; and MySQL would say &amp;ldquo;there is no user with an empty space but 1 equals 1&amp;rdquo; so it will return every single user in the database. Then we would be authenticating as the first user which is normally&amp;hellip; yes you guessed, it the admin.&lt;/p>
 &lt;video controls>
 &lt;source src="https://gabriellazcano.com/videos/1.mp4" type="video/mp4">
@@ -325,7 +325,7 @@ Your browser does not support the video tag.
 &lt;/video>
 &lt;h2 id="fixing-the-query">Fixing the query&lt;/h2>
 &lt;p>So with express it&amp;rsquo;s pretty simple to solve this. We need tweak our code so any user input is automatically spaced before being executed and in the MySQL library for nodejs you can use placeholders.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/auth&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/auth&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">response&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">username&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">username&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">password&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">body&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">password&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">username&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">password&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
@@ -416,7 +416,7 @@ sandbox="allow-scripts">
 &lt;p>&lt;code>Stacks&lt;/code> are a data structure that work by pushing and poping elements.&lt;/p>
 &lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
 &lt;p>Here it is in practice.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
@@ -425,7 +425,7 @@ sandbox="allow-scripts">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
 &lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
@@ -454,7 +454,7 @@ sandbox="allow-scripts">
 &lt;p>I&amp;rsquo;ve been trying to get a solution like this for a long time already. As I didn&amp;rsquo;t find anything apart from libraries from JQuery I decided to make my own implementation with vanilla JavaScript. I know there must be ways of optimizing my code completely with some algorithms and such. Feel free to let me know if you found something or you want to share something :)&lt;/p>
 &lt;h2 id="detect-overflow">Detect Overflow&lt;/h2>
 &lt;p>So I decided to take this path. Calculating if the div has overflow and then work the &lt;code>font-size&lt;/code> afterwards. This is how we detect if a div has overflow:&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">checkOverflow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">checkOverflow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">overflow&lt;/span>
 &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="nx">curOverflow&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;visible&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">el&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">style&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">overflow&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;hidden&amp;#34;&lt;/span>
@@ -465,7 +465,7 @@ sandbox="allow-scripts">
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="adjust-font-size">Adjust Font Size&lt;/h2>
 &lt;p>And it&amp;rsquo;s time for the main function! My thought process here was, if I start the &lt;code>font-size&lt;/code> with &lt;code>0.1em&lt;/code> I can increase the font size by a fixed rate until I get an overflow point in the div. For not overflowing I save the last size in a variable and substract the incrementation to get the last point when it wasn&amp;rsquo;t overflowing.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">div&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;div&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">div&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;div&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">incrementionRate&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">0.05&lt;/span> &lt;span class="c1">// To augment 0.05em in every iteration
 &lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">el&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
@@ -484,14 +484,14 @@ sandbox="allow-scripts">
 &lt;span class="p">}&lt;/span>
 &lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="p">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>And we have it. We are adjusting the font-size already. To make it to work when resizing we just have to call to the function when the &lt;code>window resize&lt;/code> event happens.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="c1">// ...
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="c1">// ...
 &lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;resize&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">adjustFontSize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="p">})&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="resize-optimization">Resize Optimization&lt;/h3>
 &lt;p>If you&amp;rsquo;ve read my &lt;a href="https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors">post on how to make a custom cursor that follows you&lt;/a> you might have already noticed that doing handling the event this way is not very performant. As we are calling the adjustSize too many times. So we are going to use the same technique that we did on that post, we are going to throttle the function calls to have a delay of 500ms.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">500&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="kr">const&lt;/span> &lt;span class="nx">delay&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">500&lt;/span>
 &lt;span class="c1">// ...
 &lt;/span>&lt;span class="c1">&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">callback&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">limit&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
@@ -518,7 +518,7 @@ sandbox="allow-scripts">
 &lt;blockquote>
 &lt;p>&lt;code>permissions&lt;/code> are needed for the sole purpose of this tutorial but could be not added&lt;/p>
 &lt;/blockquote>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="p">{&lt;/span>
 &lt;span class="nt">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;[name of the extension]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="nt">&amp;#34;version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;span class="nt">&amp;#34;manifest_version&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>
@@ -528,7 +528,7 @@ sandbox="allow-scripts">
 &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We have to create a &lt;code>popup.html&lt;/code> file and just use it as if it was a normal HTML. We can import scripts add stylsheets, etc.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;box &amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;toggle&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Toggle&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -538,7 +538,7 @@ sandbox="allow-scripts">
 &lt;blockquote>
 &lt;p>If you are working with multiple variables I recommend using an object, as I did.&lt;/p>
 &lt;/blockquote>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="p">;(&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="p">;(&lt;/span>&lt;span class="kr">async&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">settings&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;span class="nx">active&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">false&lt;/span>
 &lt;span class="p">}&lt;/span>
@@ -562,7 +562,7 @@ sandbox="allow-scripts">
 &lt;span class="p">})()&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Here we are using the &lt;code>tab&lt;/code> API, that we enabled before in the &lt;code>manifest&lt;/code>, to get the URL of the current page and we wait for the &lt;code>Promise&lt;/code> to resolve. Then we use the &lt;code>storage&lt;/code> api and use a template literal to get the settings only from the current URL. As we have no real way of getting the key from the results, we just resolve the first element in the &lt;code>Object.values()&lt;/code> that returns an array of all the keys in the &lt;code>results&lt;/code> which in this case is the &lt;code>settings&lt;/code> object we want. Then we substitute the default &lt;code>settings&lt;/code> object with the one we got from &lt;code>storage&lt;/code>. &lt;strong>To conclude, it works.&lt;/strong>&lt;/p>
 &lt;p>To set up a new element we have to set the &lt;code>addEventListener&lt;/code> inside the &lt;code>async function&lt;/code> as we&amp;rsquo;ll need the URL for setting up the namespace.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kr">const&lt;/span> &lt;span class="nx">toggleButton&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#toggle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kr">const&lt;/span> &lt;span class="nx">toggleButton&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#toggle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">box&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.box&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;span class="c1">// Add class to .box depending of if it&amp;#39;s active or not
 &lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="nx">handleToggleButton&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">active&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>

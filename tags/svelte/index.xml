@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>svelte on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/svelte/</link><description>Recent content in svelte on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sat, 13 Mar 2021 14:13:41 -0600</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/svelte/index.xml" rel="self" type="application/rss+xml"/><item><title>Reactive Variables are the BEST feature in Svelte</title><link>https://gabriellazcano.com/blog/reactive-variables-are-the-best-feature-in-svelte/</link><pubDate>Sat, 13 Mar 2021 14:13:41 -0600</pubDate><guid>https://gabriellazcano.com/blog/reactive-variables-are-the-best-feature-in-svelte/</guid><description>&lt;p>Well, maybe I&amp;rsquo;m exagerating a little bit. But for real, reactive variable are such a good feature I don&amp;rsquo;t know how other frameworks haven&amp;rsquo;t copied it to it&amp;rsquo;s full extent yet.&lt;/p>
 &lt;p>They work like this, you declare a variable and if the variable changes it triggers another variable to change it&amp;rsquo;s value if it&amp;rsquo;s related to the initial variable. For example:&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">5&lt;/span>
 &lt;span class="nx">$&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kr">double&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">2&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -11,7 +11,7 @@
 &lt;p>You can see a similar &lt;a href="https://svelte.dev/tutorial/reactive-declarations">example in the docs &lt;/a>. But what this basically does, is that every time we change the value of the input it would change the &lt;code>double&lt;/code> variable to be times 2 the a variable.&lt;/p>
 &lt;p>And you could do lots of things with it.&lt;/p>
 &lt;p>Changing the document title.&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;Title&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="nx">$&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">title&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">name&lt;/span>
 &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -25,7 +25,7 @@ title="brave-einstein-2hfx4"
 sandbox="allow-same-origin allow-scripts"
 >&lt;/iframe>
 &lt;p>Here&amp;rsquo;s the code :))&lt;/p>
-&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kd">let&lt;/span> &lt;span class="nx">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kd">function&lt;/span> &lt;span class="nx">getSides&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
