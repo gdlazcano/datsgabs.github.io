@@ -3,6 +3,8 @@ languageCode: "en-us"
 title: "Gabriel Lazcano"
 copyright: "© 2021 Gabriel Lazcano"
 
+ignoreErrors: ["error-remote-getjson"]
+
 params:
   author: "Gabriel Lazcano"
   codepenUser: "DatsGabs"
