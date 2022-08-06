@@ -26,7 +26,7 @@ You have to add 4 `A` pointing to `@` record from this list:
 
 And then add a `CNAME` record with the name `www` pointing to your `[username].github.io` page:
 
-![](https://i.imgur.com/3e1bOPx.png)
+![small](https://i.imgur.com/3e1bOPx.png)
 
 Your dashboard should end up looking like this.
 
@@ -34,6 +34,6 @@ Your dashboard should end up looking like this.
 
 Now you are ready to go. Go to your project and in the settings tab there is the option of setting up your custom domain. Just type your domain and click save.
 
-![](https://i.imgur.com/JS1AG8P.png)
+![small](https://i.imgur.com/JS1AG8P.png)
 
 Now just wait up to 24 hours for the DNS to propagate. If you don't see any changes you can troubleshoot with the [Github Pages documentation](https://docs.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages).

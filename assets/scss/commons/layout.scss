@@ -1,4 +1,4 @@
-@import 'media-queries.scss';
+@import "media-queries.scss";
 
 .container {
     width: 75vw;
@@ -15,12 +15,16 @@
         grid-template-columns: 150px calc(100% - 150px);
     }
 
+    @media (min-width: 2000px) {
+        width: 70vw;
+    }
+
     @include mobile {
         width: 90vw;
         display: block;
         width: 100%;
     }
-    
+
     @media (min-width: $tablet-width - 1) {
         & > * {
             padding: 40px 0;

@@ -20,6 +20,6 @@ There's to be noted that there's a Pro version but I only use the community, bec
 
 Once you start using it, you'll see your code like this:
 
-![](https://i.imgur.com/Sub2504.png)
+![small](https://i.imgur.com/Sub2504.png)
 
 This is just something I learnt today and felt like sharing :))
