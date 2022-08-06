@@ -14,9 +14,9 @@
 &lt;li>&lt;code>185.199.111.153&lt;/code>&lt;/li>
 &lt;/ol>
 &lt;p>And then add a &lt;code>CNAME&lt;/code> record with the name &lt;code>www&lt;/code> pointing to your &lt;code>[username].github.io&lt;/code> page:&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/3e1bOPx.png" alt="small">&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/3e1bOPx.png" alt="big">&lt;/p>
 &lt;p>Your dashboard should end up looking like this.&lt;/p>
 &lt;h2 id="add-custom-domain-in-github">Add custom domain in Github&lt;/h2>
 &lt;p>Now you are ready to go. Go to your project and in the settings tab there is the option of setting up your custom domain. Just type your domain and click save.&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/JS1AG8P.png" alt="small">&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JS1AG8P.png" alt="big">&lt;/p>
 &lt;p>Now just wait up to 24 hours for the DNS to propagate. If you don&amp;rsquo;t see any changes you can troubleshoot with the &lt;a href="https://docs.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages">Github Pages documentation&lt;/a>.&lt;/p></description></item></channel></rss>
