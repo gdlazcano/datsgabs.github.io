@@ -1,11 +1,11 @@
-@import "navigation.scss", 'layout.scss', 'archive.scss', 'newsletter.scss';
+@import "navigation.scss", "layout.scss", "archive.scss", "newsletter.scss";
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     color: white;
-    font-family: 'inter';
+    font-family: "Inter", sans-serif;
     line-height: 1em;
 }
 
@@ -40,15 +40,6 @@ a {
     background: white;
 }
 
-@font-face {
-    font-family: 'inter';
-    src: url('/fonts/inter.woff') format('woff');
-    font-style: normal; 
-    font-display: swap;
-}
-
-
-
 ul {
     list-style: none;
 }
@@ -64,4 +55,3 @@ ul {
     /* Avoid pushing up the copy buttons. */
     margin: 0;
 }
-

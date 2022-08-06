@@ -92,27 +92,26 @@ h3 {
     & .single-header_title {
         padding-bottom: 10px;
         font-size: 2.6em !important;
-        font-weight: 900 !important;
-        font-family: 'inter-bold' !important;
+        font-weight: bold !important;
+        font-family: "inter" !important;
     }
 
-    & p, h1 {
+    & p,
+    h1 {
         margin: 0;
         padding: 0;
         line-height: normal !important;
     }
-
 }
 
 .article-bottom {
-
     h2 {
         margin: 40px 0 30px 0;
     }
     .share-buttons {
         display: flex;
         flex-wrap: wrap;
-    
+
         .article-bottom_btn {
             display: flex;
             align-items: center;
@@ -137,7 +136,7 @@ h3 {
 
         .share-twitter-btn {
             border: 1px solid #1da1f2;
-    
+
             &:hover {
                 background-color: #1da1f2;
                 svg {
@@ -145,35 +144,34 @@ h3 {
                     fill: white;
                 }
             }
-    
+
             svg {
                 fill: #1da1f2;
             }
         }
 
         .share-reddit_btn {
-            border: 1px solid #FF4500;
-            
+            border: 1px solid #ff4500;
+
             &:hover {
-                background-color: #FF4500;
+                background-color: #ff4500;
                 svg {
                     stroke: white;
                     fill: white;
                 }
             }
-    
+
             svg {
-                fill: #FF4500;
+                fill: #ff4500;
             }
         }
     }
     margin-bottom: 50px;
 }
 
-
 .copy-code-button {
     color: #272822;
-    background-color: #FFF;
+    background-color: #fff;
     border-color: #272822;
     border: 2px solid;
     border-radius: 3px 3px 0px 0px;
@@ -191,7 +189,7 @@ h3 {
         cursor: pointer;
         background-color: white;
     }
-    
+
     &:focus {
         /* Avoid an ugly focus outline on click in Chrome,
            but darken the button for accessibility.
@@ -199,12 +197,11 @@ h3 {
         background-color: white;
         outline: 0;
     }
-    
+
     &:active {
-        background-color:white;
+        background-color: white;
     }
 }
-
 
 .utterances {
     width: 100% !important;
@@ -212,7 +209,6 @@ h3 {
 }
 
 .comments {
-
     h2 {
         margin: 40px 0 20px 0;
     }
@@ -241,11 +237,4 @@ h3 {
         fill: #808080;
         margin-right: 7px;
     }
-}
-
-@font-face {
-    font-family: 'inter-bold';
-    src: url('/fonts/inter-bold.woff') format('woff');
-    font-style: normal; 
-    font-display: swap;
 }

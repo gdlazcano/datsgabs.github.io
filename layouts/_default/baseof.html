@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="{{.Site.Params.author}}">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="{{.Site.Params.author}}" />
         {{ block "meta" . }}
-            <title>{{.Site.Title}}</title>
-            <meta name="description" content="gabriellazcano.com is a programming blog about javascript, golang and many other topics that might help the community">  
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@datsgabs" />
-            <meta name="twitter:creator" content="@datsgabs" />
-            <meta name="twitter:image" content="{{"/images/habbo-card.png" | absURL}}">
-            <meta property="og:title" content="{{.Site.Title}}" />
-            <meta property="og:description" content="This site is devoted to promoting programming, which includes specifications, resources and interesting articles. Check it out! :)" />            
-            <meta property="og:type" content="website">
-            <meta property="og:image" content="{{"/images/habbo-card.png" | absURL}}" />
-        {{ end }}
+        <title>{{.Site.Title}}</title>
+        <meta
+            name="description"
+            content="gabriellazcano.com is a programming blog about javascript, golang and many other topics that might help the community"
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@datsgabs" />
+        <meta name="twitter:creator" content="@datsgabs" />
+        <meta name="twitter:image" content="{{"/images/habbo-card.png" |
+        absURL}}">
+        <meta property="og:title" content="{{.Site.Title}}" />
+        <meta
+            property="og:description"
+            content="This site is devoted to promoting programming, which includes specifications, resources and interesting articles. Check it out! :)"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{"/images/habbo-card.png" |
+        absURL}}" /> {{ end }}
 
-        <meta property="og:locale" content="en_US">
-        <meta property="og:url" content="{{.Site.BaseURL}}">
-        <meta property="og:sitename" content="{{.Site.Title}}">
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:url" content="{{.Site.BaseURL}}" />
+        <meta property="og:sitename" content="{{.Site.Title}}" />
 
-        <meta name="twitter:dnt" content="on">
+        <meta name="twitter:dnt" content="on" />
 
-        <link rel="shortcut icon" href="/images/habbo-card.png" type="image/png">
-        {{ $styleCommons := resources.Get "scss/commons/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-        <link rel="stylesheet" href="{{ $styleCommons.Permalink }}">
-        {{ block "stylesheets" . }}
-            
-        {{ end }}
+        <link
+            rel="shortcut icon"
+            href="/images/habbo-card.png"
+            type="image/png"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter&display=swap"
+            rel="stylesheet"
+        />
+
+        {{ $styleCommons := resources.Get "scss/commons/index.scss" |
+        resources.ToCSS | resources.Minify | resources.Fingerprint }}
+        <link rel="stylesheet" href="{{ $styleCommons.Permalink }}" />
+        {{ block "stylesheets" . }} {{ end }}
     </head>
     <body>
         <div class="container">
             {{ partial "navigation" . }}
-            <main class="main">
-            {{ block "main" . }} {{ end }}
-            </main>
+            <main class="main">{{ block "main" . }} {{ end }}</main>
             <aside>
-            {{ block "aside" . }}
+                {{ block "aside" . }}
                 <div></div>
-            {{ end }}
+                {{ end }}
             </aside>
         </div>
     </body>
 </html>
-
