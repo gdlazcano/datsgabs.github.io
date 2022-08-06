@@ -82,36 +82,36 @@ In this particular example I am first defining if the stack is empty or not, if 
 
 Here it is in practice.
 
-{{< highlight js >}}
+```js
 const braces = {
-"{": "}",
-"(": ")",
-"[": "]",
+    "{": "}",
+    "(": ")",
+    "[": "]",
 }
 
 console.log(braces["{"]) // logs "}"
-{{</ highlight >}}
+```
 
 So in an object I just have to define the counterpart of the brace and it's has an access time of 1.
 
 If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.
 
-{{< highlight js >}}
+```js
 const braces = {
-"{": "}",
-"(": ")",
-"[": "]",
+    "{": "}",
+    "(": ")",
+    "[": "]",
 }
 
-function validBraces(str){
-let stack = []
-for (const char of str) {
-if (stack.length > 0 && braces[stack[stack.length - 1]] == char) {
-stack.pop()
-} else {
-stack.push(char)
+function validBraces(str) {
+    let stack = []
+    for (const char of str) {
+        if (stack.length > 0 && braces[stack[stack.length - 1]] == char) {
+            stack.pop()
+        } else {
+            stack.push(char)
+        }
+    }
+    return stack.length == 0
 }
-}
-return stack.length == 0
-}
-{{</ highlight >}}
+```

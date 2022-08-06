@@ -6,7 +6,7 @@ description: "In this post I'm explaining how to adjust the font-size to fit a d
 tags: ["js"]
 ---
 
-![](https://i.imgur.com/0UcZiV3.gif)
+![big](https://i.imgur.com/0UcZiV3.gif)
 
 I've been trying to get a solution like this for a long time already. As I didn't find anything apart from libraries from JQuery I decided to make my own implementation with vanilla JavaScript. I know there must be ways of optimizing my code completely with some algorithms and such. Feel free to let me know if you found something or you want to share something :)
 
@@ -14,23 +14,24 @@ I've been trying to get a solution like this for a long time already. As I didn'
 
 So I decided to take this path. Calculating if the div has overflow and then work the `font-size` afterwards. This is how we detect if a div has overflow:
 
-{{< highlight js >}}
+```js
 function checkOverflow(el) {
-let curOverflow = el.style.overflow
-if (!curOverflow || curOverflow === "visible") {
-el.style.overflow = "hidden"
+    let curOverflow = el.style.overflow
+    if (!curOverflow || curOverflow === "visible") {
+        el.style.overflow = "hidden"
+    }
+    let isOverflowing =
+        el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight
+    el.style.overflow = curOverflow
+    return isOverflowing
 }
-let isOverflowing = el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight
-el.style.overflow = curOverflow
-return isOverflowing
-}
-{{< /highlight >}}
+```
 
 ## Adjust Font Size
 
 And it's time for the main function! My thought process here was, if I start the `font-size` with `0.1em` I can increase the font size by a fixed rate until I get an overflow point in the div. For not overflowing I save the last size in a variable and substract the incrementation to get the last point when it wasn't overflowing.
 
-{{< highlight js >}}
+```js
 const div = document.querySelector("div")
 
 const incrementionRate = 0.05 // To augment 0.05em in every iteration
@@ -54,44 +55,44 @@ el.style.fontSize = "0.1em"
 }
 
 adjustFontSize(div)
-{{< /highlight >}}
+```
 
 And we have it. We are adjusting the font-size already. To make it to work when resizing we just have to call to the function when the `window resize` event happens.
 
-{{< highlight js >}}
+```js
 // ...
 
 window.addEventListener("resize", () => {
-adjustFontSize(div)
+    adjustFontSize(div)
 })
-{{< /highlight >}}
+```
 
 ### Resize Optimization
 
 If you've read my [post on how to make a custom cursor that follows you](https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors) you might have already noticed that doing handling the event this way is not very performant. As we are calling the adjustSize too many times. So we are going to use the same technique that we did on that post, we are going to throttle the function calls to have a delay of 500ms.
 
-{{< highlight js >}}
+```js
 const delay = 500
 
 // ...
 
 function throttle(callback, limit) {
-let wait = false
-return function () {
-if (!wait) {
-callback.apply(null, arguments)
-wait = true
-setTimeout(function () {
-wait = false
-}, limit)
-}
-}
+    let wait = false
+    return function () {
+        if (!wait) {
+            callback.apply(null, arguments)
+            wait = true
+            setTimeout(function () {
+                wait = false
+            }, limit)
+        }
+    }
 }
 
 window.addEventListener("resize", () => {
-throttle(adjustFontSize(div), delay)
+    throttle(adjustFontSize(div), delay)
 })
-{{< /highlight >}}
+```
 
 ## Related Posts
 

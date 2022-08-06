@@ -10,27 +10,27 @@ I've found out a lot of ways of implementing a dark mode in your site. Both with
 
 For achieving this we are going to use the `prefers-color-scheme` media feature, which is used to detect if the user has requested to use a light or dark theme, and `:root` for setting global variables in CSS.
 
-{{< highlight css >}}
+```css
 @media (prefers-color-scheme: dark) {
-:root {
---background-color: #121212; // This is how we define a variable in CSS
-}
+    :root {
+        --background-color: #121212; // This is how we define a variable in CSS
+    }
 }
 
 @media (prefers-color-scheme: light) {
-:root {
---background-color: #FFFFFF;
+    :root {
+        --background-color: #ffffff;
+    }
 }
-}
-{{< /highlight >}}
+```
 
 Then in any part of the site we have to use the `--bg-color` variable with `var()` like this:
 
-{{< highlight css >}}
+```css
 body {
-background-color: var(--background-color);
+    background-color: var(--background-color);
 }
-{{< /highlight >}}
+```
 
 You can check support for `prefers-color-scheme` in [Can I Use?](https://caniuse.com/mdn-css_at-rules_media_prefers-color-scheme)
 

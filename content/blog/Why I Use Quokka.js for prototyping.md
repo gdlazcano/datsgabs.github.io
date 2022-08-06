@@ -10,7 +10,7 @@ I've been doing some learning with typescript, and I'm really liking it but sett
 
 For example, if I'm doing some challenge for [Codewars](https://www.codewars.com/), or any other competitive programming platform using typescript is completely out of the way. You can work around this using nodemon but still the results are not as good as you could get with [Quokka.js](https://quokkajs.com/).
 
-In my case I have it installed in VSCode and you get to see the results of the code you are writting as you are writting it and in a non intrusive way, without having a terminal opened.
+In my case I have it installed in VSCode and you get to see the results of the code you are writing as you are writing it and in a non intrusive way, without having a terminal opened.
 
 And it's pretty easy to install, you just have to search it in the extensions tab in VSCode.
 
@@ -20,6 +20,6 @@ There's to be noted that there's a Pro version but I only use the community, bec
 
 Once you start using it, you'll see your code like this:
 
-![small](https://i.imgur.com/Sub2504.png)
+![big](https://i.imgur.com/Sub2504.png)
 
 This is just something I learnt today and felt like sharing :))

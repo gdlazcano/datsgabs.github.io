@@ -3,7 +3,7 @@ title: "How to run a .exe without opening a prompt in Windows"
 date: 2021-07-11T14:52:44-05:00
 draft: false
 description: "In this post I'm going to explain how to run a .exe without opening a prompt and how to make it run from the startup"
-tags: ['windows']
+tags: ["windows"]
 ---
 
 ## Introduction
@@ -14,14 +14,14 @@ After investigating I found out this can be achieved by calling the .exe from a 
 
 ## VBS File
 
-{{< highlight powershell >}}
+```powershell
 Set Shell = CreateObject("WScript.Shell")
 Shell.Run "C:\users\dirofyourexecutable.exe", 0, False
-{{< /highlight >}}
+```
 
 `Shell.Run` receives the path of your executable, an integer indicating the appearance of the programs window, and a boolean indicating whether the script should wait for the program to finish executing.
 
-You can check all the available settings for [intWindowStyles](https://www.vbsedit.com/html/6f28899c-d653-4555-8a59-49640b0e32ea.asp)  
+You can check all the available settings for [intWindowStyles](https://www.vbsedit.com/html/6f28899c-d653-4555-8a59-49640b0e32ea.asp)
 
 ## Run on start
 

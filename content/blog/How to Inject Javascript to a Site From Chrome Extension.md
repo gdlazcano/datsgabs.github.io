@@ -18,7 +18,7 @@ If you want your script to run on a set of pages you have defined, the manifest 
 
 Both the `matches` and `host_permissions` should specify [match patterns](https://developer.chrome.com/docs/extensions/mv3/match_patterns/). In this example `inject.js` only runs whenever the site is google.com, and you have permissions in all the urls.
 
-{{< highlight json >}}
+```json
 {
     "name": "inject",
     "version": "1.0",
@@ -26,16 +26,16 @@ Both the `matches` and `host_permissions` should specify [match patterns](https:
     "content_scripts": [
         {
             "matches": ["*://*.google.com/*"],
-            "js": ["inject.js"],
+            "js": ["inject.js"]
         }
     ],
-    "host_permissions": ["<all_urls>"],
+    "host_permissions": ["<all_urls>"]
 }
-{{< /highlight >}}
+```
 
 This is an example of the code that can be injected. You can add event listeners, get and add elements from the DOM as I mentioned before.
 
-{{< highlight js >}}
+```js
 function init() {
     const el = document.createElement("input")
     el.setAttribute("type", "checkbox")
@@ -46,4 +46,4 @@ function init() {
 }
 
 init()
-{{< /highlight >}}
+```
