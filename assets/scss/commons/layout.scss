@@ -20,7 +20,6 @@
     }
 
     @include mobile {
-        width: 90vw;
         display: block;
         width: 100%;
     }
@@ -45,7 +44,7 @@
         padding: 0 !important;
     }
     .container {
-        padding: 0 30px;
+        padding: 0 15px;
     }
 }
 
