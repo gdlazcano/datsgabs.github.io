@@ -358,13 +358,11 @@ srcdoc="
 &amp;lt;head&amp;gt;
 &amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;
 &amp;lt;style&amp;gt;
-* {
-color: white;
-}
 body {
-background: #121212;
+background: white;
+padding: 10px 20px;
 }
-input {
+* {
 color: black;
 }
 &amp;lt;/style&amp;gt;
@@ -423,9 +421,9 @@ sandbox="allow-scripts">
 &lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
 &lt;p>Here it is in practice.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">// logs &amp;#34;}&amp;#34;
@@ -433,21 +431,21 @@ sandbox="allow-scripts">
 &lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
 &lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">validBraces&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">){&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Reactive Variables are the BEST feature in Svelte</title><link>https://gabriellazcano.com/blog/reactive-variables-are-the-best-feature-in-svelte/</link><pubDate>Sat, 13 Mar 2021 14:13:41 -0600</pubDate><guid>https://gabriellazcano.com/blog/reactive-variables-are-the-best-feature-in-svelte/</guid><description>&lt;p>Well, maybe I&amp;rsquo;m exagerating a little bit. But for real, reactive variable are such a good feature I don&amp;rsquo;t know how other frameworks haven&amp;rsquo;t copied it to it&amp;rsquo;s full extent yet.&lt;/p>
 &lt;p>They work like this, you declare a variable and if the variable changes it triggers another variable to change it&amp;rsquo;s value if it&amp;rsquo;s related to the initial variable. For example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
@@ -530,7 +528,7 @@ sandbox="allow-same-origin allow-scripts"
 &lt;/blockquote>
 &lt;p>There&amp;rsquo;s to be noted that there&amp;rsquo;s a Pro version but I only use the community, because it has all the features I need really.&lt;/p>
 &lt;p>Once you start using it, you&amp;rsquo;ll see your code like this:&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/Sub2504.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Sub2504.png" alt="small">&lt;/p>
 &lt;p>This is just something I learnt today and felt like sharing :))&lt;/p></description></item><item><title>Create a secure Isolated Iframe</title><link>https://gabriellazcano.com/blog/create-an-isolated-iframe/</link><pubDate>Mon, 08 Mar 2021 21:17:07 -0600</pubDate><guid>https://gabriellazcano.com/blog/create-an-isolated-iframe/</guid><description>&lt;p>You might have heard that if you create an iframe, your site might becomes vulnerable to cross-site attacks. And this is true. So there is a way of creating an isolated iframe in order to make it more secure.&lt;/p>
 &lt;p>This can be achieved just by using the attribute &lt;code>sandbox&lt;/code> which enables an extra set of restrictions for the content in the iframe. And being capable of enabling only the required tooling for your iframe with the following &lt;code>attribute values&lt;/code>:&lt;/p>
 &lt;p>&lt;code>allow-forms&lt;/code>: Allows form submission&lt;br>
@@ -753,11 +751,11 @@ sandbox="allow-same-origin allow-scripts"
 &lt;li>&lt;code>185.199.111.153&lt;/code>&lt;/li>
 &lt;/ol>
 &lt;p>And then add a &lt;code>CNAME&lt;/code> record with the name &lt;code>www&lt;/code> pointing to your &lt;code>[username].github.io&lt;/code> page:&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/3e1bOPx.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/3e1bOPx.png" alt="small">&lt;/p>
 &lt;p>Your dashboard should end up looking like this.&lt;/p>
 &lt;h2 id="add-custom-domain-in-github">Add custom domain in Github&lt;/h2>
 &lt;p>Now you are ready to go. Go to your project and in the settings tab there is the option of setting up your custom domain. Just type your domain and click save.&lt;/p>
-&lt;p>&lt;img src="https://i.imgur.com/JS1AG8P.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/JS1AG8P.png" alt="small">&lt;/p>
 &lt;p>Now just wait up to 24 hours for the DNS to propagate. If you don&amp;rsquo;t see any changes you can troubleshoot with the &lt;a href="https://docs.github.com/en/github/working-with-github-pages/troubleshooting-custom-domains-and-github-pages">Github Pages documentation&lt;/a>.&lt;/p></description></item><item><title>What is Open Graph Protocol and how to create Twitter Cards?</title><link>https://gabriellazcano.com/blog/what-is-open-graph-protocol-and-how-to-create-twitter-cards/</link><pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/what-is-open-graph-protocol-and-how-to-create-twitter-cards/</guid><description>&lt;p>Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. This is something that I literally found out today, as I was asking a fellow blogger &lt;em>Flavio Copes&lt;/em>, recommended btw. Apparently it is a very common practice but it doesn&amp;rsquo;t get used so often by new web developers and can definitely make your content stand out.&lt;/p>
 &lt;h2 id="what-is-open-graph-protocol">What is Open Graph Protocol?&lt;/h2>
 &lt;p>Open Graph is an internet protocol that was originally created by Facebook to standardize the use of metadata within a webpage to represent the content of a page.&lt;/p>
