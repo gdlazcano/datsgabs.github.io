@@ -1,5 +1,5 @@
 ---
-title: "Create your own middleware in Chi"
+title: "Create your own middleware with Chi"
 date: 2021-07-15T21:40:23-05:00
 draft: false
 description: "In this post I'm going to explain how to create your own middleware in Chi, how to get the values from route handlers and other middlewares. And give some context of how the Chi library is used"
