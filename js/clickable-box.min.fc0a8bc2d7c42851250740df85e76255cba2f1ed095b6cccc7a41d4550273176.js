@@ -1,0 +1,1 @@
+const cards=document.querySelectorAll(".list-card");for(let e of cards)e.addEventListener("click",()=>handleClickCard(e));function handleClickCard(e){const t=window.getSelection().toString();t||(window.location=e.dataset.url)}
