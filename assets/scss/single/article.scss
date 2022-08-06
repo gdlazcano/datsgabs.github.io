@@ -69,11 +69,6 @@ h3 {
 
     img[alt~="big"] {
         width: 100% !important;
-
-        @include desktop {
-            margin: auto;
-            width: 80% !important;
-        }
     }
 
     img[alt~="small"] {
