@@ -3,58 +3,60 @@ title: "Namespacing Chrome Storage for page dependant settings for your Chrome E
 date: 2021-03-03
 draft: false
 description: "A tutorial of how to namespace chrome.storage for making it dependant on the current page"
-tags: ['JS']
+tags: ["JS"]
 ---
 
 As far as I know `chrome.storage` saves it's keys globally, so it's not like `localstorage` on normal pages that gets only works in the current page. For that purpose I had to figure out a way of achieving this. So I decided using namespaces using template literals. This is a really made up process so there might be inaccuracies, feel free to let me know :)
 
 ## Creating the extension
 
-Creating the extension from scratch is pretty straightforward, we just have to add a `manifest.json` file with the following values: 
+Creating the extension from scratch is pretty straightforward, we just have to add a `manifest.json` file with the following values:
 
 > `permissions` are needed for the sole purpose of this tutorial but could be not added
 
 {{< highlight json >}}
 {
-    "name": "[name of the extension]",
-    "version": "1.0",
-    "manifest_version": 3,
-    "permissions": ["storage", "tabs"],
-    "action": {
-        "default_popup": "popup.html"
-    }
+"name": "[name of the extension]",
+"version": "1.0",
+"manifest_version": 3,
+"permissions": ["storage", "tabs"],
+"action": {
+"default_popup": "popup.html"
+}
 }
 {{< /highlight >}}
 
-We have to create a `popup.html` file and just use it as if it  was a normal HTML. We can import scripts add stylsheets, etc. 
+We have to create a `popup.html` file and just use it as if it was a normal HTML. We can import scripts add stylsheets, etc.
 
 {{< highlight html >}}
+
 <div class="container">
     <div class="box "></div>
     <button id="toggle">Toggle</button>
 </div>
 
 <script src="popup.js"></script>
+
 {{< /highlight >}}
 
 In the `popup.js` file is where we are going to have the logic for namespacing `chrome.storage` keys.
 
 Firstly, I have to point out that `chrome.storage` is an `async` api therefore we will have to use `async/await` on our main function.
 
-> If you are working with multiple variables I recommend using an object, as I did. 
+> If you are working with multiple variables I recommend using an object, as I did.
 
 {{< highlight javascript >}}
 ;(async function () {
-    let settings = {
-        active: false
-    }
-    // Gets the current URL of the tab
-    const url = await new Promise((res, rej) => {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-            let url = tabs[0].url
-            res(url)
-        })
-    })
+let settings = {
+active: false
+}
+// Gets the current URL of the tab
+const url = await new Promise((res, rej) => {
+chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+let url = tabs[0].url
+res(url)
+})
+})
 
     // Gets chrome storage with the namespace URL
     const synchedSettings = await new Promise((res, rej) => {
@@ -67,6 +69,7 @@ Firstly, I have to point out that `chrome.storage` is an `async` api therefore w
         settings = synchedSettings
         handleToggleButton(settings.active)
     }
+
 })()
 {{< /highlight >}}
 
@@ -81,11 +84,11 @@ const box = document.querySelector('.box')
 
 // Add class to .box depending of if it's active or not
 function handleToggleButton(active) {
-    if (active) {
-        box.classList.add('active')
-    } else {
-        box.classList.remove('active')
-    }
+if (active) {
+box.classList.add('active')
+} else {
+box.classList.remove('active')
+}
 }
 
 ;(async function () {
@@ -101,14 +104,15 @@ function handleToggleButton(active) {
             handleToggleButton(settings.active)
         })
     })
+
 })()
 {{< /highlight >}}
 
 ### Add Chrome Extension
 
-You have to go to `chrome://extensions` and turn on Developer Mode. Press `Load unpacked` and select the directory where the extension is. In the screenshot I'm using Brave Browser but it makes no difference. 
+You have to go to `chrome://extensions` and turn on Developer Mode. Press `Load unpacked` and select the directory where the extension is. In the screenshot I'm using Brave Browser but it makes no difference.
 
-![image](/images/blog/3.png)
+![](https://i.imgur.com/snhT2Z4.png)
 
 ## Wrap up
 

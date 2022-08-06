@@ -8,8 +8,9 @@
     /></a>
 
     <h1 class="navigation_header navigation_mobile--hiden">Gabriel Lazcano</h1>
-    <p class="navigation_mobile--hiden">Fullstack web developer, living in Mexico</p>
-
+    <p class="navigation_mobile--hiden">
+        Fullstack web developer, living in Mexico
+    </p>
 
     <div class="social-media navigation_mobile--hiden">
         <a href="https://github.com/datsgabs">
@@ -24,7 +25,7 @@
                 />
             </svg>
         </a>
-        <a href="https://twitter.com/datsgabs">
+        <a href="https://twitter.com/gdlazcano_">
             <svg
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,20 +54,19 @@
         {{ range .Site.Menus.blog }}
         <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
         {{ end }}
-        <br>
-        <hr>
-        <br>
+        <br />
+        <hr />
+        <br />
         <small>{{.Site.Copyright}}</small>
     </div>
-    
-    
-    
+
     <div class="navigation_hamburger" id="hamburger">
         <div class="hamburger_line half start"></div>
         <div class="hamburger_line"></div>
         <div class="hamburger_line half end"></div>
     </div>
 
-    {{ $hamburgerJS := resources.Get "js/hamburger-menu.js" | minify | fingerprint }}
+    {{ $hamburgerJS := resources.Get "js/hamburger-menu.js" | minify |
+    fingerprint }}
     <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
 </nav>
