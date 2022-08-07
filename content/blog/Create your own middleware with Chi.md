@@ -74,23 +74,16 @@ ctx := r.Context()
 key := ctx.Value("key").(string)
 ```
 
-{{< highlight golang >}}
+```go
 r.Use(UserContextBody)
 r.Route("/{username}", func(r chi.Router) {
-r.Get("/", func(rw http.ResponseWriter, r \*http.Request) {
-// your code
-})
+  r.Get("/", func(rw http.ResponseWriter, r \*http.Request) {
+  // your code
+  })
 })
 
 r.Post("/", func(rw http.ResponseWriter, r \*http.Request) {
-u := r.Context().Value("user").(User)
-// your code
+  u := r.Context().Value("user").(User)
+  // your code
 })
-
-```
-
-```
-
-```
-
 ```
