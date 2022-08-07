@@ -62,7 +62,7 @@
                 width: 70%;
             }
         }
-        
+
         .hamburger {
             display: none;
         }
@@ -77,6 +77,10 @@
         justify-content: space-between;
         align-items: center;
         background-color: var(--bg-color);
+
+        .navigation-languages {
+            display: none;
+        }
 
         .navigation_mobile--hiden {
             display: none;
@@ -96,7 +100,7 @@
             cursor: pointer;
             transition: transform 330ms ease-out;
             z-index: 2;
-            
+
             &.open {
                 transform: rotate(-45deg);
 
@@ -132,7 +136,7 @@
                         cubic-bezier(0.54, -0.81, 0.57, 0.57);
                     transform-origin: left;
                 }
-            }    
+            }
         }
         .navigation_header {
             display: none;
