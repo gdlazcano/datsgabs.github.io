@@ -43,6 +43,9 @@
             rel="stylesheet"
         />
 
+        <script data-goatcounter="https://gabriellazcano.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
         {{ $styleCommons := resources.Get "scss/commons/index.scss" |
         resources.ToCSS | resources.Minify | resources.Fingerprint }}
         <link rel="stylesheet" href="{{ $styleCommons.Permalink }}" />
