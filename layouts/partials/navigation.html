@@ -1,4 +1,4 @@
-<nav class="navigation">
+<header class="navigation">
     <a class="navigation_home-button" href="/" title="Press to go Home"
         ><img
             width="80"
@@ -50,7 +50,7 @@
             </svg>
         </a>
     </div>
-    <div class="navigation_menu" id="links">
+    <nav class="navigation_menu" id="links">
         {{ range .Site.Menus.blog }}
         <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
         {{ end }}
@@ -58,7 +58,7 @@
         <hr />
         <br />
         <small>{{.Site.Copyright}}</small>
-    </div>
+    </nav>
 
     <div class="navigation_hamburger" id="hamburger">
         <div class="hamburger_line half start"></div>
@@ -69,4 +69,4 @@
     {{ $hamburgerJS := resources.Get "js/hamburger-menu.js" | minify |
     fingerprint }}
     <script src="{{$hamburgerJS.RelPermalink}}" defer></script>
-</nav>
+</header>

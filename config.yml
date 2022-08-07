@@ -11,10 +11,10 @@ params:
 
 menu:
     blog:
-        - identifier: about
-          name: About
-          url: /about
-          weight: 1
+        # - identifier: about
+        #   name: About
+        #   url: /about
+        #   weight: 1
         - identifier: archive
           name: Archive
           url: /archive
