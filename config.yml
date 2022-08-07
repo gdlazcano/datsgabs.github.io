@@ -6,33 +6,37 @@ copyright: "© 2021 Gabriel Lazcano"
 ignoreErrors: ["error-remote-getjson"]
 
 params:
-  author: "Gabriel Lazcano"
-  codepenUser: "DatsGabs"
+    author: "Gabriel Lazcano"
+    codepenUser: "DatsGabs"
 
 menu:
     blog:
+        - identifier: about
+          name: About
+          url: /about
+          weight: 1
         - identifier: archive
           name: Archive
           url: /archive
-          weight: 20
+          weight: 2
         - identifier: tags
           name: Tags
           url: /tags
-          weight: 10
+          weight: 3
         - identifier: newsletter
           name: Newsletter
           url: /newsletter
-          weight: 30
+          weight: 4
 
-taxonomies: 
-  tag: tags
+taxonomies:
+    tag: tags
 
 sitemap:
-  changefreq: "weekly"
-  priority: 0.5
-  filename: "sitemap.xml"
+    changefreq: "weekly"
+    priority: 0.5
+    filename: "sitemap.xml"
 
 markup:
-  highlight:
-    noClasses: false
-    tabWidth: 4
+    highlight:
+        noClasses: false
+        tabWidth: 4
