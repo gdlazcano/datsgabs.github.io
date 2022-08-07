@@ -50,7 +50,12 @@
             </svg>
         </a>
     </div>
+
+    {{ partial "allLanguages.html" . }}
+
     <nav class="navigation_menu" id="links">
+        <hr />
+        <br />
         {{ range .Site.Menus.blog }}
         <a href="{{ .URL }}" title="{{ .Title }}"> {{ .Name }} </a>
         {{ end }}

@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Acerca"
 layout: "about"
 date: 2021-02-26T12:39:21-06:00
 skipped: true
@@ -8,4 +8,4 @@ sitemap:
     changefreq: "monthly"
 ---
 
-Hey
+Hola

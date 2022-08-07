@@ -2,12 +2,21 @@ baseURL: "https://gabriellazcano.com"
 languageCode: "en-us"
 title: "Gabriel Lazcano"
 copyright: "© 2021 Gabriel Lazcano"
+defaultContentLanguage: en
 
 ignoreErrors: ["error-remote-getjson"]
 
 params:
     author: "Gabriel Lazcano"
     codepenUser: "DatsGabs"
+
+languages:
+  en:
+    languageName: English
+    weight: 1
+  es:
+    languageName: Spanish
+    weight: 2
 
 menu:
     blog:
@@ -27,6 +36,8 @@ menu:
           name: Newsletter
           url: /newsletter
           weight: 4
+
+
 
 taxonomies:
     tag: tags

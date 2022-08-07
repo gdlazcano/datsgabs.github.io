@@ -1,6 +1,7 @@
 {{ define "main" }}
-
 <div class="listing">
+
+
     <!-- Ranges through content/posts/*.md -->
     {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 50 }}
     {{ range $paginator.Pages }}
