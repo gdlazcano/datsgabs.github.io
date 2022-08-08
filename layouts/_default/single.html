@@ -9,7 +9,10 @@
 <meta property="og:type" content="article" />
 <meta property="og:image" content="{{"/images/habbo-card.png" | absURL}}" />
 <meta name="description" content="{{.Description}}" />
-{{ end }} {{ define "main" }}
+{{ $masonry := resources.Get "js/masonry.js" | minify | fingerprint }}
+<script src="{{$masonry.RelPermalink}}" defer></script>
+{{ end }} 
+{{ define "main" }}
 <div class="single-header">
     <h1 class="single-header_title">{{.Title}}</h1>
     {{ if ne .Params.skipped true }}
@@ -80,8 +83,59 @@
     </div>
 </div>
 
-<div class="comments">
-    <h2>{{ T "comments" }}</h2>
+<div class="mentions">
+    {{ $webmentions := getJSON "https://webmention.io/api/mentions.jf2?domain=gabriellazcano.com&token=B05B1GgqwcMa8wBfCIuKYg" }} 
+    {{ $children := $webmentions.children }} 
+    {{ $retweeted := where $children ".wm-property" "repost-of"}}
+    {{ $mentioned := where $children ".wm-property" "mention-of"}}
+    <div class="mention-container retweets">
+        <h3>{{ add (len $retweeted) (len $mentioned)  }} TWEETED</h3>
+        <div class="people">
+          {{ range $reply := $retweeted }}
+          <a href="{{.url}}">
+          <img src="{{ .author.photo }}"></img>
+          </a>
+          {{ end }}
+          {{ range $reply := $mentioned }}
+          <a href="{{.url}}">
+          <img src="{{ .author.photo }}"></img>
+          </a>
+          {{ end }}
+        </div>
+    </div>
+
+    <div class="mention-container likes">
+        {{ $liked := where $children ".wm-property" "like-of"}}
+        <h3>{{ len $liked }} LIKES</h3>
+        <div class="people">
+          {{ range $reply := $liked }}
+          <a href="{{.url}}">
+          <img src="{{ .author.photo }}"></img>
+          </a>
+          {{ end }}
+        </div>
+    </div>
+
+    {{ $replies := where $children ".wm-property" "in-reply-to"}}
+    <div class="replies-container">
+      <h3>{{ len $replies }} REPLIES</h3>
+      <div class="replies">
+        {{ range $reply := $replies }}
+          <div class="reply">
+            <div class="top">
+              <div class="name">
+                <img src="{{.author.photo }}" alt="">
+                <a class="at" href="{{ .author.url }}">@{{ slicestr .author.url 20}}</a>
+              </div>
+              <a class="date" href="{{ .url }}">{{ .published | time.Format ":date_short"  }}</a>
+            </div>
+            <a href="{{.url}}">
+              <p class="text">&gt; {{ .content.text }}</p>
+            </a>
+          </div>
+        {{ end }}
+      </div>
+    </div>
 </div>
 {{ partial "read-more.html" . }} {{end }} {{ if (findRE "<pre" .Content 1) }} {{
 $indexJS := resources.Get "js/index.js" | minify | fingerprint }}
