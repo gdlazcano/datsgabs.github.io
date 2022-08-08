@@ -54,7 +54,7 @@
 
     p {
         a {
-            text-decoration: 2px underline white !important;
+            text-decoration: 1px underline white !important;
             font-style: italic;
         }
     }
@@ -107,7 +107,7 @@
     }
 
     a {
-        text-decoration: 2px underline white !important;
+        text-decoration: 1px underline white !important;
     }
 
     & p,
@@ -273,6 +273,7 @@
                         display: flex;
                         align-items: center;
                         gap: 10px;
+                        text-decoration: 1px underline white !important;
                     }
 
                     img {
