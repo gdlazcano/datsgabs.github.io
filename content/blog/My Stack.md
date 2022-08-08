@@ -2,7 +2,7 @@
 title: "How did I make my blog with Hugo and Github Pages?"
 date: 2021-02-28
 draft: false
-tags: ['hugo']
+tags: ["hugo"]
 description: "In this post I explain the stack I use to run this site and the things I noticed in the process"
 ---
 
@@ -18,7 +18,7 @@ In this project I used one of the best tools for Static Site Generation, `Hugo`.
 
 ### Set Up
 
-For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn't fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don't want to go through the mess but I felt it as I was feeling before choosing Hugo.
+For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn't fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don't want to go through the mess.
 
 I will, in another occasion, of how to set up a theme in Hugo as, as I mentioned before, is extremely convenient.
 
@@ -28,12 +28,12 @@ You can go through the steps of starting your own site, as I did, in the [ gohug
 
 For the hosting I'm currently using Github Pages. I set it up using a Github Action that automatically builds my site in another branch of the project.
 
-## Custom domain 
+## Custom domain
 
-At first I didn't know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in [this other post](/blog/how-custom-domain/)
-
+At first I didn't know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in [this other post](/blog/how-to-add-a-custom-domain-to-your-github-pages/)
 
 ## Wrap Up
+
 I hope you will find this blog post useful and keep it handy for a quick reference. If you want to learn more about Hugo, web development, tips & tricks, please consider checking my other posts 😁
 
 Happy Coding!

@@ -18,6 +18,10 @@ h3 {
         padding: 10px;
     }
 
+    ul {
+        list-style: auto;
+    }
+
     p {
         font-family: "inter";
         line-height: 1.6em;
@@ -56,7 +60,7 @@ h3 {
     }
 
     a {
-        text-decoration: 2px underline white !important;
+        text-decoration: 2px underline white;
         font-style: italic;
     }
 
@@ -246,6 +250,7 @@ h3 {
     justify-content: flex-end;
     color: #808080;
     text-decoration: none !important;
+
     svg {
         height: 1em;
         width: 1em;
