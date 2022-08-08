@@ -43,8 +43,11 @@
             rel="stylesheet"
         />
 
-        <script data-goatcounter="https://gabriellazcano.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+        <script
+            data-goatcounter="https://gabriellazcano.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
 
         {{ $styleCommons := resources.Get "scss/commons/index.scss" |
         resources.ToCSS | resources.Minify | resources.Fingerprint }}
@@ -52,6 +55,9 @@
         {{ block "stylesheets" . }} {{ end }}
     </head>
     <body>
+        <a href="https://twitter.com/DatsGabs" rel="me" style="display: none"
+            >twitter.com/DatsGabs</a
+        >
         <div class="container">
             {{ partial "navigation" . }}
             <main class="main">{{ block "main" . }} {{ end }}</main>
