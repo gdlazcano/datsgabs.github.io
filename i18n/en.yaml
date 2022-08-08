@@ -5,7 +5,7 @@ readingTime:
     other: Reading time
 
 translatedIn:
-    other: Translated on
+    other: Translated into
 
 editThisPage:
     other: Edit this page on Github
@@ -17,4 +17,4 @@ comments:
     other: Comments
 
 readOtherArticles:
-  other: Read other articles
+    other: Read other articles
