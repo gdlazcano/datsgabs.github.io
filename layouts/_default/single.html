@@ -138,6 +138,8 @@
       </div>
     </div>
 </div>
+
+
 {{ partial "read-more.html" . }} {{end }} {{ if (findRE "<pre" .Content 1) }} {{
 $indexJS := resources.Get "js/index.js" | minify | fingerprint }}
 <script src="{{$indexJS.RelPermalink}}" defer></script>
