@@ -90,7 +90,7 @@
     {{ $retweeted := where $children ".wm-property" "repost-of"}}
     {{ $mentioned := where $children ".wm-property" "mention-of"}}
     <div class="mention-container retweets">
-        <h3>{{ add (len $retweeted) (len $mentioned)  }} TWEETED</h3>
+        <h3>{{ add (len $retweeted) (len $mentioned)  }} Tweets</h3>
         <div class="people">
           {{ range $reply := $retweeted }}
           <a href="{{.url}}">
@@ -107,7 +107,7 @@
 
     <div class="mention-container likes">
         {{ $liked := where $children ".wm-property" "like-of"}}
-        <h3>{{ len $liked }} LIKES</h3>
+        <h3>{{ len $liked }} Likes</h3>
         <div class="people">
           {{ range $reply := $liked }}
           <a href="{{.url}}">
@@ -119,7 +119,7 @@
 
     {{ $replies := where $children ".wm-property" "in-reply-to"}}
     <div class="replies-container">
-      <h3>{{ len $replies }} REPLIES</h3>
+      <h3>{{ len $replies }} Replies</h3>
       <div class="replies">
         {{ range $reply := $replies }}
           <div class="reply">
