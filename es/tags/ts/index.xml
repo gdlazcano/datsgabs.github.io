@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ts on Gabriel Lazcano</title><link>https://gabriellazcano.com/es/tags/ts/</link><description>Recent content in ts on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sun, 07 Aug 2022 22:50:10 -0500</lastBuildDate><atom:link href="https://gabriellazcano.com/es/tags/ts/index.xml" rel="self" type="application/rss+xml"/><item><title>¿Por qué usar Quokka.js para prototipar?</title><link>https://gabriellazcano.com/es/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Sun, 07 Aug 2022 22:50:10 -0500</pubDate><guid>https://gabriellazcano.com/es/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>He estado haciendo cosas con Typescript últimamente, y me encanta lo que hago, pero configurarlo es muy inconveniente principalmente porque necesito primero compilarlo a JavaScript. Y para una simple prueba no encuentro tan cómodo como me gustaría.&lt;/p>
+&lt;p>Por ejemplo, si estoy haciendo algun reto para &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, o cualquier otra plataforma de competición de programación. Puedo trabajar sobre esto usando nodemon pero aún no me sale tan bien como me gustaría.&lt;/p>
+&lt;p>Lo tengo instalado en VSCode y puedo ver los resultados de la código que estoy escribiendo mientras estoy escribiendo y lo muestra una forma muy no intrusiva, sin tener un terminal abierto.&lt;/p>
+&lt;p>Lo puedes buscar en la pestaña de extensiones de VSCode.&lt;/p>
+&lt;blockquote>
+&lt;p>Para iniciar Quokka.js en un archivo solo tipea &lt;code>CTRL+k+q&lt;/code> o presiona &lt;code>F1&lt;/code> y tipea Quokka y verás las opciones.&lt;/p>
+&lt;/blockquote>
+&lt;p>Hay una versión Pro, pero la versión comunitaria tiene todas las funciones que necesito.&lt;/p>
+&lt;p>Una vez que empiezas a usarlo, verás tu código como este:&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Sub2504.png" alt="big">&lt;/p>
+&lt;p>Esto es solo algo que aprendí hoy y me parece que compartir :))&lt;/p></description></item></channel></rss>

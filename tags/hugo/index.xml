@@ -4,13 +4,13 @@
 &lt;h2 id="the-stack">The stack&lt;/h2>
 &lt;p>In this project I used one of the best tools for Static Site Generation, &lt;code>Hugo&lt;/code>. It&amp;rsquo;s crazy fast and you can customize almost everything. I know Hugo isn&amp;rsquo;t the most famous but it&amp;rsquo;s definitely one the most reliable. For the time being, I haven&amp;rsquo;t seen much attention to the framework and I would like to start contributing to making it widespread.&lt;/p>
 &lt;h3 id="set-up">Set Up&lt;/h3>
-&lt;p>For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn&amp;rsquo;t fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don&amp;rsquo;t want to go through the mess but I felt it as I was feeling before choosing Hugo.&lt;/p>
+&lt;p>For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn&amp;rsquo;t fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don&amp;rsquo;t want to go through the mess.&lt;/p>
 &lt;p>I will, in another occasion, of how to set up a theme in Hugo as, as I mentioned before, is extremely convenient.&lt;/p>
 &lt;p>You can go through the steps of starting your own site, as I did, in the &lt;a href="https://gohugo.io/getting-started/quick-start/"> gohugo.io documentation&lt;/a>&lt;/p>
 &lt;h2 id="hosting">Hosting&lt;/h2>
 &lt;p>For the hosting I&amp;rsquo;m currently using Github Pages. I set it up using a Github Action that automatically builds my site in another branch of the project.&lt;/p>
 &lt;h2 id="custom-domain">Custom domain&lt;/h2>
-&lt;p>At first I didn&amp;rsquo;t know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in &lt;a href="https://gabriellazcano.com/blog/how-custom-domain/">this other post&lt;/a>&lt;/p>
+&lt;p>At first I didn&amp;rsquo;t know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in &lt;a href="https://gabriellazcano.com/blog/how-to-add-a-custom-domain-to-your-github-pages/">this other post&lt;/a>&lt;/p>
 &lt;h2 id="wrap-up">Wrap Up&lt;/h2>
 &lt;p>I hope you will find this blog post useful and keep it handy for a quick reference. If you want to learn more about Hugo, web development, tips &amp;amp; tricks, please consider checking my other posts 😁&lt;/p>
 &lt;p>Happy Coding!&lt;/p></description></item></channel></rss>

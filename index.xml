@@ -149,7 +149,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">u&lt;/span> &lt;span class="o">:=&lt;/span> &lt;span class="nx">r&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nf">Context&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nf">Value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">).(&lt;/span>&lt;span class="nx">User&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// your code
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Create a custom cursor that follows you and inverts colors</title><link>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</link><pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</guid><description>&lt;p>Yeah I know the title is not very clear for what I&amp;rsquo;m trying to explain in this post. So just see the results by yourself.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Custom cursor that inverts colors (mix-blend-mode)</title><link>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</link><pubDate>Thu, 15 Jul 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors/</guid><description>&lt;p>Yeah I know the title is not very clear for what I&amp;rsquo;m trying to explain in this post. So just see the results by yourself.&lt;/p>
 &lt;iframe
 srcdoc="
 &amp;lt;html&amp;gt;
@@ -371,16 +371,7 @@ sandbox="">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>I&amp;rsquo;m just going to comment the relevant things about this Dockerfile. In line 1 we are giving the Go image the build tag so we can later do reference to it. We copy all the files into the /src directory and create the application with the &lt;a href="https://pkg.go.dev/cmd/go#hdr-Compile_packages_and_dependencies">go -o tag&lt;/a>. From the alpine image, we have to copy both the &lt;code>/src/public&lt;/code> folder and the application on &lt;code>/bin/app&lt;/code>. Then just expose the port 3000 and make an execute the application.&lt;/p>
 &lt;blockquote>
 &lt;p>CGO_ENABLED=0 was a must for building the application, if not the application would just not work. Not really know why it wouldn&amp;rsquo;t. If you know fell free to comment or do a pull request :))&lt;/p>
-&lt;/blockquote></description></item><item><title>How to run a .exe without opening a prompt in Windows</title><link>https://gabriellazcano.com/blog/how-to-run-a-exe-without-opening-a-prompt-in-windows/</link><pubDate>Sun, 11 Jul 2021 14:52:44 -0500</pubDate><guid>https://gabriellazcano.com/blog/how-to-run-a-exe-without-opening-a-prompt-in-windows/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>I was doing a Golang Shortcuts application and I wanted to run my program in the background without having a prompt in my taskbar all the time.&lt;/p>
-&lt;p>After investigating I found out this can be achieved by calling the .exe from a .vbs file is a pretty easy way of accomplishing this. You just have to create an object shell and run the .exe with these parameters.&lt;/p>
-&lt;h2 id="vbs-file">VBS File&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-powershell" data-lang="powershell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">Set &lt;/span>&lt;span class="n">Shell&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">CreateObject&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;WScript.Shell&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Shell&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Run&lt;/span> &lt;span class="s2">&amp;#34;C:\users\dirofyourexecutable.exe&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">False&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>Shell.Run&lt;/code> receives the path of your executable, an integer indicating the appearance of the programs window, and a boolean indicating whether the script should wait for the program to finish executing.&lt;/p>
-&lt;p>You can check all the available settings for &lt;a href="https://www.vbsedit.com/html/6f28899c-d653-4555-8a59-49640b0e32ea.asp">intWindowStyles&lt;/a>&lt;/p>
-&lt;h2 id="run-on-start">Run on start&lt;/h2>
-&lt;p>If you wanted to run this file when Windows Starts you just have to paste it in the Startup folder located in &lt;code>&amp;quot;C:\Users\[username]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&amp;quot;&lt;/code> or just type &lt;code>startup&lt;/code> in the explorer bar&lt;/p></description></item><item><title>How to Inject Javascript to a Site From Chrome Extension</title><link>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</link><pubDate>Sat, 03 Jul 2021 22:46:36 -0500</pubDate><guid>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;/blockquote></description></item><item><title>How to Inject Javascript to a Site From Chrome Extension</title><link>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</link><pubDate>Sat, 03 Jul 2021 22:46:36 -0500</pubDate><guid>https://gabriellazcano.com/blog/how-to-inject-javascript-to-a-site-from-chrome-extension/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>I was watching a Twitch streamer struggle trying to do this. So I thought it might help someone out there.&lt;/p>
 &lt;p>You can inject javascript code into any site with a chrome extension, with this you can do many things. Like creating new elements and adding them to the DOM or managing events of certain elements, what you can do in your application you can do it when injecting it.&lt;/p>
 &lt;h2 id="manifest-version-3">Manifest version 3&lt;/h2>
@@ -409,114 +400,14 @@ sandbox="">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">init&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>My Thoughts on Github Copilot</title><link>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</link><pubDate>Fri, 02 Jul 2021 13:28:37 -0500</pubDate><guid>https://gabriellazcano.com/blog/my-thoughts-on-github-copilot/</guid><description>&lt;p>There has been a lot of controversy and I should say fear since the announcement of &lt;a href="https://copilot.github.com/">Github Copilot&lt;/a>. The common concerns are that it&amp;rsquo;s going to take jobs from programmers or that it&amp;rsquo;s going to make a generation of coders that don&amp;rsquo;t know how to code and solve problems.&lt;/p>
-&lt;p>Regarding the first point, I don&amp;rsquo;t actually think it&amp;rsquo;s going to take jobs from established programmers but that it will make junior programmers&amp;rsquo; life harder. As the most basic things are being automatized they will have learn much more than before to make a living of programming. We are seeing this trend with tools like webflow for creating landing pages and other simple applications instead of requiring a junior programmer for that matter.&lt;/p>
-&lt;p>Returning to my first idea, automatization helps more senior developers with more mundane and repetitive tasks. This will make coding be faster, more effective and productive. And while Copilot seems to have really advanced capabilities, it seems to be lacking on using the context of your application as a whole, you will still be the one solving challenges. Solving challenges is why you are required and how you do it is secondary.&lt;/p>
-&lt;p>I believe Copilot is a more advanced alternative of what we have now, Stackoverflow. We are so accostumed to it that we don&amp;rsquo;t see that when we copy and paste code from Stackoverflow we are doing basically the same thing Copilot aspires to do but more effective, as I mentioned before. However, we don&amp;rsquo;t have to rely on either Stackoverflow or Copilot to do all the work for us. If you are a person that just copies code from other places and call it a day you must definetely be worried about Copilot taking your job but that is not certainly the case for most of us.&lt;/p>
-&lt;p>We have to stop fearing innovation and start embracing it, we humans have the same fears as thousands of years ago. Innovation could kill some jobs but create others, the first &amp;ldquo;computers&amp;rdquo; were people who were skilled with mathematics who were used to undertake long and often tedious calculations.&lt;/p>
-&lt;p>Did you find this post interesting? You can share your thoughts with me on Twitter or point me out something. Thanks :))&lt;/p></description></item><item><title>Braces Validator With Javascript: Stacks</title><link>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</link><pubDate>Fri, 19 Mar 2021 17:15:50 -0600</pubDate><guid>https://gabriellazcano.com/blog/braces-validator-with-javascript-stacks/</guid><description>&lt;iframe
-srcdoc="
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;
-&amp;lt;head&amp;gt;
-&amp;lt;title&amp;gt;Document&amp;lt;/title&amp;gt;
-&amp;lt;style&amp;gt;
-body {
-background: white;
-padding: 10px 20px;
-}
-* {
-color: black;
-}
-&amp;lt;/style&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-&amp;lt;h1&amp;gt;Type your string&amp;lt;/h1&amp;gt;
-&amp;lt;p&amp;gt;You can try these&amp;lt;/p&amp;gt;
-&amp;lt;pre&amp;gt;
-&amp;#34;(){}[]&amp;#34; // True
-&amp;#34;([{}])&amp;#34; // True
-&amp;#34;(}&amp;#34; // False
-&amp;#34;[(])&amp;#34; // False
-&amp;#34;[({})](]&amp;#34; //False
-&amp;lt;/pre&amp;gt;
-&amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;input&amp;#34;&amp;gt;
-&amp;lt;p id=&amp;#34;result&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
-&amp;lt;script&amp;gt;
-const input = document.querySelector(&amp;#39;#input&amp;#39;)
-const result = document.querySelector(&amp;#39;#result&amp;#39;);
-const braces = {
-&amp;#34;{&amp;#34;: &amp;#34;}&amp;#34;,
-&amp;#34;(&amp;#34;: &amp;#34;)&amp;#34;,
-&amp;#34;[&amp;#34;: &amp;#34;]&amp;#34;,
-}
-function validBraces(str){
-let stack = []
-for (const char of str) {
-try {
-if (stack.length &amp;gt; 0 &amp;amp;&amp;amp; braces[stack[stack.length - 1]] == char) {
-stack.pop()
-} else {
-stack.push(char)
-}
-}
-catch (error) {
-return false
-}
-}
-return stack.length == 0
-}
-input.addEventListener(&amp;#34;input&amp;#34;, (event) =&amp;gt; {
-result.textContent = `The string is ${validBraces(input.value) ? &amp;#34;&amp;#34;: &amp;#34;not&amp;#34;} valid`
-})
-&amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-"
-frameborder="0"
-height="300px"
-width="100%"
-sandbox="allow-scripts">
-&lt;/iframe>
-&lt;p>Today I was messing around doing some CodeWars challenges and some problem got my attention. It was to make a braces validator. The rules are simple, given a string we have to determine if all braces are matched with the correct brace. You can check out the &lt;a href="https://www.codewars.com/kata/5277c8a221e209d3f6000b56/train/javascript">complete kata here.&lt;/a>&lt;/p>
-&lt;p>So I started trying different ways. But none seemed to work. Then I remembered there were this magical data structures called stacks.&lt;/p>
-&lt;p>&lt;code>Stacks&lt;/code> are a data structure that work by pushing and poping elements.&lt;/p>
-&lt;p>In this particular example I am first defining if the stack is empty or not, if it is I have to push the first element. And from then start comparing the current element to the last pushed element. For the comparison I am using a functionality of JavaScript, whose name I don&amp;rsquo;t know, which basically works by indexing an object with a string.&lt;/p>
-&lt;p>Here it is in practice.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="c1">// logs &amp;#34;}&amp;#34;
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>So in an object I just have to define the counterpart of the brace and it&amp;rsquo;s has an access time of 1.&lt;/p>
-&lt;p>If the current brace is not equal to the last one in the stack it will get pushed into the stack. If it is it will not push the current brace and it will pop the last element in the stack. So if there is any element left in the stack it means that the string is not valid either because some brace has no counterpart or because some brace is opened and closed in between other.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">braces&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;{&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;}&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;(&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;)&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;[&amp;#34;&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;]&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">validBraces&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nx">braces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">]]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">pop&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">stack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Why I Use Quokka.js for prototyping?</title><link>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Thu, 11 Mar 2021 18:01:21 -0600</pubDate><guid>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>I&amp;rsquo;ve been doing some learning with typescript, and I&amp;rsquo;m really liking it but setting it up is a little messy mainly because you have to compile the program into a JavaScript file. And for a simple test I don&amp;rsquo;t find this convenient.&lt;/p>
-&lt;p>For example, if I&amp;rsquo;m doing some challenge for &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, or any other competitive programming platform using typescript is completely out of the way. You can work around this using nodemon but still the results are not as good as you could get with &lt;a href="https://quokkajs.com/">Quokka.js&lt;/a>.&lt;/p>
-&lt;p>In my case I have it installed in VSCode and you get to see the results of the code you are writing as you are writing it and in a non intrusive way, without having a terminal opened.&lt;/p>
-&lt;p>And it&amp;rsquo;s pretty easy to install, you just have to search it in the extensions tab in VSCode.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Why I Use Quokka.js for prototyping?</title><link>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Thu, 11 Mar 2021 18:01:21 -0600</pubDate><guid>https://gabriellazcano.com/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>I&amp;rsquo;ve been doing some things with Typescript lately, and I&amp;rsquo;m really liking it but setting it up is somewhat inconvenient mainly because you have to first compile it into JavaScript. And for a simple test I don&amp;rsquo;t find it as seamless as I would like to.&lt;/p>
+&lt;p>For example, if I&amp;rsquo;m doing some challenge for &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, or any other competitive programming platform. You can work around this using nodemon but still the results are not as good as you could get with &lt;a href="https://quokkajs.com/">Quokka.js&lt;/a>.&lt;/p>
+&lt;p>I have it installed in VSCode and you get to see the results of the code you are writing as you are writing it and it shows it a very non intrusive way, without having a terminal opened.&lt;/p>
+&lt;p>You just have to search it in the extensions tab in VSCode.&lt;/p>
 &lt;blockquote>
-&lt;p>To start Quokka.js on a file just type &lt;code>ctrl+k q&lt;/code> or press &lt;code>f1&lt;/code> and type Quokka and you&amp;rsquo;ll see the options.&lt;/p>
+&lt;p>To start Quokka.js on a file just type &lt;code>CTRL+k+q&lt;/code> or press &lt;code>F1&lt;/code> and type Quokka and you&amp;rsquo;ll see the options.&lt;/p>
 &lt;/blockquote>
-&lt;p>There&amp;rsquo;s to be noted that there&amp;rsquo;s a Pro version but I only use the community, because it has all the features I need really.&lt;/p>
+&lt;p>There&amp;rsquo;s to be noted that there&amp;rsquo;s a Pro version, but the community version has all the features I need.&lt;/p>
 &lt;p>Once you start using it, you&amp;rsquo;ll see your code like this:&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/Sub2504.png" alt="big">&lt;/p>
 &lt;p>This is just something I learnt today and felt like sharing :))&lt;/p></description></item><item><title>Create a secure Isolated Iframe</title><link>https://gabriellazcano.com/blog/create-a-secure-isolated-iframe/</link><pubDate>Mon, 08 Mar 2021 21:17:07 -0600</pubDate><guid>https://gabriellazcano.com/blog/create-a-secure-isolated-iframe/</guid><description>&lt;p>You might have heard that if you create an iframe, your site might becomes vulnerable to cross-site attacks. And this is true. So there is a way of creating an isolated iframe in order to make it more secure.&lt;/p>
@@ -804,13 +695,13 @@ sandbox="allow-scripts">
 &lt;h2 id="the-stack">The stack&lt;/h2>
 &lt;p>In this project I used one of the best tools for Static Site Generation, &lt;code>Hugo&lt;/code>. It&amp;rsquo;s crazy fast and you can customize almost everything. I know Hugo isn&amp;rsquo;t the most famous but it&amp;rsquo;s definitely one the most reliable. For the time being, I haven&amp;rsquo;t seen much attention to the framework and I would like to start contributing to making it widespread.&lt;/p>
 &lt;h3 id="set-up">Set Up&lt;/h3>
-&lt;p>For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn&amp;rsquo;t fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don&amp;rsquo;t want to go through the mess but I felt it as I was feeling before choosing Hugo.&lt;/p>
+&lt;p>For setting up your own blog there are two ways, using a theme or creating your own. I tried using a theme but in the end it wasn&amp;rsquo;t fulfilling my needs. I think that the full customization of the themes can be a 2 sided sword, as modifying really anything is extremely difficult. Even more some themes do not have enough documentation and you have to guess how everything works. I get that themes are convenient for starting your site and for people that don&amp;rsquo;t want to go through the mess.&lt;/p>
 &lt;p>I will, in another occasion, of how to set up a theme in Hugo as, as I mentioned before, is extremely convenient.&lt;/p>
 &lt;p>You can go through the steps of starting your own site, as I did, in the &lt;a href="https://gohugo.io/getting-started/quick-start/"> gohugo.io documentation&lt;/a>&lt;/p>
 &lt;h2 id="hosting">Hosting&lt;/h2>
 &lt;p>For the hosting I&amp;rsquo;m currently using Github Pages. I set it up using a Github Action that automatically builds my site in another branch of the project.&lt;/p>
 &lt;h2 id="custom-domain">Custom domain&lt;/h2>
-&lt;p>At first I didn&amp;rsquo;t know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in &lt;a href="https://gabriellazcano.com/blog/how-custom-domain/">this other post&lt;/a>&lt;/p>
+&lt;p>At first I didn&amp;rsquo;t know anything about how configuring a custom domain, I thought it was really straightforward and it kinda is but I had a huge problem setting it up. You can see how I did it in &lt;a href="https://gabriellazcano.com/blog/how-to-add-a-custom-domain-to-your-github-pages/">this other post&lt;/a>&lt;/p>
 &lt;h2 id="wrap-up">Wrap Up&lt;/h2>
 &lt;p>I hope you will find this blog post useful and keep it handy for a quick reference. If you want to learn more about Hugo, web development, tips &amp;amp; tricks, please consider checking my other posts 😁&lt;/p>
 &lt;p>Happy Coding!&lt;/p></description></item></channel></rss>

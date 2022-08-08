@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/es/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sun, 28 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/es/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>¿Cómo hice mi blog con Hugo y Github Pages?</title><link>https://gabriellazcano.com/es/blog/my-stack/</link><pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/es/blog/my-stack/</guid><description>&lt;h2 id="introuduccion">Introuduccion&lt;/h2></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/es/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sun, 07 Aug 2022 22:50:10 -0500</lastBuildDate><atom:link href="https://gabriellazcano.com/es/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>¿Por qué usar Quokka.js para prototipar?</title><link>https://gabriellazcano.com/es/blog/why-i-use-quokka.js-for-prototyping/</link><pubDate>Sun, 07 Aug 2022 22:50:10 -0500</pubDate><guid>https://gabriellazcano.com/es/blog/why-i-use-quokka.js-for-prototyping/</guid><description>&lt;p>He estado haciendo cosas con Typescript últimamente, y me encanta lo que hago, pero configurarlo es muy inconveniente principalmente porque necesito primero compilarlo a JavaScript. Y para una simple prueba no encuentro tan cómodo como me gustaría.&lt;/p>
+&lt;p>Por ejemplo, si estoy haciendo algun reto para &lt;a href="https://www.codewars.com/">Codewars&lt;/a>, o cualquier otra plataforma de competición de programación. Puedo trabajar sobre esto usando nodemon pero aún no me sale tan bien como me gustaría.&lt;/p>
+&lt;p>Lo tengo instalado en VSCode y puedo ver los resultados de la código que estoy escribiendo mientras estoy escribiendo y lo muestra una forma muy no intrusiva, sin tener un terminal abierto.&lt;/p>
+&lt;p>Lo puedes buscar en la pestaña de extensiones de VSCode.&lt;/p>
+&lt;blockquote>
+&lt;p>Para iniciar Quokka.js en un archivo solo tipea &lt;code>CTRL+k+q&lt;/code> o presiona &lt;code>F1&lt;/code> y tipea Quokka y verás las opciones.&lt;/p>
+&lt;/blockquote>
+&lt;p>Hay una versión Pro, pero la versión comunitaria tiene todas las funciones que necesito.&lt;/p>
+&lt;p>Una vez que empiezas a usarlo, verás tu código como este:&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/Sub2504.png" alt="big">&lt;/p>
+&lt;p>Esto es solo algo que aprendí hoy y me parece que compartir :))&lt;/p></description></item><item><title>¿Cómo hice mi blog con Hugo y Github Pages?</title><link>https://gabriellazcano.com/es/blog/my-stack/</link><pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/es/blog/my-stack/</guid><description>&lt;h2 id="introducción">Introducción&lt;/h2>
+&lt;p>Decidi hacer un blog, trate de usar los sitios de blog usuales. No me gustó mucho, me sentia un poco desalentado por la falta de herramientas.&lt;/p>
+&lt;p>En este post voy a explicar el stack que uso para hacer mi blog y las cosas que me han notado en el proceso. Voy a actualizar esta página cada vez que extiendo mi stack.&lt;/p>
+&lt;h2 id="el-stack">El stack&lt;/h2>
+&lt;p>En este proyecto use uno de los mejores frameworks para Static Site Generation, &lt;code>Hugo&lt;/code>. Es extremadamente rápido y muy personalizable. Hugo no es el más famoso pero es muy confiable. Por el momento, no he visto mucha atención al framework y quiero comenzar a contribuir a hacerlo más popular.&lt;/p>
+&lt;h2 id="configuración">Configuración&lt;/h2>
+&lt;p>Hay 2 formas de hacer un blog con Hugo: usando &lt;a href="https://themes.gohugo.io/">un tema&lt;/a> o creando el tuyo manualmente. Yo trate de usar un tema pero no me ha funcionado, es muy personalizable pero sentia que no satisfacia completamente mis necesidades. Me parece que la configuración del tema es muy difícil de modificar. Los temas no tienen mucha documentación y hay que adivinar cómo funciona cada uno. Son convenientes para comenzar un sitio web y para personas que no quieren pasar por todo eso.&lt;/p>
+&lt;p>En otra ocasión, puedo explicar como hacer un blog con Hugo manualmente, ya que como dije antes es una herramienta muuy buena.&lt;/p>
+&lt;p>Puedes ir por los siguientes enlaces para ver como hacer un blog con Hugo:&lt;/p>
+&lt;p>&lt;a href="https://gohugo.io/getting-started/quick-start/">https://gohugo.io/getting-started/quick-start/&lt;/a>&lt;/p>
+&lt;h2 id="alojamiento">Alojamiento&lt;/h2>
+&lt;p>Para el alojamiento, uso un servidor de GitHub Pages. Es un servidor de hosting que permite alojar un sitio web en una sola página. Es muy fácil de configurar y muy rápido. Uso una Github Action para hacer el deploy automático cada que hago un push.&lt;/p>
+&lt;h2 id="dominio-personalizado">Dominio personalizado&lt;/h2>
+&lt;p>En primer lugar no sabía nada de como configurar un dominio personalizado, pensé que era muy sencillo y que era bastante fácil. Puedes ver como lo hice en &lt;a href="https://gabriellazcano.com/blog/how-to-add-a-custom-domain-to-your-github-pages/">este otro post&lt;/a>&lt;/p>
+&lt;p>Espero que este blog post te sea de utilidad y que te ayude a hacer un blog más fácil. Si quieres aprender más sobre Hugo, web development, tips &amp;amp; tricks, por favor considera leer mis otros posts 😁&lt;/p>
+&lt;h2 id="articulos-relacionados">Articulos relacionados&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-add-a-custom-domain-to-your-github-pages/">How to add a custom domain to your Github Pages&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
