@@ -6,7 +6,7 @@ description: "Have you ever seen Twitter links that have a preview to the conten
 tags: ["HTML"]
 ---
 
-Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. This is something that I literally found out today, as I was asking a fellow blogger _Flavio Copes_, recommended btw. Apparently it is a very common practice but it doesn't get used so often by new web developers and can definitely make your content stand out.
+Have you ever seen Twitter links that have a preview to the content? Those links are using Open Graph Protocol. Apparently it is a very common practice but it doesn't get used so often by new web developers and can definitely make your content stand out.
 
 ## What is Open Graph Protocol?
 
@@ -18,7 +18,7 @@ Within it, you can provide details as simple as the title of a page or as specif
 
 As I said before it makes your content stand out, which is obviously what we want on the internet. Not using a content rich link can make us lose potential traffic we could have had.
 
-{{< tweet 1366868641468317696 >}}
+{{< tweet 1556006131079716864 >}}
 
 ## Open Graph basics
 
