@@ -84,7 +84,8 @@
 </div>
 
 <div class="mentions">
-    {{ $webmentions := getJSON "https://webmention.io/api/mentions.jf2?domain=gabriellazcano.com&token=B05B1GgqwcMa8wBfCIuKYg" }} 
+    {{ $urlPre := "https://webmention.io/api/mentions.jf2?target=" }}
+    {{ $webmentions := getJSON $urlPre .Permalink }}
     {{ $children := $webmentions.children }} 
     {{ $retweeted := where $children ".wm-property" "repost-of"}}
     {{ $mentioned := where $children ".wm-property" "mention-of"}}
