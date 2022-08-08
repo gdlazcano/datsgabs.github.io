@@ -1,5 +1,8 @@
 <header class="navigation">
-    <a class="navigation_home-button" href="/" title="Press to go Home"
+    <a
+        class="navigation_home-button"
+        href='{{ "/" | relLangURL   }}'
+        title="Press to go Home"
         ><img
             width="80"
             height="80"
@@ -51,9 +54,9 @@
         </a>
     </div>
 
-    <div class="navigation-languages">{{ partial "allLanguages.html" . }}</div>
-
     <nav class="navigation_menu" id="links">
+        {{ partial "allLanguages.html" . }}
+        <br />
         <hr />
         <br />
         {{ range .Site.Menus.blog }}

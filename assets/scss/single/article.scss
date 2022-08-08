@@ -56,7 +56,7 @@ h3 {
     }
 
     a {
-        text-decoration: 2px underline white;
+        text-decoration: 2px underline white !important;
         font-style: italic;
     }
 
@@ -105,6 +105,10 @@ h3 {
         font-size: 2.2em !important;
         font-weight: bold !important;
         font-family: "inter" !important;
+    }
+
+    a {
+        text-decoration: 2px underline white !important;
     }
 
     & p,
@@ -231,7 +235,7 @@ h3 {
         transition: 0.3s ease-in-out;
         a {
             color: #5c5c5c;
-            text-decoration: underline;
+            text-decoration: underline !important;
         }
     }
 }
