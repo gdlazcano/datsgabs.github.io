@@ -82,22 +82,6 @@
 
 <div class="comments">
     <h2>{{ T "comments" }}</h2>
-    <script
-        src="https://utteranc.es/client.js"
-        repo="DatsGabs/datsgabs.github.io"
-        issue-term="og:title"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async
-        loading="lazy"
-    ></script>
-    <p id="commentsNotice">
-        utteranc.es uses Github Issues, no data is stored.<br />You can disable
-        it from your
-        <a href="https://github.com/settings/apps/authorizations"
-            >authorized apps.</a
-        >
-    </p>
 </div>
 {{ partial "read-more.html" . }} {{end }} {{ if (findRE "<pre" .Content 1) }} {{
 $indexJS := resources.Get "js/index.js" | minify | fingerprint }}
