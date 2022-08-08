@@ -10,13 +10,13 @@
         width: 90vw;
     }
 
+    @media (min-width: 1700px) {
+        width: 1300px;
+    }
+
     @media (max-width: 1300px) {
         width: 90vw;
         grid-template-columns: 150px calc(100% - 150px);
-    }
-
-    @media (min-width: 2000px) {
-        width: 70vw;
     }
 
     @include mobile {
