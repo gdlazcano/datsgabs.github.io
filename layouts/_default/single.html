@@ -13,14 +13,8 @@
     <meta property="og:image" content="{{ .Params.image }}" />
     <meta name="twitter:image" content="{{ .Params.image }}" />
   {{ else }}
-    <meta
-      property="og:image"
-      content="{{ " /images/habbo-card.png" | absURL }}"
-    />
-    <meta
-      name="twitter:image"
-      content="{{ " /images/habbo-card.png" | absURL }}"
-    />
+    <meta property="og:image" content="/images/habbo-card.png" />
+    <meta name="twitter:image" content="/images/habbo-card.png" />
   {{ end }}
 
 
