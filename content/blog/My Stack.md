@@ -4,6 +4,7 @@ date: 2021-02-28
 draft: false
 tags: ["hugo"]
 description: "In this post I explain the stack I use to run this site and the things I noticed in the process"
+tweet_id: "1556755282331574272"
 ---
 
 ## Introduction

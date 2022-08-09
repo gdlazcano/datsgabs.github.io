@@ -1,11 +1,12 @@
 @import "../commons/media-queries.scss";
 
 .article {
-    padding: 15px 35px;
+    padding: 15px 35px 35px 35px;
     border-radius: 5px;
     background-color: var(--elevation-color);
     word-wrap: break-word;
     margin-bottom: 50px;
+    border: 1px solid #343434;
 
     @include mobile {
         padding: 10px;
@@ -132,15 +133,17 @@
         .article-bottom_btn {
             display: flex;
             align-items: center;
-            width: 100px;
+            width: auto;
             border-radius: 20px;
             padding: 8px;
+            transition: 0.2s;
 
             svg {
                 width: 20px;
                 margin-right: 10px;
                 transition: 0.5s;
             }
+
             margin: 0 5px;
 
             &:first-child {
@@ -151,8 +154,11 @@
             }
         }
 
+        .like-twitter-btn {
+        }
+
         .share-twitter-btn {
-            border: 1px solid #1da1f2;
+            border: 2px solid #1da1f2;
 
             &:hover {
                 background-color: #1da1f2;
@@ -168,7 +174,7 @@
         }
 
         .share-reddit_btn {
-            border: 1px solid #ff4500;
+            border: 2px solid #ff4500;
 
             &:hover {
                 background-color: #ff4500;
@@ -258,6 +264,60 @@
                     z-index: 10;
                 }
             }
+
+            .tweet-twitter-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 8px;
+                transition: 0.2s;
+                margin-right: -10px;
+                background-color: #1da1f2;
+
+                &:hover {
+                    background-color: white;
+
+                    svg {
+                        fill: #1da1f2;
+                    }
+                }
+
+                svg {
+                    fill: white;
+                    margin: 0;
+                    width: 20px;
+                }
+            }
+
+            .like-twitter-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 8px;
+                transition: 0.2s;
+                margin-right: -10px;
+                background-color: #c21465;
+
+                &:hover {
+                    background-color: white;
+
+                    svg {
+                        fill: #c21465;
+                    }
+                }
+
+                svg {
+                    fill: white;
+                    margin: 0;
+                    width: 20px;
+                }
+            }
         }
     }
 
@@ -265,6 +325,7 @@
         h3 {
             padding-top: 15px;
             margin-bottom: 30px;
+            text-decoration: underline white;
         }
 
         .replies {
@@ -329,8 +390,6 @@
 
 .editPage {
     display: flex;
-    align-items: end;
-    justify-content: flex-end;
     color: #808080;
     text-decoration: none !important;
 
