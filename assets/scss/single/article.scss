@@ -56,7 +56,10 @@
     p {
         a {
             text-decoration: 1px underline white !important;
-            -webkit-text-decoration-line: underline white;
+            -webkit-text-decoration-line: underline !important;
+            -webkit-text-decoration-color: white !important;
+            -webkit-text-decoration-style: solid !important;
+            -webkit-text-decoration-thickness: 1px !important;
             font-style: italic;
         }
     }
@@ -110,7 +113,10 @@
 
     a {
         text-decoration: 1px underline white !important;
-        -webkit-text-decoration-line: underline white;
+        -webkit-text-decoration-line: underline !important;
+        -webkit-text-decoration-color: white !important;
+        -webkit-text-decoration-style: solid !important;
+        -webkit-text-decoration-thickness: 1px !important;
     }
 
     & p,
@@ -328,7 +334,10 @@
             padding-top: 15px;
             margin-bottom: 30px;
             text-decoration: underline white;
-            -webkit-text-decoration-line: underline white;
+            -webkit-text-decoration-line: underline !important;
+            -webkit-text-decoration-color: white !important;
+            -webkit-text-decoration-style: solid !important;
+            -webkit-text-decoration-thickness: 1px !important;
         }
 
         .replies {
@@ -355,7 +364,10 @@
                         align-items: center;
                         gap: 10px;
                         text-decoration: 1px underline white !important;
-                        -webkit-text-decoration-line: underline white;
+                        -webkit-text-decoration-line: underline !important;
+                        -webkit-text-decoration-color: white !important;
+                        -webkit-text-decoration-style: solid !important;
+                        -webkit-text-decoration-thickness: 1px !important;
                     }
 
                     img {
