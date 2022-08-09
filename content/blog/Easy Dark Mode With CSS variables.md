@@ -12,23 +12,23 @@ For achieving this we are going to use the `prefers-color-scheme` media feature,
 
 ```css
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #121212; // This is how we define a variable in CSS
-    }
+  :root {
+    --background-color: #121212; // This is how we define a variable in CSS
+  }
 }
 
 @media (prefers-color-scheme: light) {
-    :root {
-        --background-color: #ffffff;
-    }
+  :root {
+    --background-color: #ffffff;
+  }
 }
 ```
 
-Then in any part of the site we have to use the `--bg-color` variable with `var()` like this:
+Then in any part of the site we have to use the `--background-color` variable with `var()` like this:
 
 ```css
 body {
-    background-color: var(--background-color);
+  background-color: var(--background-color);
 }
 ```
 
