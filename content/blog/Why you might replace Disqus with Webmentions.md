@@ -1,5 +1,5 @@
 ---
-title: "Why I replaced Disqus with Webmentions?"
+title: "Why you might replace Disqus with Webmentions?"
 date: 2022-08-08
 draft: false
 description: "Disqus is a terrible service if performance is a concern. Webmentions are a better alternative. In this post, I'll show you."
