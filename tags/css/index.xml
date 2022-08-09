@@ -165,9 +165,12 @@ throttle(getDimensions(e), delay);
 &amp;lt;/html&amp;gt;
 "
 frameborder="0"
-height="400px"
+height="
+400px
+"
 width="100%"
-sandbox="allow-scripts">
+sandbox="allow-scripts"
+>
 &lt;/iframe>
 &lt;p>To achieve this we are using the &lt;code>mix-blend-mode&lt;/code> CSS property with the value &lt;code>difference&lt;/code> which basically inverts the color of the content it has below it.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">container&lt;/span> &lt;span class="p">{&lt;/span>
@@ -237,9 +240,12 @@ pointer-events: none;
 &amp;lt;/html&amp;gt;
 "
 frameborder="0"
-height="400px"
+height="
+400px
+"
 width="100%"
-sandbox="">
+sandbox=""
+>
 &lt;/iframe>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">cursor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.circle&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
