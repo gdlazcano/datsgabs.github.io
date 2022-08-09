@@ -1,11 +1,11 @@
 ---
-title: "Why you might replace Disqus with Webmentions?"
+title: "Why you might replace Disqus with Webmentions"
 date: 2022-08-08
 draft: false
 description: "Disqus is a terrible service if performance is a concern. Webmentions are a better alternative. In this post, I'll show you."
 tags: []
 image:
-tweet:
+tweet: 1557055760168894469
 ---
 
 My blog is statically generated, so it needs an external service to handle the comments. At first I chose Disqus because it's know for being free and easy to setup. However, it **has ads, tracks a lot of data and tolls on the page loading performance**. The reason [I chose using Hugo](https://gabriellazcano.com/blog/my-stack/) was for the bare performance I would get but, for this reason using Disqus sounded completely counterproductive.
