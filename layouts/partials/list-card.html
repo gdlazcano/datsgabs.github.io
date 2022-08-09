@@ -1,9 +1,7 @@
-<li class="list-card" data-url="{{ .RelPermalink }}">
-  <div class="list-card_top">
-    <a href="{{ .Permalink }}" class="card-top_title"
-      >{{ .Title }}{{ if .Draft }}<span class="draft">[draft]</span>{{ end }}</a
-    >
-  </div>
+<li class="list-card box" data-url="{{ .RelPermalink }}">
+  <a href="{{ .Permalink }}" class="card-top_title"
+    >{{ .Title }}{{ if .Draft }}<span class="draft">[draft]</span>{{ end }}</a
+  >
 
   <p class="list-card_description">{{ .Description }}</p>
   {{ if ne .Kind "term" }}

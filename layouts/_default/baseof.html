@@ -65,10 +65,16 @@
       href="https://webmention.io/gabriellazcano.com/xmlrpc"
     />
 
-    {{ $styleCommons := resources.Get "scss/commons/index.scss" |
+    {{ $index := resources.Get "scss/index.scss" |
       resources.ToCSS | resources.Minify | resources.Fingerprint
     }}
-    <link rel="stylesheet" href="{{ $styleCommons.Permalink }}" />
+    <link rel="stylesheet" href="{{ $index.Permalink }}" />
+
+    {{ $layout := resources.Get "scss/layout.scss" |
+      resources.ToCSS | resources.Minify | resources.Fingerprint
+    }}
+    <link rel="stylesheet" href="{{ $layout.Permalink }}" />
+
     {{ block "stylesheets" . }}{{ end }}
   </head>
   <body>

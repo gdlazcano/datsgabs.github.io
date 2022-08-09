@@ -1,17 +1,19 @@
 <header class="navigation">
-  <a
-    class="navigation_home-button"
-    href="{{ "/" | relLangURL }}"
-    title="Press to go Home"
-    ><img width="80" height="80" src="/images/habbo.png" alt="Gabriel Lazcano"
-  /></a>
+  <div class="logo">
+    <a
+      class="navigation_home-button"
+      href="{{ "/" | relLangURL }}"
+      title="Press to go Home"
+      ><img src="/images/habbo.png" alt="Gabriel Lazcano"
+    /></a>
+  </div>
 
-  <h1 class="navigation_header navigation_mobile--hiden">Gabriel Lazcano</h1>
-  <p class="navigation_mobile--hiden">
+  <h1 class="navigation_header navigation_mobile--hidden">Gabriel Lazcano</h1>
+  <p class="navigation_mobile--hidden">
     Fullstack web developer, living in Mexico
   </p>
 
-  <div class="social-media navigation_mobile--hiden">
+  <div class="social-media navigation_mobile--hidden">
     <a href="https://github.com/datsgabs">
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>GitHub icon</title>
@@ -39,7 +41,9 @@
   </div>
 
   <nav class="navigation_menu" id="links">
-    {{ partial "allLanguages.html" . }}
+    {{ range $.Site.Home.AllTranslations }}
+      <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+    {{ end }}
     <br />
     <hr />
     <br />

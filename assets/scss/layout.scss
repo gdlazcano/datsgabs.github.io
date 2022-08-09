@@ -1,0 +1,78 @@
+@import "navigation.scss";
+
+.main {
+  margin-top: 10px;
+  padding: 0 var(--padding) var(--padding) var(--padding);
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 200px calc(100% - 200px);
+    padding: 10px;
+
+    .main {
+      padding-top: 10px;
+    }
+  }
+
+  aside {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    margin: 0;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 200px 750px 200px;
+    justify-content: center;
+    padding: 20px;
+    grid-gap: 10px;
+  }
+
+  aside {
+    display: block;
+    padding-top: 20px;
+
+    .toc {
+      position: sticky;
+      top: 20px;
+
+      .title {
+        display: block;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        li {
+          a {
+            opacity: 50%;
+            transition: all 50ms ease-in-out;
+            &:hover {
+              opacity: 100%;
+            }
+          }
+          &.active > {
+            a {
+              opacity: 100%;
+            }
+          }
+
+          ul {
+            padding: 5px 0 5px 15px;
+          }
+        }
+      }
+    }
+  }
+}

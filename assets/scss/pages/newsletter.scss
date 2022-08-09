@@ -1,0 +1,29 @@
+.newsletter {
+  padding: var(--padding);
+  width: 100%;
+
+  h1,
+  p {
+    margin-bottom: 20px;
+  }
+
+  .revue-form-group {
+    label {
+      margin-bottom: 10px;
+      display: block;
+    }
+    .revue-form-field {
+      display: block;
+      width: 100%;
+      height: 40px;
+      padding: 0px 15px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .revue-form-actions {
+    input {
+      padding: 10px;
+    }
+  }
+}

@@ -35,7 +35,7 @@
 
 {{ define "stylesheets" }}
   {{ $single := resources.Get
-    "scss/single/index.scss" | resources.ToCSS | resources.Minify |
+    "scss/pages/single.scss" | resources.ToCSS | resources.Minify |
     resources.Fingerprint
   }}
   <link rel="stylesheet" href="{{ $single.Permalink }}" />
@@ -83,7 +83,7 @@
         href="https://twitter.com/intent/tweet?text={{ .Title }}&amp;url={{ .Permalink }}&amp;via=datsgabs"
         target="_blank"
         rel="noopener noreferrer"
-        class="share-twitter-btn article-bottom_btn"
+        class="share-twitter-button article-bottom_button"
       >
         <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
@@ -95,7 +95,7 @@
 
       <a
         href="https://www.reddit.com/submit?title={{ .Title }}&url={{ .Permalink }}"
-        class="share-reddit_btn article-bottom_btn"
+        class="share-reddit_button article-bottom_button"
         target="_blank"
         ><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -127,7 +127,7 @@
           href="https://twitter.com/intent/like?tweet_id={{ .Params.tweet_id }}"
           target="_blank"
           rel="noopener noreferrer"
-          class="like-twitter-btn"
+          class="like-twitter-button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

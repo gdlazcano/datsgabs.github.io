@@ -1,4 +1,7 @@
-<div class="toc">{{ .TableOfContents }}</div>
+<div class="toc">
+  <a href="#" class="title">{{ .Title }}</h1>
+  {{ .TableOfContents }}
+</div>
 
 {{ $tocJS := resources.Get "js/toc.js" | minify | fingerprint }}
 <script src="{{ $tocJS.RelPermalink }}"></script>

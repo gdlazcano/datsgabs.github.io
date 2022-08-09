@@ -1,10 +1,9 @@
 {{ define "main" }}
-  <div class="list">
-    <header class="list_title">
-      <h1>{{ .Title }}</h1>
-    </header>
+  <div class="taxonoy">
+    <h1>{{ .Title }}</h1>
+
     {{ .Content }}
-    <ul>
+    <ul class="list">
       {{ range (.Paginator 25).Pages }}
         {{ partial "list-card" . }}
       {{ end }}
@@ -16,8 +15,6 @@
 {{ end }}
 
 {{ define "stylesheets" }}
-  {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  {{ $list := resources.Get "scss/list.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $list.Permalink }}" />
-  {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $listCard.Permalink }}" />
 {{ end }}
