@@ -7,8 +7,8 @@ defaultContentLanguage: en
 ignoreErrors: ["error-remote-getjson"]
 
 params:
-    author: "Gabriel Lazcano"
-    codepenUser: "DatsGabs"
+  author: "Gabriel Lazcano"
+  codepenUser: "DatsGabs"
 
 languages:
   en:
@@ -19,35 +19,35 @@ languages:
     weight: 2
 
 menu:
-    blog:
-        # - identifier: about
-        #   name: About
-        #   url: /about
-        #   weight: 1
-        - identifier: archive
-          name: Archive
-          url: /archive
-          weight: 2
-        - identifier: tags
-          name: Tags
-          url: /tags
-          weight: 3
-        - identifier: newsletter
-          name: Newsletter
-          url: /newsletter
-          weight: 4
-
-
+  blog:
+    # - identifier: about
+    #   name: About
+    #   url: /about
+    #   weight: 1
+    - identifier: archive
+      name: Archive
+      url: /archive
+      weight: 2
+    - identifier: tags
+      name: Tags
+      url: /tags
+      weight: 3
+    - identifier: newsletter
+      name: Newsletter
+      url: /newsletter
+      weight: 4
 
 taxonomies:
-    tag: tags
+  tag: tags
 
 sitemap:
-    changefreq: "weekly"
-    priority: 0.5
-    filename: "sitemap.xml"
+  changefreq: "weekly"
+  priority: 0.5
+  filename: "sitemap.xml"
 
 markup:
-    highlight:
-        noClasses: false
-        tabWidth: 4
+  highlight:
+    noClasses: false
+    tabWidth: 4
+  tableOfContents:
+    endLevel: 4
