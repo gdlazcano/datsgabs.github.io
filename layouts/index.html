@@ -1,36 +1,39 @@
 {{ define "main" }}
-<div class="listing">
-
-
+  <div class="listing">
     <!-- Ranges through content/posts/*.md -->
     {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 50 }}
     {{ range $paginator.Pages }}
-        {{ partial "list-card" . }}
+      {{ partial "list-card" . }}
     {{ end }}
     {{ $masonry := resources.Get "js/masonry.js" | minify | fingerprint }}
-    <script src="{{$masonry.RelPermalink}}" defer></script>
-    {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint}}
-    <script src="{{$clickableBox.RelPermalink}}" defer></script>
-</div>
-{{ partial "pager.html" . }}
+    <script src="{{ $masonry.RelPermalink }}" defer></script>
+    {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint }}
+    <script src="{{ $clickableBox.RelPermalink }}" defer></script>
+  </div>
+  {{ partial "pager.html" . }}
 {{ end }}
 
 {{ define "stylesheets" }}
-    {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $list.Permalink }}"> 
-    {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $listCard.Permalink }}">
+  {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $list.Permalink }}" />
+  {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $listCard.Permalink }}" />
 {{ end }}
 
 {{ define "aside" }}
-<div>
-    {{range $name, $taxonomy := .Site.Taxonomies.tags}} {{ $cnt := .Count }}
-    {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+  <div>
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+      {{ $cnt := .Count }}
+      {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
         <div class="tagbutton">
-    <a href={{ .RelPermalink }} title="All pages with category <i>{{$name}}</i>">{{$name}}</a>
-    <sup>{{$cnt}}</sup>
+          <a
+            href="{{ .RelPermalink }}"
+            title="All pages with category <i>{{ $name }}</i>"
+            >{{ $name }}</a
+          >
+          <sup>{{ $cnt }}</sup>
         </div>
-    {{end}}
-    {{end}}
-    </div>
+      {{ end }}
+    {{ end }}
+  </div>
 {{ end }}

@@ -1,23 +1,23 @@
 {{ define "main" }}
-<div class="list">
+  <div class="list">
     <header class="list_title">
-        <h1>{{.Title}}</h1>
+      <h1>{{ .Title }}</h1>
     </header>
-    {{.Content}}
+    {{ .Content }}
     <ul>
-        {{ range (.Paginator 25).Pages  }}
-            {{ partial "list-card" . }}
-        {{ end }}
-        {{ partial "pager.html" . }}
+      {{ range (.Paginator 25).Pages }}
+        {{ partial "list-card" . }}
+      {{ end }}
+      {{ partial "pager.html" . }}
     </ul>
-    {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint}}
-    <script src="{{$clickableBox.RelPermalink}}" defer></script>
-</div>
+    {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint }}
+    <script src="{{ $clickableBox.RelPermalink }}" defer></script>
+  </div>
 {{ end }}
 
 {{ define "stylesheets" }}
-    {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $list.Permalink }}">
-    {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $listCard.Permalink }}"> 
+  {{ $list := resources.Get "scss/list/index.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $list.Permalink }}" />
+  {{ $listCard := resources.Get "scss/list/list-card.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $listCard.Permalink }}" />
 {{ end }}

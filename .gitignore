@@ -2,3 +2,7 @@
 /resources
 /.vscode
 .hugo_build.lock
+/node_modules
+.prettierrc
+package-lock.json
+package.json

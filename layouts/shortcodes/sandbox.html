@@ -1,7 +1,12 @@
-<iframe 
-srcdoc="{{safeHTMLAttr .Inner}}" 
-frameborder="0" 
-height="{{if (.Get "height")}}{{.Get "height"}}{{else}}400px{{end}}" 
-width="100%" 
-sandbox="{{.Get "sandbox"}}">
+<iframe
+  srcdoc="{{ safeHTMLAttr .Inner }}"
+  frameborder="0"
+  height="{{ if (.Get "height") }}
+    {{ .Get "height" }}
+  {{ else }}
+    400px
+  {{ end }}"
+  width="100%"
+  sandbox="{{ .Get "sandbox" }}"
+>
 </iframe>

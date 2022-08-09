@@ -1,28 +1,32 @@
-<li class="list-card" data-url="{{.RelPermalink}}">
-    <div class="list-card_top">
-        <a href="{{.Permalink}}" class="card-top_title"
-            >{{.Title}}{{if .Draft}}<span class="draft">[draft]</span>{{end}}</a
-        >
-    </div>
+<li class="list-card" data-url="{{ .RelPermalink }}">
+  <div class="list-card_top">
+    <a href="{{ .Permalink }}" class="card-top_title"
+      >{{ .Title }}{{ if .Draft }}<span class="draft">[draft]</span>{{ end }}</a
+    >
+  </div>
 
-    <p class="list-card_description">{{.Description}}</p>
-    {{ if ne .Kind "term" }}
+  <p class="list-card_description">{{ .Description }}</p>
+  {{ if ne .Kind "term" }}
     <div class="posting-info">
-        <span
-            >{{ T "publishedOn" }} {{.Date | time.Format ":date_medium"}}</span
-        >
-        <span>|</span>
-        <span>{{.ReadingTime}} min read</span>
+      <span
+        >{{ T "publishedOn" }} {{ .Date | time.Format ":date_medium" }}</span
+      >
+      <span>|</span>
+      <span>{{ .ReadingTime }} min read</span>
     </div>
     <div class="list-card_bottom">
-        {{ with .Params.tags }} {{if ge (len .) 1}} {{ range . }}
-        <a
-            class="{{lower .}} card-top_tag"
-            title="{{.}} tag"
-            href="/tags/{{ lower . }}"
-            >{{.}}</a
-        >
-        {{ end }} {{ end }} {{ end }}
+      {{ with .Params.tags }}
+        {{ if ge (len .) 1 }}
+          {{ range . }}
+            <a
+              class="{{ lower . }} card-top_tag"
+              title="{{ . }} tag"
+              href="/tags/{{ lower . }}"
+              >{{ . }}</a
+            >
+          {{ end }}
+        {{ end }}
+      {{ end }}
     </div>
-    {{ end }}
+  {{ end }}
 </li>
