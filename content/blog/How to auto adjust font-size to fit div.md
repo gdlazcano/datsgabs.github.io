@@ -4,9 +4,6 @@ date: 2021-03-05T23:08:34-06:00
 draft: false
 description: "In this post I'm explaining how to adjust the font-size to fit a div with JavaScript"
 tags: ["js"]
-image: https://i.imgur.com/0UcZiV3.gif
-tweet_id: 1556897296842989568
-twitter_card: summary_large_image
 keywords:
   ["font-size", "auto", "adjust", "js", "javascript", "fit to content", "fit to div", "container", "div"]
 ---
