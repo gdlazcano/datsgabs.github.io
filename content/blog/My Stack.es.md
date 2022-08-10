@@ -6,8 +6,6 @@ tags: ["hugo"]
 description: "En este post voy a explicar como hice mi blog con Hugo y Github Pages."
 ---
 
-## Introducción
-
 Decidi hacer un blog, trate de usar los sitios de blog usuales. No me gustó mucho, me sentia un poco desalentado por la falta de herramientas.
 
 En este post voy a explicar el stack que uso para hacer mi blog y las cosas que me han notado en el proceso. Voy a actualizar esta página cada vez que extiendo mi stack.
@@ -38,4 +36,4 @@ Espero que este blog post te sea de utilidad y que te ayude a hacer un blog más
 
 ## Articulos relacionados
 
--   [How to add a custom domain to your Github Pages](/blog/how-to-add-a-custom-domain-to-your-github-pages/)
+- [How to add a custom domain to your Github Pages](/blog/how-to-add-a-custom-domain-to-your-github-pages/)

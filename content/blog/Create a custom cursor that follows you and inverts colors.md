@@ -4,6 +4,8 @@ date: 2021-07-15
 draft: false
 description: "In this post I'm going to explain how to make a custom cursor that inverts the color of the content it's covering."
 tags: ["css", "js"]
+image: https://i.imgur.com/T23clMh.png
+tweet_id: 1557219289949667334
 ---
 
 Yeah I know the title is not very clear for what I'm trying to explain in this post. So just see the results by yourself.
@@ -90,22 +92,22 @@ To achieve this we are using the `mix-blend-mode` CSS property with the value `d
 
 ```css
 .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  position: relative;
 }
 
 .circle {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 60px;
-    height: 60px;
-    background: white;
-    border-radius: 50%;
-    pointer-events: none;
-    mix-blend-mode: difference;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
 ```
 
@@ -165,16 +167,16 @@ And we start to see that it blends already. We just have to make the circle to m
 {{</ sandbox >}}
 
 ```js
-const cursor = document.querySelector(".circle")
+const cursor = document.querySelector(".circle");
 
 function getDimensions(e) {
-    cursor.style.top = `${e.clientY - 25}px` // -25px for the size of the circle
-    cursor.style.left = `${e.clientX - 25}px`
+  cursor.style.top = `${e.clientY - 25}px`; // -25px for the size of the circle
+  cursor.style.left = `${e.clientX - 25}px`;
 }
 
 window.addEventListener("mousemove", (e) => {
-    getDimensions(e)
-})
+  getDimensions(e);
+});
 ```
 
 **And it's working**
@@ -186,26 +188,26 @@ While it's working, if you add a debug `getDimensions` function you might see th
 There is a really known way of solving this problem. By throttling the function calls only firing it once the `mousemove` event idle for time, in this example 250ms.
 
 ```js
-const delay = 250
+const delay = 250;
 
 // ...
 
 function throttle(callback, limit) {
-    let wait = false
-    return function () {
-        if (!wait) {
-            callback.apply(null, arguments)
-            wait = true
-            setTimeout(function () {
-                wait = false
-            }, limit)
-        }
+  let wait = false;
+  return function () {
+    if (!wait) {
+      callback.apply(null, arguments);
+      wait = true;
+      setTimeout(function () {
+        wait = false;
+      }, limit);
     }
+  };
 }
 
 window.addEventListener("mousemove", (e) => {
-    throttle(getDimensions(e), delay)
-})
+  throttle(getDimensions(e), delay);
+});
 ```
 
 You can get the complete implementation [in this link](https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb)
