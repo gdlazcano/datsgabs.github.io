@@ -4,6 +4,11 @@ date: 2021-03-05T23:08:34-06:00
 draft: false
 description: "In this post I'm explaining how to adjust the font-size to fit a div with JavaScript"
 tags: ["js"]
+image: https://i.imgur.com/0UcZiV3.gif
+tweet_id: 1556897296842989568
+twitter_card: summary_large_image
+keywords:
+  ["font-size", "auto", "adjust", "js", "javascript", "fit to content", "fit to div", "container", "div"]
 ---
 
 ![big](https://i.imgur.com/0UcZiV3.gif)
@@ -16,14 +21,14 @@ So I decided to take this path. Calculating if the div has overflow and then wor
 
 ```js
 function checkOverflow(el) {
-    let curOverflow = el.style.overflow
-    if (!curOverflow || curOverflow === "visible") {
-        el.style.overflow = "hidden"
-    }
-    let isOverflowing =
-        el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight
-    el.style.overflow = curOverflow
-    return isOverflowing
+  let curOverflow = el.style.overflow;
+  if (!curOverflow || curOverflow === "visible") {
+    el.style.overflow = "hidden";
+  }
+  let isOverflowing =
+    el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
+  el.style.overflow = curOverflow;
+  return isOverflowing;
 }
 ```
 
@@ -63,8 +68,8 @@ And we have it. We are adjusting the font-size already. To make it to work when 
 // ...
 
 window.addEventListener("resize", () => {
-    adjustFontSize(div)
-})
+  adjustFontSize(div);
+});
 ```
 
 ### Resize Optimization
@@ -72,26 +77,26 @@ window.addEventListener("resize", () => {
 If you've read my [post on how to make a custom cursor that follows you](https://gabriellazcano.com/blog/create-a-custom-cursor-that-follows-you-and-inverts-colors) you might have already noticed that doing handling the event this way is not very performant. As we are calling the adjustSize too many times. So we are going to use the same technique that we did on that post, we are going to throttle the function calls to have a delay of 500ms.
 
 ```js
-const delay = 500
+const delay = 500;
 
 // ...
 
 function throttle(callback, limit) {
-    let wait = false
-    return function () {
-        if (!wait) {
-            callback.apply(null, arguments)
-            wait = true
-            setTimeout(function () {
-                wait = false
-            }, limit)
-        }
+  let wait = false;
+  return function () {
+    if (!wait) {
+      callback.apply(null, arguments);
+      wait = true;
+      setTimeout(function () {
+        wait = false;
+      }, limit);
     }
+  };
 }
 
 window.addEventListener("resize", () => {
-    throttle(adjustFontSize(div), delay)
-})
+  throttle(adjustFontSize(div), delay);
+});
 ```
 
 ## Related Posts
