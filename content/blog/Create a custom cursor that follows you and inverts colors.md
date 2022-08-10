@@ -6,6 +6,7 @@ description: "In this post I'm going to explain how to make a custom cursor that
 tags: ["css", "js"]
 image: https://i.imgur.com/T23clMh.png
 tweet_id: 1557219289949667334
+twitter_card: summary_large_image
 ---
 
 Yeah I know the title is not very clear for what I'm trying to explain in this post. So just see the results by yourself.
