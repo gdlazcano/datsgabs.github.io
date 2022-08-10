@@ -8,6 +8,15 @@
   margin-bottom: 50px;
   border: 1px solid #343434;
 
+  * > a {
+    text-decoration: 1px underline white !important;
+    -webkit-text-decoration-line: underline !important;
+    -webkit-text-decoration-color: white !important;
+    -webkit-text-decoration-style: solid !important;
+    -webkit-text-decoration-thickness: 1px !important;
+    font-style: italic;
+  }
+
   @media (min-width: 768px) {
     padding: 25px;
   }

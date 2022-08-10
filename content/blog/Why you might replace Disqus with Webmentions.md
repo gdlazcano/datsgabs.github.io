@@ -81,4 +81,4 @@ https://webmention.io/api/mentions.jf2?target=[page url]
 
 ## Thanks for reading, let's connect
 
-Thanks for reading my blog. Feel free to reach out to me if you have any questions or want to connect. You can also pake a pull request if you want to improve the article :)))
+Thanks for reading my blog. Feel free to reach out to me if you have any questions or want to connect. You can also make a pull request if you want to improve the article :)))
