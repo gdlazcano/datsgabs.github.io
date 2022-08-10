@@ -181,11 +181,13 @@
       visibility: visible;
       height: auto;
       align-items: center;
+      pointer-events: all;
 
       a,
       hr,
       p {
         width: 70%;
+        font-size: 1.1em;
       }
     }
 

@@ -65,3 +65,8 @@
     {{- end }}
   {{- end }}
 {{- end }}
+
+{{ define "stylesheets" }}
+  {{ $archive := resources.Get "scss/pages/archive.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $archive.Permalink }}" />
+{{ end }}

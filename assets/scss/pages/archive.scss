@@ -1,48 +1,46 @@
-@import "media-queries.scss";
-
 .archive-year {
-    margin-top: 50px;
-    width: 100%;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .archive-month {
-    width: 100%;
-    margin-top: 30px;
+  width: 100%;
+  margin-top: 30px;
 
-    .archive-month-header {
-        border-bottom: 1px solid white;
-        padding-bottom: 20px;
-    }
+  .archive-month-header {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+  }
 }
 
 .archive-entry {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 5px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .archive_icon-span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .archive_icon {
-    width: 15px;
-    height: 15px;
-    fill: white;
-    margin-right: 5px;
+  width: 15px;
+  height: 15px;
+  fill: white;
+  margin-right: 5px;
 }
 
 .entry-top {
-    font-size: 1.3em;
-    font-weight: bold;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .entry-bottom {
-    margin-top: 10px;
-    display: flex;
-    & > * {
-        margin-right: 10px;
-    }
+  margin-top: 10px;
+  display: flex;
+  & > * {
+    margin-right: 10px;
+  }
 }
