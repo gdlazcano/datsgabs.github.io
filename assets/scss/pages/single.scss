@@ -76,6 +76,10 @@
 
   img {
     width: 70% !important;
+
+    @media (max-width: 767px) {
+      width: 100% !important;
+    }
   }
 
   img[alt~="big"] {
