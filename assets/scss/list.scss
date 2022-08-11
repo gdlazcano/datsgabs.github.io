@@ -9,6 +9,10 @@
     cursor: pointer;
     padding: 20px;
 
+    &:hover {
+      background-color: var(--second-elevation-color);
+    }
+
     .card-top_title {
       font-size: 1.7em;
       font-weight: bold;

@@ -1,7 +1,9 @@
 :root {
   --background-color: #121212;
   --elevation-color: #191919;
-  --second-elevation-color: #202020;
+  --second-elevation-color: #222222;
+  --third-elevation-color: #303030;
+  --accent-color: #da1571;
   --border-radius: 5px;
   --padding: 15px;
 }
@@ -12,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-color);
+  background: var(--second-elevation-color);
 }
 
 ::-webkit-scrollbar-thumb {

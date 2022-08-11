@@ -36,11 +36,11 @@
   }
 
   :not(.chroma) > code {
-    background-color: white;
-    color: black;
-    padding: 0 5px;
+    background-color: var(--third-elevation-color);
+    padding: 0 7px;
     font-weight: bold;
     margin: 0 3px;
+    border: 1px solid #6b6b6b;
   }
 
   strong {
@@ -111,20 +111,28 @@
     font-weight: 900;
   }
 
-  h1 {
-    font-size: 2.5em;
+  h1::before {
+    content: "# ";
+    width: auto;
+    color: var(--accent-color);
   }
 
-  h2 {
-    font-size: 2.3em;
+  h2::before {
+    content: "## ";
+    width: auto;
+    color: var(--accent-color);
   }
 
-  h3 {
-    font-size: 2em;
+  h3::before {
+    content: "### ";
+    width: auto;
+    color: var(--accent-color);
   }
 
-  h4 {
-    font-size: 1.5em;
+  h4::before {
+    content: "#### ";
+    width: auto;
+    color: var(--accent-color);
   }
 
   video {
