@@ -14,6 +14,7 @@ keywords:
     "useContext",
     "dan abramov",
   ]
+tweet_id: 1557404082129833986
 ---
 
 React Hooks launched a long time ago, but it has now become a core part of React. It is a new way to write components that is much more powerful than the previous version.
