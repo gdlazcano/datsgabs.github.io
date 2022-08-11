@@ -1,12 +1,9 @@
 @import "syntax.scss";
 
 .article {
-  padding: 15px;
   border-radius: 5px;
-  background-color: var(--elevation-color);
   word-wrap: break-word;
   margin-bottom: 50px;
-  border: 1px solid #343434;
 
   * > a {
     text-decoration: 1px underline white !important;
@@ -15,10 +12,6 @@
     -webkit-text-decoration-style: solid !important;
     -webkit-text-decoration-thickness: 1px !important;
     font-style: italic;
-  }
-
-  @media (min-width: 768px) {
-    padding: 25px;
   }
 
   :first-child {
@@ -257,8 +250,6 @@
 }
 
 .mentions {
-  padding: 0 20px;
-
   h2 {
     font-size: 2.3em;
     margin-bottom: 30px;
