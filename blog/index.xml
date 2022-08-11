@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Syntackle Blog Review</title><link>https://gabriellazcano.com/blog/syntackle-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/syntackle-blog-review/</guid><description>&lt;p>&lt;img src="https://i.imgur.com/SAaYjRX.png" alt="">&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Cyberula Blog Review</title><link>https://gabriellazcano.com/blog/cyberula-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/cyberula-blog-review/</guid><description>&lt;p>&lt;a href="https://twitter.com/murtuza_surti">cyber_ula&lt;/a> submitted &lt;a href="https://cyberula.com/">their blog cyberula.com&lt;/a> for review on &lt;a href="https://twitter.com/DatsGabs/status/1557576403176112129">a Twitter post I made&lt;/a>.&lt;/p>
+&lt;h2 id="great-posts-layout-and-thumbnail-images">Great posts layout and thumbnail images&lt;/h2>
+&lt;p>My first impression was that the posts list was very good looking, there&amp;rsquo;s also the fact that all of them use thumbnail images that contribute to the aesthetics. Very well chosen.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/tmFKDHz.png" alt="big">&lt;/p>
+&lt;h2 id="fully-responsive-">Fully Responsive 📱&lt;/h2>
+&lt;p>&lt;img src="https://imgur.com/UtFvlUb.gif" alt="big">&lt;/p>
+&lt;h3 id="weird-nav-behaviour-on-mobile">Weird nav behaviour on mobile&lt;/h3>
+&lt;p>The only weird thing that happens is that the top navbar centers the programming tag and it&amp;rsquo;s not really aligned with the Twitter icon.&lt;/p>
+&lt;h2 id="comment-section">Comment section&lt;/h2>
+&lt;p>It has a per post comment section. I believe it&amp;rsquo;s a really good addition to the blog. It&amp;rsquo;s made with wordpress to it&amp;rsquo;s fast to deploy and really adds a lot of value.&lt;/p>
+&lt;h2 id="search">Search&lt;/h2>
+&lt;p>The search functionality works as expected. It&amp;rsquo;s responsive and gives the correct results.&lt;/p>
+&lt;h2 id="meta-tags">Meta tags&lt;/h2>
+&lt;p>This blog has a really good of meta tags. It has the Open Graph meta tags and the twitter:card meta tags. Very complete in that matter&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/1R38fq6.png" alt="big">&lt;/p>
+&lt;h2 id="great-content">Great content&lt;/h2>
+&lt;p>The post that was the reason I noticed this blog was about how &lt;a href="https://cyberula.com/how-100daysofcode-has-changed-my-life/">#100DaysOfCode change their life&lt;/a>. And I happened to binge watch all the other related content. It&amp;rsquo;s actually really valuable and I would love to keep seeing more of it.&lt;/p>
+&lt;h2 id="pagespeed-results">PageSpeed results&lt;/h2>
+&lt;h3 id="desktop">Desktop&lt;/h3>
+&lt;p>PageSpeed was actually pretty good for this blog on desktop sites&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/s2I7F1S.png" alt="big">&lt;/p>
+&lt;h3 id="mobile">Mobile&lt;/h3>
+&lt;p>However, PageSpeed was not as forgiving on mobile. I really wouldn&amp;rsquo;t know the reason but it might be something to check out.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/TU2Uot8.png" alt="big">&lt;/p>
+&lt;h2 id="oportunities-for-improvement">Oportunities for improvement&lt;/h2>
+&lt;h3 id="syntax-highlight">Syntax highlight&lt;/h3>
+&lt;p>If there&amp;rsquo;s the opportunity of addign syntax highlighting to the blog it would really make code blocks stand out and make it easier to read. It&amp;rsquo;s easier to identify the functions and variables so that can get a better idea of what&amp;rsquo;s going on at first glance.&lt;/p>
+&lt;p>From this&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/K9Jtbfn.png" alt="">&lt;/p>
+&lt;p>To something like this&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">linearSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">arr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="nx">t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="some-pages-use-screenshots-as-code-examples">Some pages use screenshots as code examples&lt;/h3>
+&lt;p>As I mentioned before, syntax highlighting adds a lot of value. However, I believe that adding images as code blocks might not be that beneficial for performance and usability issues. Still appreciate the addition of them.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/4dsLWxi.png" alt="small">&lt;/p>
+&lt;h3 id="some-contrast-issues">Some contrast issues&lt;/h3>
+&lt;p>It&amp;rsquo;s somewhat hard to see what going on in the menu. It&amp;rsquo;s an easy fix that would improve a lot the user experience.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/hFJbFJu.png" alt="big">&lt;/p>
+&lt;h3 id="repeated-functionalities">Repeated functionalities&lt;/h3>
+&lt;h4 id="related-posts">Related Posts&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/l79Fj0a.png" alt="big">
+&lt;img src="https://i.imgur.com/A7s4He6.png" alt="big">&lt;/p>
+&lt;h4 id="share-widget">Share widget&lt;/h4>
+&lt;p>&lt;img src="https://i.imgur.com/SzdOQCE.png" alt="big">&lt;/p>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>It&amp;rsquo;s really good, I tried to be as descriptive as possible but I&amp;rsquo;m not sure if I can do it all. In reality, much of these things have little effect on the user experience but if considered it could definitely be widely improved.&lt;/p>
+&lt;p>&lt;strong>8/10&lt;/strong>&lt;/p></description></item><item><title>Syntackle Blog Review</title><link>https://gabriellazcano.com/blog/syntackle-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/syntackle-blog-review/</guid><description>&lt;p>&lt;img src="https://i.imgur.com/SAaYjRX.png" alt="">&lt;/p>
 &lt;p>&lt;a href="https://twitter.com/murtuza_surti">Murtuzaali Surti&lt;/a> submitted his blog &lt;a href="https://syntackle.live">Syntackle&lt;/a> for review on &lt;a href="https://twitter.com/DatsGabs/status/1557576403176112129">a Twitter post I made&lt;/a>.&lt;/p>
 &lt;h2 id="its-fast-">It&amp;rsquo;s fast ⚡&lt;/h2>
 &lt;p>The first thing I noticed was that the website was fast. I was able to &lt;strong>load it in less than a second&lt;/strong>. This was later confirmed by &lt;a href="https://pagespeed.web.dev/">pagespeed insights&lt;/a>. It&amp;rsquo;s made with &lt;a href="https://www.11ty.dev/">11ty&lt;/a> and i&amp;rsquo;m gladly surprised that it&amp;rsquo;s that fast.&lt;/p>
