@@ -16,8 +16,9 @@ aside {
 @media (min-width: 768px) {
   .container {
     display: grid;
-    grid-template-columns: 200px calc(100% - 200px);
-    padding: 10px;
+    grid-template-columns: 200px minmax(min-content, 700px);
+    padding: 20px;
+    justify-content: center;
 
     .main {
       padding-top: 10px;
@@ -32,8 +33,7 @@ aside {
 
   .container {
     display: grid;
-    grid-template-columns: 200px 750px 200px;
-    justify-content: center;
+    grid-template-columns: 200px 700px 200px;
     padding: 20px;
     grid-gap: 10px;
   }
