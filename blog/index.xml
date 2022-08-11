@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Wed, 10 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>React Hooks gives you superpowers</title><link>https://gabriellazcano.com/blog/react-hooks-give-you-superpowers/</link><pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/react-hooks-give-you-superpowers/</guid><description>&lt;p>React Hooks launched a long time ago, but it has now become a core part of React. It is a new way to write components that is much more powerful than the previous version.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Syntackle Blog Review</title><link>https://gabriellazcano.com/blog/syntackle-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/syntackle-blog-review/</guid><description>&lt;p>&lt;img src="https://i.imgur.com/SAaYjRX.png" alt="">&lt;/p>
+&lt;p>&lt;a href="https://twitter.com/murtuza_surti">Murtuzaali Surti&lt;/a> submitted his blog &lt;a href="https://syntackle.live">Syntackle&lt;/a> for review on &lt;a href="https://twitter.com/DatsGabs/status/1557576403176112129">a Twitter post I made&lt;/a>.&lt;/p>
+&lt;h2 id="its-fast-">It&amp;rsquo;s fast ⚡&lt;/h2>
+&lt;p>The first thing I noticed was that the website was fast. I was able to &lt;strong>load it in less than a second&lt;/strong>. This was later confirmed by &lt;a href="https://pagespeed.web.dev/">pagespeed insights&lt;/a>. It&amp;rsquo;s made with &lt;a href="https://www.11ty.dev/">11ty&lt;/a> and i&amp;rsquo;m gladly surprised that it&amp;rsquo;s that fast.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/A6o2s1L.png" alt="big">&lt;/p>
+&lt;h2 id="clean-design">Clean design&lt;/h2>
+&lt;p>The home page is clean and simple. The title of the article the description with a word limit, that looks really good, and the date of publication.&lt;/p>
+&lt;p>The post page it&amp;rsquo;s even better. What can I say you simply look at it and know it&amp;rsquo;s good design.&lt;/p>
+&lt;p>&lt;strong>And completely responsive&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/38zRd1Z.png" alt="">&lt;/p>
+&lt;h2 id="dark-modelight-mode-toggle-">Dark mode/Light mode toggle ☀️🌙&lt;/h2>
+&lt;p>The design in light mode is equally good and persistent using &lt;code>localstorage&lt;/code>.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/GYnf6S6.png" alt="">&lt;/p>
+&lt;h2 id="rss-feed">RSS Feed&lt;/h2>
+&lt;p>I always appreciate the addition of an RSS feed in a blog. It&amp;rsquo;s a great way to keep track of the latest posts.&lt;/p>
+&lt;h2 id="uses-webmentions-">Uses Webmentions 🙌🙌&lt;/h2>
+&lt;p>If you&amp;rsquo;ve read my post of &lt;a href="https://gabriellazcano.com/blog/why-you-might-replace-disqus-with-webmentions/">how I migrated from Disqus to Webmentions&lt;/a>, you&amp;rsquo;ll know that I actually quite like them and plan of using them from now on. In Murtuzaali&amp;rsquo;s site he doesn&amp;rsquo;t explicitly use them, but I think it&amp;rsquo;d be a good idea to do so.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/wEii3NR.png" alt="big">&lt;/p>
+&lt;h2 id="great-use-of-_meta-tags_-and-_semantic-html_">Great use of &lt;em>meta tags&lt;/em> and &lt;em>semantic HTML&lt;/em>&lt;/h2>
+&lt;p>This site has a great use of meta tags. He knows it&amp;rsquo;s great to get the best SEO results.&lt;/p>
+&lt;p>Murtuzaali has done an amazing job at implementing semantic HTML. He uses main, article, header and footer tags making the website really accesisble.&lt;/p>
+&lt;h2 id="oportunities-for-improvement">Oportunities for improvement&lt;/h2>
+&lt;p>In desktop mode, the header is very spaced out and in big screens it doesn&amp;rsquo;t seem quite right. Maybe it could be fixed to the width of the main container.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/6bwQNkV.png" alt="big">&lt;/p>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>It&amp;rsquo;s pretty much what I expected. I&amp;rsquo;m glad I found this site. It might be missing some features, but something more is an addition it works perfectly as it is.&lt;/p>
+&lt;p>&lt;strong>9.8/10&lt;/strong>&lt;/p></description></item><item><title>React Hooks gives you superpowers</title><link>https://gabriellazcano.com/blog/react-hooks-give-you-superpowers/</link><pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/react-hooks-give-you-superpowers/</guid><description>&lt;p>React Hooks launched a long time ago, but it has now become a core part of React. It is a new way to write components that is much more powerful than the previous version.&lt;/p>
 &lt;p>It&amp;rsquo;s much better than writting a class component, because you end up with simpler code, less boilerplate, and similar features, much faster.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-jsx" data-lang="jsx">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Class Component
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">export&lt;/span> &lt;span class="kr">class&lt;/span> &lt;span class="nx">ShowCount&lt;/span> &lt;span class="kr">extends&lt;/span> &lt;span class="nx">React&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Component&lt;/span> &lt;span class="p">{&lt;/span>
