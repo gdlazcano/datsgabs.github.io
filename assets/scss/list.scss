@@ -81,10 +81,12 @@
 // Tags
 .hugo {
   background-color: #34aadc;
+  color: black;
 }
 
 .html {
-  background-color: #e34c26;
+  background-color: #c54525;
+  text-transform: uppercase;
 }
 
 .networking,
@@ -95,7 +97,7 @@
 
 .css {
   background-color: #37aadd;
-  color: white;
+  color: black;
 }
 
 .js {
@@ -121,11 +123,7 @@
   color: black;
 }
 
-.windows {
-  background-color: #04a5e8;
-  color: black;
-}
-
 .golang {
   background-color: #00a7d0;
+  color: black;
 }

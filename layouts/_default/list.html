@@ -3,12 +3,12 @@
     <h1>{{ .Title }}</h1>
 
     {{ .Content }}
-    <ul class="list">
+    <div class="list">
       {{ range (.Paginator 25).Pages }}
         {{ partial "list-card" . }}
       {{ end }}
       {{ partial "pager.html" . }}
-    </ul>
+    </div>
     {{ $clickableBox := resources.Get "js/clickable-box.js" | minify | fingerprint }}
     <script src="{{ $clickableBox.RelPermalink }}" defer></script>
   </div>

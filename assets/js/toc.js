@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   const observerForTableOfContentActiveState = new IntersectionObserver(
     (entries) => {
-      console.log(entries);
       entries.forEach((entry) => {
         const id = entry.target.getAttribute("id");
         if (entry.isIntersecting) {

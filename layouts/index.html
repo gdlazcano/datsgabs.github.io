@@ -1,11 +1,11 @@
 {{ define "main" }}
-  <ul class="list">
+  <div class="list">
     <!-- Ranges through content/posts/*.md -->
     {{ $paginator := .Paginate (where .Site.RegularPages ".Params.skipped" "ne" true).ByDate.Reverse 50 }}
     {{ range $paginator.Pages }}
       {{ partial "list-card" . }}
     {{ end }}
-  </ul>
+  </div>
 
   {{ $masonry := resources.Get "js/masonry.js" | minify | fingerprint }}
   <script src="{{ $masonry.RelPermalink }}" defer></script>

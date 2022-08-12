@@ -1,6 +1,4 @@
 const masonryLayout = (containerElem, itemsElems, columns) => {
-  console.log(containerElem, itemsElems, columns);
-
   containerElem.classList.add("masonry-layout", `columns-${columns}`);
   let columnsElements = [];
 
@@ -22,22 +20,16 @@ const masonryLayout = (containerElem, itemsElems, columns) => {
   }
 };
 
-try {
-  masonryLayout(
-    document.querySelector(".list"),
-    document.querySelectorAll(".list-card"),
-    2
-  );
-} catch (error) {
-  console.log(error);
+const list = document.querySelector(".list");
+const listCard = document.querySelectorAll(".list-card");
+
+if (list && listCard) {
+  masonryLayout(list, listCard, 2);
 }
 
-try {
-  masonryLayout(
-    document.querySelector(".replies"),
-    document.querySelectorAll(".reply"),
-    2
-  );
-} catch (error) {
-  console.log(error);
+const replies = document.querySelector(".replies");
+const repliesCard = document.querySelectorAll(".replies-card");
+
+if (replies && repliesCard) {
+  masonryLayout(replies, repliesCard, 2);
 }
