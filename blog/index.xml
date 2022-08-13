@@ -1,4 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Thu, 11 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Cyberula Blog Review</title><link>https://gabriellazcano.com/blog/cyberula-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/cyberula-blog-review/</guid><description>&lt;p>&lt;a href="https://twitter.com/murtuza_surti">cyber_ula&lt;/a> submitted &lt;a href="https://cyberula.com/">their blog cyberula.com&lt;/a> for review on &lt;a href="https://twitter.com/DatsGabs/status/1557576403176112129">a Twitter post I made&lt;/a>.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Gabriel Lazcano</title><link>https://gabriellazcano.com/blog/</link><description>Recent content in Blogs on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sat, 13 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://gabriellazcano.com/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Import 3D models in React Three Fiber vs Three.js</title><link>https://gabriellazcano.com/blog/import-3d-model-react-three-fiber-vs-three-js-/</link><pubDate>Sat, 13 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/import-3d-model-react-three-fiber-vs-three-js-/</guid><description>&lt;iframe
+srcdoc="
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;style&amp;gt;
+* {
+margin: 0;
+padding: 0;
+}
+html,
+body {
+overflow: hidden;
+}
+.webgl {
+position: fixed;
+top: 0;
+left: 0;
+outline: none;
+}
+&amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;canvas class=&amp;#34;webgl&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt;
+&amp;lt;script async src=&amp;#34;https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;#34;importmap&amp;#34;&amp;gt;
+{
+&amp;#34;imports&amp;#34;: {
+&amp;#34;three&amp;#34;: &amp;#34;https://unpkg.com/three/build/three.module.js&amp;#34;
+}
+}
+&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt;
+import * as THREE from &amp;#39;three&amp;#39;;
+import { OrbitControls } from &amp;#39;https://unpkg.com/three/examples/jsm/controls/OrbitControls.js&amp;#39;;
+import { GLTFLoader } from &amp;#39;https://unpkg.com/three/examples/jsm/loaders/GLTFLoader.js&amp;#39;;
+const canvas = document.querySelector(&amp;#39;canvas.webgl&amp;#39;)
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x121212);
+const sizes = {
+width: window.innerWidth,
+height: window.innerHeight
+}
+window.addEventListener(&amp;#39;resize&amp;#39;, () =&amp;gt; {
+sizes.width = window.innerWidth
+sizes.height = window.innerHeight
+camera.aspect = sizes.width / sizes.height
+camera.updateProjectionMatrix()
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+const light = new THREE.AmbientLight( 0x404040, 8 ); // soft white light
+scene.add( light );
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 5 );
+scene.add( directionalLight );
+const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 0.1, 100)
+camera.position.x = 1
+camera.position.y = 1
+camera.position.z = 1
+scene.add(camera)
+const renderer = new THREE.WebGLRenderer({
+canvas: canvas,
+antialias: true,
+})
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.enableDamping = true
+const loader = new GLTFLoader();
+loader.load( &amp;#39;/models/capy.glb&amp;#39;, function ( gltf ) {
+const capy = scene.add( gltf.scene );
+capy.position.set(0, -0.35, 0);
+}, undefined, function ( error ) {
+console.error( error );
+} );
+const clock = new THREE.Clock()
+let lastElapsedTime = 0
+const tick = () =&amp;gt; {
+const elapsedTime = clock.getElapsedTime()
+const deltaTime = elapsedTime - lastElapsedTime
+lastElapsedTime = elapsedTime
+controls.update()
+renderer.render(scene, camera)
+window.requestAnimationFrame(tick)
+}
+tick()
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+"
+frameborder="0"
+height="
+300px
+"
+width="100%"
+sandbox="allow-scripts allow-same-origin"
+>
+&lt;/iframe>
+&lt;h2 id="what-is-react-three-fiber">What is React Three Fiber?&lt;/h2>
+&lt;p>React Three Fiber is a new React renderer for &lt;a href="https://threejs.org/">Three.js&lt;/a>, it&amp;rsquo;s an &lt;strong>abstraction layer on top of Three.js&lt;/strong>, so you can use Three.js without having to worry about the underlying implementation.&lt;/p>
+&lt;h2 id="importing-3d-models-in-react-three-fiber">Importing 3D models in React Three Fiber&lt;/h2></description></item><item><title>Cyberula Blog Review</title><link>https://gabriellazcano.com/blog/cyberula-blog-review/</link><pubDate>Thu, 11 Aug 2022 00:00:00 +0000</pubDate><guid>https://gabriellazcano.com/blog/cyberula-blog-review/</guid><description>&lt;p>&lt;a href="https://twitter.com/murtuza_surti">cyber_ula&lt;/a> submitted &lt;a href="https://cyberula.com/">their blog cyberula.com&lt;/a> for review on &lt;a href="https://twitter.com/DatsGabs/status/1557576403176112129">a Twitter post I made&lt;/a>.&lt;/p>
 &lt;h2 id="great-posts-layout-and-thumbnail-images">Great posts layout and thumbnail images&lt;/h2>
 &lt;p>My first impression was that the posts list was very good looking, there&amp;rsquo;s also the fact that all of them use thumbnail images that contribute to the aesthetics. Very well chosen.&lt;/p>
 &lt;p>&lt;img src="https://i.imgur.com/tmFKDHz.png" alt="big">&lt;/p>
