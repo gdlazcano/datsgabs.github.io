@@ -16,12 +16,13 @@ aside {
 @media (min-width: 768px) {
   .container {
     display: grid;
-    grid-template-columns: 200px minmax(min-content, 700px);
+    grid-template-columns: 200px minmax(500px, 700px);
     padding: 20px;
     justify-content: center;
 
     .main {
       padding-top: 10px;
+      width: 100%;
     }
   }
 }
