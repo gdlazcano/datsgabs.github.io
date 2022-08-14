@@ -16,7 +16,7 @@ keywords:
 tweet_id:
 ---
 
-{{< sandbox sandbox="allow-scripts allow-same-origin" height="300px">}}
+{{< sandbox sandbox="allow-scripts allow-same-origin" height="400px">}}
 
 <html>
   <head>
@@ -69,14 +69,14 @@ tweet_id:
           renderer.setSize(sizes.width, sizes.height)
           renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       })
-      const light = new THREE.AmbientLight( 0x404040, 8 ); // soft white light
+      const light = new THREE.AmbientLight( 0x404040, 1 ); // soft white light
       scene.add( light );
-      const directionalLight = new THREE.DirectionalLight( 0xffffff, 5 );
+      const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
       scene.add( directionalLight );
-      const camera = new THREE.PerspectiveCamera(40, sizes.width / sizes.height, 0.1, 100)
+      const camera = new THREE.PerspectiveCamera( 45, sizes.width / sizes.height, 1, 1000 );
       camera.position.x = 1
       camera.position.y = 1
-      camera.position.z = 1
+      camera.position.z = 7
       scene.add(camera)
       const renderer = new THREE.WebGLRenderer({
           canvas: canvas,
@@ -87,9 +87,16 @@ tweet_id:
       const controls = new OrbitControls( camera, renderer.domElement );
       controls.enableDamping = true
       const loader = new GLTFLoader();
-      loader.load( '/models/capy.glb', function ( gltf ) {
-        const capy = scene.add( gltf.scene );
-        capy.position.set(0, -0.35, 0);
+      loader.load( '/models/capybara.glb', function ( gltf ) {
+        const capy = gltf.scene;
+        var newMaterial = new THREE.MeshPhysicalMaterial({color: 0xbf743d});
+        capy.traverse((o) => {
+          if (o.isMesh) {
+            o.material = newMaterial
+          }
+        });
+        scene.add( capy );
+        capy.position.set(0, 0.35, 0);
       }, undefined, function ( error ) {
         console.error( error );
       } );
@@ -105,6 +112,7 @@ tweet_id:
       }
       tick()
     </script>
+
   </body>
 </html>
 
