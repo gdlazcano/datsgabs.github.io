@@ -48,7 +48,7 @@ camera.updateProjectionMatrix()
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
-const light = new THREE.AmbientLight( 0x404040, 1 ); // soft white light
+const light = new THREE.AmbientLight( 0x404040, 2 ); // soft white light
 scene.add( light );
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 scene.add( directionalLight );
