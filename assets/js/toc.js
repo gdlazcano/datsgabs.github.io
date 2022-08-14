@@ -1,4 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
+  const headings = document.querySelectorAll("h1[id],h2[id],h3[id],h4[id]");
+
   const observerForTableOfContentActiveState = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -15,10 +17,15 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
   );
-  document
-    .querySelectorAll("h1[id],h2[id],h3[id], h4[id]")
-    .forEach((section) => {
-      observerForTableOfContentActiveState.observe(section);
+  headings.forEach((section) => {
+    observerForTableOfContentActiveState.observe(section);
+  });
+
+  headings.forEach((section) => {
+    section.addEventListener("click", () => {
+      const location = window.location.origin + window.location.pathname;
+      navigator.clipboard.writeText(`${location}#${section.id}`);
     });
+  });
   // Track all sections that have an `id` applied
 });

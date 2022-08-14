@@ -102,6 +102,7 @@
   h4 {
     margin: 15px 0;
     font-weight: 900;
+    cursor: pointer;
   }
 
   h1::before {
@@ -216,11 +217,10 @@
 }
 
 .copy-code-button {
-  color: #272822;
-  background-color: #fff;
-  border-color: #272822;
-  border: 2px solid;
-  border-radius: 3px 3px 0px 0px;
+  color: white;
+  background-color: var(--third-elevation-color);
+  border-radius: var(--border-radius) var(--border-radius) 0px 0px;
+  border: 1px solid #666666;
 
   /* right-align */
   display: block;
