@@ -18,7 +18,7 @@ keywords:
   ]
 tweet_id: 1558909435745124354
 twitter_card: summary_large_image
-image: https://i.imgur.com/rIg7Aol.png
+image: https://imgur.com/H5ZnfET.png
 ---
 
 {{< sandbox sandbox="allow-scripts allow-same-origin" height="300px">}}
