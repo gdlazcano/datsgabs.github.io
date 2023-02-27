@@ -112,4 +112,4 @@ You have to go to `chrome://extensions` and turn on Developer Mode. Press `Load 
 
 I hope you will find this blog post useful and keep it handy for a quick reference. This solution is a little clumsy but I didn't find any better way and wanted to share it with you. Feel free to send me a DM or to mention me on Twitter if you've got any suggestion or fix.
 
-You can look at the whole code in [this repository](https://github.com/DatsGabs/namespace-chrome-storage-extension)
+You can look at the whole code in [this repository](https://github.com/gdlazcano_/namespace-chrome-storage-extension)

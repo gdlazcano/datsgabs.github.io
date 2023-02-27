@@ -213,7 +213,7 @@ window.addEventListener("mousemove", (e) => {
 });
 ```
 
-You can get the complete implementation [in this link](https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb)
+You can get the complete implementation [in this link](https://gist.github.com/gdlazcano/e8da259163413861720384d432e79bfb)
 
 ## Related Posts
 

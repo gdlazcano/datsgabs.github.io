@@ -13,7 +13,7 @@ tweet_id: 1557620038097674240
 
 ![](https://i.imgur.com/SAaYjRX.png)
 
-[Murtuzaali Surti](https://twitter.com/murtuza_surti) submitted his blog [Syntackle](https://syntackle.live) for review on [a Twitter post I made](https://twitter.com/DatsGabs/status/1557576403176112129).
+[Murtuzaali Surti](https://twitter.com/murtuza_surti) submitted his blog [Syntackle](https://syntackle.live) for review on [a Twitter post I made](https://twitter.com/gdlazcano_/status/1557576403176112129).
 
 ## It's fast ⚡
 
