@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>google on Gabriel Lazcano</title><link>https://gabriellazcano.com/tags/google/</link><description>Recent content in google on Gabriel Lazcano</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2021 Gabriel Lazcano</copyright><lastBuildDate>Sun, 12 Feb 2023 19:22:10 -0500</lastBuildDate><atom:link href="https://gabriellazcano.com/tags/google/index.xml" rel="self" type="application/rss+xml"/><item><title>Azure vs Google Cloud Services: A comparion of Cloud Platforms</title><link>https://gabriellazcano.com/blog/azure/</link><pubDate>Sun, 12 Feb 2023 19:22:10 -0500</pubDate><guid>https://gabriellazcano.com/blog/azure/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Welcome to our blog post which compares two of the most popular cloud computing services: &lt;strong>Azure, Microsoft&amp;rsquo;s cloud platform, and Google Cloud Services (GCS)&lt;/strong>. Cloud computing has revolutionized the way organizations operate, providing flexible and scalable resources that can be accessed from anywhere. In this post, we will dive deeper into the various tools and services offered by Azure and GCS for budgeting and cost optimization.&lt;/p>
+&lt;h2 id="azure-budgeting-tools">Azure Budgeting Tools&lt;/h2>
+&lt;p>Azure offers a variety of practical tools and services to help you monitor your usage and costs. &lt;strong>Azure Cost Management and Billing&lt;/strong> is a built-in tool that gives a comprehensive breakdown of your Azure costs, including resources, subscriptions, and services. With this tool, you can keep track of your usage, set budgets, and receive alerts to monitor your spending. &lt;strong>Azure Advisor&lt;/strong> is another helpful tool that provides personalized recommendations to optimize your Azure resources, reduce costs, and improve performance.&lt;/p>
+&lt;h2 id="gcs-budgeting-tools">GCS Budgeting Tools&lt;/h2>
+&lt;p>GCS provides various tools and services to help you monitor your usage and costs. &lt;strong>Google Cloud Billing&lt;/strong> provides a detailed breakdown of your GCS costs, including resources, projects, and services. With this tool, you can keep track of your usage, set budgets, and receive alerts to monitor your spending. GCS also offers various pricing calculators that allow you to estimate your costs based on your usage and needs. &lt;strong>Google Cloud Cost Management&lt;/strong> provides an advanced dashboard that allows you to analyze your costs and usage, set budgets and alerts, and optimize your costs based on recommendations.&lt;/p>
+&lt;h2 id="cost-optimization-tools">Cost Optimization Tools&lt;/h2>
+&lt;p>In addition to budgeting tools, both Azure and GCS provide various cost optimization tools. Azure offers various services and tools that can help you optimize your resources and reduce costs, such as &lt;strong>Azure Reserved Virtual Machine Instances&lt;/strong> that allow you to reserve virtual machines for one or three years, providing significant discounts compared to on-demand prices. &lt;strong>Azure Hybrid Benefit&lt;/strong> allows you to use your on-premises Windows Server licenses with Azure, reducing the cost of running Windows Server in the cloud. Additionally, &lt;strong>Azure Spot Virtual Machines&lt;/strong> allow you to take advantage of unused capacity at a significantly lower price than on-demand prices. GCS provides various services and tools to optimize your costs, such as &lt;strong>custom machine types&lt;/strong>, &lt;strong>preemptible VMs&lt;/strong>, and &lt;strong>sustained use discounts&lt;/strong>. GCS also offers &lt;strong>auto-scaling&lt;/strong> and &lt;strong>load-balancing&lt;/strong> features that allow you to scale your resources based on demand, reducing costs when demand is low.&lt;/p>
+&lt;h2 id="comparison-of-azure-and-gcs-budgeting-and-cost-optimization-tools">Comparison of Azure and GCS Budgeting and Cost Optimization Tools&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Tool/Service&lt;/th>
+&lt;th>Azure&lt;/th>
+&lt;th>GCS&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Cost Management and Billing&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Advisor&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Pricing Calculators&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Cost Management&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Reserved Virtual Machine Instances&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Hybrid Benefit&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Spot Virtual Machines&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Custom Machine Types&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Preemptible VMs&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Sustained Use Discounts&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Auto-Scaling&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Load-Balancing&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✔️&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="conclusion">Conclusion&lt;/h2>
+&lt;p>In conclusion, both Azure and GCS provide various tools and services to help you monitor your usage and costs and optimize your costs. Azure offers Azure Cost Management and Billing, Azure Advisor, Reserved Virtual Machine Instances, Hybrid Benefit, and Spot Virtual Machines. GCS offers Google Cloud Billing, pricing calculators, Google Cloud Cost Management, custom machine types, preemptible VMs, sustained use discounts, auto-scaling, and load-balancing. While both cloud platforms offer similar tools, organizations should evaluate their specific needs and requirements before choosing a cloud platform.&lt;/p></description></item></channel></rss>
