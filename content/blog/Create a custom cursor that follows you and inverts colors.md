@@ -1,6 +1,6 @@
 ---
 title: "Custom cursor that inverts colors (mix-blend-mode)"
-date: 2021-07-15
+date: 2022-07-15
 draft: false
 description: "In this post I'm going to explain how to make a custom cursor that inverts the color of the content it's covering."
 tags: ["css", "js"]

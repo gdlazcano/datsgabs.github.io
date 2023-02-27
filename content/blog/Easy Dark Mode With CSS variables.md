@@ -1,6 +1,6 @@
 ---
 title: "Easy Dark Mode With CSS variables"
-date: 2021-03-03
+date: 2022-03-03
 draft: false
 description: "A small article on how to use prefers-color-sheme and :root for making a simple dark mode implementation"
 tags: ["css"]

@@ -1,6 +1,6 @@
 ---
 title: "How to Inject Javascript to a Site From Chrome Extension"
-date: 2021-07-03T22:46:36-05:00
+date: 2022-07-03T22:46:36-05:00
 draft: false
 description: "Tutorial on how to create a chrome extension that injects code into a site"
 tags: ["js"]

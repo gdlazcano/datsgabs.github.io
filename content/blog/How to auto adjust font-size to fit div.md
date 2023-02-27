@@ -1,6 +1,6 @@
 ---
 title: "How to auto adjust font-size to fit div"
-date: 2021-03-05T23:08:34-06:00
+date: 2022-03-05T23:08:34-06:00
 draft: false
 description: "In this post I'm explaining how to adjust the font-size to fit a div with JavaScript"
 tags: ["js"]

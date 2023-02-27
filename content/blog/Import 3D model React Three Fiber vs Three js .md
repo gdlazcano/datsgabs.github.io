@@ -1,6 +1,6 @@
 ---
 title: "Import 3D models in React Three Fiber vs Three.js "
-date: 2022-08-13
+date: 2023-01-10
 draft: false
 description: "React Three Fiber and Three.js both are libraries for adding 3D elements on the web. What are the differences? How to import a 3D model in React Three Fiber vs Three.js? How to change the color of a GLB oject?"
 tags: ["react", "js"]

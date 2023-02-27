@@ -1,6 +1,6 @@
 ---
 title: "Namespacing Chrome Storage for page dependant settings for your Chrome Extension"
-date: 2021-03-03
+date: 2022-03-03
 draft: false
 description: "A tutorial of how to namespace chrome.storage for making it dependant on the current page"
 tags: ["JS"]
