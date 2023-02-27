@@ -281,7 +281,7 @@ sandbox=""
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">});&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/gdlazcano/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
 &lt;h2 id="related-posts">Related Posts&lt;/h2>
 &lt;ol>
 &lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div">How to auto adjust font-size to fit div&lt;/a>&lt;/li>

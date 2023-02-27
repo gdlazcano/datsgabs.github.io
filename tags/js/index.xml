@@ -499,7 +499,7 @@ sandbox=""
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addEventListener&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;mousemove&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">throttle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">getDimensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">delay&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">});&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/DatsGabs/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can get the complete implementation &lt;a href="https://gist.github.com/gdlazcano/e8da259163413861720384d432e79bfb">in this link&lt;/a>&lt;/p>
 &lt;h2 id="related-posts">Related Posts&lt;/h2>
 &lt;ol>
 &lt;li>&lt;a href="https://gabriellazcano.com/blog/how-to-auto-adjust-font-size-to-fit-div">How to auto adjust font-size to fit div&lt;/a>&lt;/li>
@@ -685,4 +685,4 @@ sandbox=""
 &lt;p>&lt;img src="https://i.imgur.com/snhT2Z4.png" alt="">&lt;/p>
 &lt;h2 id="wrap-up">Wrap up&lt;/h2>
 &lt;p>I hope you will find this blog post useful and keep it handy for a quick reference. This solution is a little clumsy but I didn&amp;rsquo;t find any better way and wanted to share it with you. Feel free to send me a DM or to mention me on Twitter if you&amp;rsquo;ve got any suggestion or fix.&lt;/p>
-&lt;p>You can look at the whole code in &lt;a href="https://github.com/DatsGabs/namespace-chrome-storage-extension">this repository&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;p>You can look at the whole code in &lt;a href="https://github.com/gdlazcano_/namespace-chrome-storage-extension">this repository&lt;/a>&lt;/p></description></item></channel></rss>
